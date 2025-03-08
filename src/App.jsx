@@ -23,27 +23,27 @@ const App = () => {
     <Router>
       <Header />
       <MainLayout>
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/home" element={<Home />} />
-        <Route path="/himalkom" element={<Himalkom />} />
-        <Route path="/bp" element={<BP />} />
-        <Route path="/bph" element={<BPH />} />
-        <Route path="/academic" element={<Academic />} />
-        <Route path="/business" element={<Business />} />
-        <Route path="/external" element={<External />} />
-        <Route path="/internal" element={<Internal />} />
-        <Route path="/creative" element={<Creative />} />
-        <Route path="/ristek" element={<Ristek />} />
-        <Route path="/komunitas" element={<Komunitas />} />
-        <Route path="/komnews" element={<Komnews />} />
-        <Route path="/galeri" element={<Galeri />} />
-        <Route path="/megaproker" element={<Megaproker />} />
-        <Route path="/riset" element={<Riset />} />
-      </Routes>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/home" element={<Home />} />
+          <Route path="/himalkom" element={<Himalkom />} />
+          <Route path="/bp" element={<BP />} />
+          <Route path="/bph" element={<BPH />} />
+          <Route path="/academic" element={<Academic />} />
+          <Route path="/business" element={<Business />} />
+          <Route path="/external" element={<External />} />
+          <Route path="/internal" element={<Internal />} />
+          <Route path="/creative" element={<Creative />} />
+          <Route path="/ristek" element={<Ristek />} />
+          <Route path="/komunitas" element={<Komunitas />} />
+          <Route path="/komnews" element={<Komnews />} />
+          <Route path="/galeri" element={<Galeri />} />
+          <Route path="/megaproker" element={<Megaproker />} />
+          <Route path="/riset" element={<Riset />} />
+        </Routes>
       </MainLayout>
     </Router>
   );
 };
 
-export default App;   
+export default App;
