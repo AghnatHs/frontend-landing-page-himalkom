@@ -6,3 +6,8 @@
 @theme {
   --font-athiti: Athiti, "sans-serif";
 }
+
+html,
+body {
+  font-family: 'Athiti', sans-serif;
+}

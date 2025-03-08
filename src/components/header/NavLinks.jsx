@@ -28,11 +28,11 @@ const NavLinks = () => {
   }, [isProfileOpen, isDepartmentOpen]);
 
   return (
-    <div className="nav-links flex gap-[61px] w-1/3 font-athiti">
-      <NavLink className="text-black font-semibold opacity-70 transition-all hover:opacity-100 hover:text-white hover:font-bold hover:[text-shadow:_2px_2px_0_black] hover:[-webkit-text-stroke:1px_black]" to="/home" onClick={closeDropdown}>Home</NavLink>
+    <div className="nav-links text-lg flex gap-[61px] w-1/3 font-athiti">
+      <NavLink className="text-black font-normal transition-all hover:opacity-70" to="/home" onClick={closeDropdown}>Home</NavLink>
 
       <div className="relative" ref={profileRef}>
-        <button className="text-black font-semibold opacity-70 transition-all hover:opacity-100 hover:text-white hover:font-bold hover:[text-shadow:_2px_2px_0_black] hover:[-webkit-text-stroke:1px_black]" onClick={() => setIsProfileOpen(!isProfileOpen)}>
+        <button className="text-black font-normal transition-all hover:opacity-70" onClick={() => setIsProfileOpen(!isProfileOpen)}>
           Profil 
         </button>
         {isProfileOpen && (
@@ -57,11 +57,11 @@ const NavLinks = () => {
         )}
       </div>
 
-      <NavLink className="text-black font-semibold opacity-70 transition-all hover:opacity-100 hover:text-white hover:font-bold hover:[text-shadow:_2px_2px_0_black] hover:[-webkit-text-stroke:1px_black]" to="/komunitas" onClick={closeDropdown}>Komunitas</NavLink>
-      <NavLink className="text-black font-semibold opacity-70 transition-all hover:opacity-100 hover:text-white hover:font-bold hover:[text-shadow:_2px_2px_0_black] hover:[-webkit-text-stroke:1px_black]" to="/komnews" onClick={closeDropdown}>Komnews</NavLink>
-      <NavLink className="text-black font-semibold opacity-70 transition-all hover:opacity-100 hover:text-white hover:font-bold hover:[text-shadow:_2px_2px_0_black] hover:[-webkit-text-stroke:1px_black]" to="/galeri" onClick={closeDropdown}>Galeri</NavLink>
-      <NavLink className="text-black font-semibold opacity-70 transition-all hover:opacity-100 hover:text-white hover:font-bold hover:[text-shadow:_2px_2px_0_black] hover:[-webkit-text-stroke:1px_black]" to="/megaproker" onClick={closeDropdown}>Megaproker</NavLink>
-      <NavLink className="text-black font-semibold opacity-70 transition-all hover:opacity-100 hover:text-white hover:font-bold hover:[text-shadow:_2px_2px_0_black] hover:[-webkit-text-stroke:1px_black]" to="/riset" onClick={closeDropdown}>Riset</NavLink>
+      <NavLink className="text-black font-normal transition-all hover:opacity-70" to="/komunitas" onClick={closeDropdown}>Komunitas</NavLink>
+      <NavLink className="text-black font-normal transition-all hover:opacity-70" to="/komnews" onClick={closeDropdown}>Komnews</NavLink>
+      <NavLink className="text-black font-normal transition-all hover:opacity-70" to="/galeri" onClick={closeDropdown}>Galeri</NavLink>
+      <NavLink className="text-black font-normal transition-all hover:opacity-70" to="/megaproker" onClick={closeDropdown}>Megaproker</NavLink>
+      <NavLink className="text-black font-normal transition-all hover:opacity-70" to="/riset" onClick={closeDropdown}>Riset</NavLink>
     </div>
   );
 };

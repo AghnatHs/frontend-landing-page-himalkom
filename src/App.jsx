@@ -1,5 +1,6 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import MainLayout from './layout/MainLayout';
 import Home from './pages/Home';
 import Himalkom from './pages/Himalkom';
 import BP from './pages/BP';
@@ -21,6 +22,7 @@ const App = () => {
   return (
     <Router>
       <Header />
+      <MainLayout>
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/home" element={<Home />} />
@@ -39,6 +41,7 @@ const App = () => {
         <Route path="/megaproker" element={<Megaproker />} />
         <Route path="/riset" element={<Riset />} />
       </Routes>
+      </MainLayout>
     </Router>
   );
 };
