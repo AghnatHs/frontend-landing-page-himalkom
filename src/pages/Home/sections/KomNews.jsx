@@ -19,27 +19,37 @@ const Komnews = ({ newsData, loadingNews, errorNews, currentNewsIndex, goToNewsS
               index === currentNewsIndex ? 'opacity-100' : 'hidden opacity-0'
             }`}
           >
-            <div className="w-1/2 p-8 flex flex-col justify-between">
-              <div>
+            {/* Bagian konten - separuh kiri */}
+            <div className="w-1/2 p-8 flex flex-col h-full">
+              {/* Wrapper untuk judul dan konten dengan overflow */}
+              <div className="flex-grow overflow-hidden flex flex-col">
                 <h3 className="font-bold text-2xl mb-4">{komnews.title}</h3>
+                
+                {/* Content dengan ellipsis yang dinamis berdasarkan ukuran layar */}
                 <div 
-                  className="text-gray-700 overflow-hidden max-h-[180px]"
+                  className="text-gray-700 overflow-hidden flex-grow"
                   style={{
                     display: "-webkit-box",
-                    WebkitLineClamp: 8,
+                    WebkitLineClamp: "6", // Mengurangi jumlah baris untuk layar kecil
                     WebkitBoxOrient: "vertical",
                     textOverflow: "ellipsis"
                   }}
                   dangerouslySetInnerHTML={{ __html: komnews.content }}
                 ></div>
               </div>
-              <Link 
-                to={`/komnews/${komnews.slug || komnews.id}`} 
-                className='mt-6 self-start px-4 py-2 text-sm rounded-sm bg-white shadow-[0px_0px_8px_0.3px_rgba(105,83,207,0.39)] cursor-pointer transition-all hover:shadow-[0px_0px_8px_2px_rgba(105,83,207,0.39)]'
-              >
-                Baca Selengkapnya
-              </Link>
+              
+              {/* Tombol dengan margin top tetap */}
+              <div className="mt-4">
+                <Link 
+                  to={`/komnews/${komnews.slug || komnews.id}`} 
+                  className='inline-block px-4 py-2 text-sm rounded-sm bg-white shadow-[0px_0px_8px_0.3px_rgba(105,83,207,0.39)] cursor-pointer transition-all hover:shadow-[0px_0px_8px_2px_rgba(105,83,207,0.39)]'
+                >
+                  Baca Selengkapnya
+                </Link>
+              </div>
             </div>
+            
+            {/* Bagian gambar - separuh kanan */}
             <div className="w-1/2">
               <img
                 src={`${baseUrl}/storage/${komnews.image}`}

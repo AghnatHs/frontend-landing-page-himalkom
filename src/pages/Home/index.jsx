@@ -12,7 +12,7 @@ import SectionHeader from '../../components/common/SectionHeader';
 import HeroSection from './sections/HeroSection';
 import Ilkomunity from './sections/Ilkommunity';
 import Megaproker from './sections/Megaproker';
-import Komnews from './sections/Komnews';
+import Komnews from './sections/KomNews';
 
 /**
  * Halaman utama (Home)
