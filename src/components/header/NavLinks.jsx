@@ -4,15 +4,13 @@ import { NavLink } from 'react-router-dom';
 const NavLinks = () => {
   const [isProfileOpen, setIsProfileOpen] = useState(false);
   const [isDepartmentOpen, setIsDepartmentOpen] = useState(false);
- /*  const [isCommunityOpen, setIsCommunityOpen] = useState(false); */
+
   const profileRef = useRef(null);
   const departmentRef = useRef(null);
- /*  const communityRef = useRef(null); */
 
   const closeDropdown = () => {
     setIsProfileOpen(false);
     setIsDepartmentOpen(false);
-    /* setIsCommunityOpen(false); */
   };
 
   useEffect(() => {
@@ -23,13 +21,9 @@ const NavLinks = () => {
       if (departmentRef.current && !departmentRef.current.contains(event.target)) {
         setIsDepartmentOpen(false);
       }
-     /*  if (communityRef.current && !communityRef.current.contains(event.target)) {
-        setIsCommunityOpen(false);
-      } */
     }
-    
 
-    if (isProfileOpen || isDepartmentOpen /* || isCommunityOpen */) {
+    if (isProfileOpen || isDepartmentOpen) {
       document.addEventListener("mousedown", handleClickOutside);
     } else {
       document.removeEventListener("mousedown", handleClickOutside);
@@ -37,7 +31,7 @@ const NavLinks = () => {
     return () => {
       document.removeEventListener("mousedown", handleClickOutside);
     };
-  }, [isProfileOpen, isDepartmentOpen/* , isCommunityOpen */]);
+  }, [isProfileOpen, isDepartmentOpen]);
 
   return (
     <div className="nav-links flex gap-[61px] w-1/3 font-athiti">

@@ -2,53 +2,70 @@ import React, { useState, useEffect } from 'react';
 import TImages from '../utils/images';
 import axios from 'axios';
 
-const Komunitas = () => {
+const useFetchData = (endpoint, baseUrl) => {
   const [data, setData] = useState([]);
+  const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
-  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    axios.get('https://apihimalkomstaging.akucuciin.my.id/admin/communities')
-      .then(response => {
-        setData(response.data);
+    setLoading(true);
+    axios.get(`${baseUrl}/${endpoint}`)
+      .then((response) => {
+        setData(response.data.data);
         setLoading(false);
       })
-      .catch(error => {
-        setError(error.message);
+      .catch((err) => {
+        setError(err.message);
         setLoading(false);
       });
-  }, []);
+  }, [endpoint, baseUrl]);
 
-  if (loading) {
-    return <p>Loading...</p>;
-  }
+  return { data, loading, error };
+};
 
-  if (error) {
-    return <p>Error: {error}</p>;
-  }
+// Template Section
+const SectionHeader = ({ title, altText }) => (
+  <div className='flex flex-col items-center mb-[74px]'>
+    <h1 className="text-3xl font-bold text-center text-[32px] leading-11">{title}</h1>
+    <img
+      src={TImages.DECORATIVE_ELEMENTS.GARIS_PRESTASI}
+      alt={altText}
+      className="w-[150px] "
+    />
+  </div>
+);
+
+const Komunitas = () => {
+  const baseUrl = import.meta.env.VITE_API_BASE_URL;
+  
+  // Fetch data using custom hook
+  const { 
+    data: communitiesData,
+    loading: loadingCommunities,
+    error: errorCommunities
+  } = useFetchData('communities', baseUrl);
 
   return (
    <>
-     <section className="head font-athiti">
+    {/* Hero Section */}
+    <section className="head font-athiti">
+      {loadingCommunities && <p className="text-center">Loading communities...</p>}
+      {errorCommunities && <p className="text-red-500 font-bold text-xl text-center">Error: {errorCommunities}</p>}
       <div
         id="hero-section"
-        className="flex justify-center gap-24 items-center my-57 w-full px-4"
+        className="flex justify-center gap-24 items-center mt-50 w-full px-4"
       >
-        {/* Logo di kiri */}
         <img
-           src={`https://apihimalkomstaging.akucuciin.my.id/storage/${community.logo}`}
-            alt={community.name}
-
-          className="w-77"
+          src={`${baseUrl}/storage/${community.logo}`}
+          alt={community.name}
+          className="w-70"
         />
-
-        {/* Container Elevor di kanan */}
         <div className="flex flex-col text-left">
           <h1 className="font-semibold text-black pb-5 text-[110px] leading-24 sm:text-[90px] md:text-[110px] sm:w-[300px] md:w-[363px]">
-            AgriUX
+            {community.name}
           </h1>
           <img
-            src={TImages.DECORATIVE_ELEMENT.GARIS_HERO_ELEVOR}
+            src={TImages.DECORATIVE_ELEMENTS.GARIS_HERO_ELEVOR}
             alt="Garis Elevor"
             className="w-[361px] mb-4"
           />
@@ -59,23 +76,55 @@ const Komunitas = () => {
         </div>
       </div>
     </section>
-    <section className="profile relative font-athiti max-w-4xl mx-auto my-[29rem] text-[1.5rem] leading-relaxed ">
-    <p>
-          AgriUX merupakan komunitas yang bertujuan untuk mewadahi minat mahasiswa Ilmu Komputer dalam bidang 
-          User Interface danUser Experience pada suatu aplikasi atau web, serta minat dalam bidang desain dengan menggunakan tools desain yang beragam.
-      </p>
-        <br />
+
+    {/* Desc Section */}
+    <section className="profile relative font-athiti max-w-4xl mx-auto my-[20rem] text-[1.5rem] leading-relaxed ">
+      {loadingCommunities && <p className="text-center">Loading communities...</p>}
+      {errorCommunities && <p className="text-red-500 font-bold text-xl text-center">Error: {errorCommunities}</p>}
       <p>
-          Product Design memiliki 2 cabang, yaitu UI/UX dan Creative Design. 
-          UI/UX lebih fokus kepada problem dan penyelesaiannya serta penerapan tampilan aplikasi atau interface dengan cara melakukan wireframing, lalu pada Creative Design fokus pada pembelajar segala macam jenis desain dengan menggunakan aplikasi 
-           Adobe Illustrator, Adobe Photoshop, dan lain-lain.
+        AgriUX merupakan komunitas yang bertujuan untuk mewadahi minat mahasiswa Ilmu Komputer dalam bidang 
+        User Interface dan User Experience pada suatu aplikasi atau web, serta minat dalam bidang desain dengan menggunakan tools desain yang beragam.
+      </p>
+      <br />
+      <p>
+        Product Design memiliki 2 cabang, yaitu UI/UX dan Creative Design. 
+        UI/UX lebih fokus kepada problem dan penyelesaiannya serta penerapan tampilan aplikasi atau interface dengan cara melakukan wireframing, lalu pada Creative Design fokus pada pembelajar segala macam jenis desain dengan menggunakan aplikasi 
+        Adobe Illustrator, Adobe Photoshop, dan lain-lain.
       </p>
       <img
-            src={TImages.DECORATIVE_ELEMENT.GARIS_HERO_ELEVOR}
-            alt="Garis Elevor"
-            className="w-[361px] my-4"
-          />
+        src={TImages.DECORATIVE_ELEMENTS.GARIS_HERO_ELEVOR}
+        alt="Garis Elevor"
+        className="w-[361px] my-4"
+      />
+    </section>
 
+    {/* Prestasi Section */}
+    <section className="px-4 flex flex-col mt-[250px]">
+      <SectionHeader title="PRESTASI" altText="Garis Prestasi" />
+      {loadingCommunities && <p className="text-center">Loading communities...</p>}
+      {errorCommunities && <p className="text-red-500 font-bold text-xl text-center">Error: {errorCommunities}</p>}
+
+      {communitiesData && communitiesData.communities && (
+        <div className="flex justify-center items-center ">
+          <div className="bg-white shadow-lg rounded-xl  w-[768px] border border-purple-100">
+            <ul className="list-disc pl-8 space-y-2 font-athiti text-[22px]">
+              {communitiesData.achievements.map((achievement, index) => (
+                <li key={index}>{achievement}</li>
+              ))}
+            </ul>
+          </div>
+        </div>
+      )}
+    </section>
+
+    {/* Dokumentasi Section */}
+    <section className="px-4 flex flex-col mt-[200px]">
+      <SectionHeader title="DOKUMENTASI" altText="Garis Prestasi" />
+    </section>
+
+    {/* Narahubung Section */}
+    <section className="px-4 flex flex-col my-[200px]">
+      <SectionHeader title="NARAHUBUNG" altText="Garis Prestasi" />
     </section>
    </>
   );
