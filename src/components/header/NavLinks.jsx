@@ -1,16 +1,27 @@
 import { useState, useEffect, useRef } from 'react';
 import { NavLink } from 'react-router-dom';
 
+const communities = [
+  { name: "Agriux", slug: "agriux" },
+  { name: "IWDC", slug: "iwdc" },
+  { name: "MAD", slug: "mad" },
+  { name: "Agribot", slug: "agribot" },
+  { name: "CSI", slug: "csi" }
+];
+
 const NavLinks = () => {
   const [isProfileOpen, setIsProfileOpen] = useState(false);
   const [isDepartmentOpen, setIsDepartmentOpen] = useState(false);
+  const [isCommunityOpen, setIsCommunityOpen] = useState(false);
 
   const profileRef = useRef(null);
   const departmentRef = useRef(null);
+  const communityRef = useRef(null);
 
   const closeDropdown = () => {
     setIsProfileOpen(false);
     setIsDepartmentOpen(false);
+    setIsCommunityOpen(false);
   };
 
   useEffect(() => {
@@ -21,9 +32,12 @@ const NavLinks = () => {
       if (departmentRef.current && !departmentRef.current.contains(event.target)) {
         setIsDepartmentOpen(false);
       }
+      if (communityRef.current && !communityRef.current.contains(event.target)) {
+        setIsCommunityOpen(false);
+      }
     }
 
-    if (isProfileOpen || isDepartmentOpen) {
+    if (isProfileOpen || isDepartmentOpen || isCommunityOpen) {
       document.addEventListener("mousedown", handleClickOutside);
     } else {
       document.removeEventListener("mousedown", handleClickOutside);
@@ -31,7 +45,7 @@ const NavLinks = () => {
     return () => {
       document.removeEventListener("mousedown", handleClickOutside);
     };
-  }, [isProfileOpen, isDepartmentOpen]);
+  }, [isProfileOpen, isDepartmentOpen, isCommunityOpen]);
 
   return (
     <div className="nav-links flex gap-[61px] w-1/3 font-athiti">
@@ -63,7 +77,27 @@ const NavLinks = () => {
         )}
       </div>
 
-      <NavLink className="text-black font-bold opacity-60 transition-all hover:opacity-100 hover:text-white hover:font-bold hover:[text-shadow:_2px_2px_0_black] hover:[-webkit-text-stroke:1px_black]" to="/komunitas" onClick={closeDropdown}>Komunitas</NavLink>
+      <div className="relative" ref={communityRef}>
+        <button className="text-black font-bold opacity-60 transition-all hover:opacity-100 hover:text-white hover:font-bold hover:[text-shadow:_2px_2px_0_black] hover:[-webkit-text-stroke:1px_black]" onClick={() => setIsCommunityOpen(!isCommunityOpen)}>
+          Komunitas
+        </button>
+        {isCommunityOpen && (
+          <div className={`absolute mt-5 w-60 border font-bold border-black bg-white shadow-lg rounded-md p-2 flex flex-col gap-2 transition-all duration-300 transform origin-top ${isCommunityOpen ? "max-h-96 opacity-100 scale-100" : "max-h-0 opacity-0 scale-95"}`}>
+            {communities.map((community) => (
+              <NavLink
+                key={community.slug}
+                className="block px-4 py-2 hover:bg-purple-300 rounded-md transition"
+                to={`/community/${community.slug}`}
+                onClick={closeDropdown}
+              >
+                {community.name}
+              </NavLink>
+            ))}
+          </div>
+        )}
+      </div>
+
+
       <NavLink className="text-black font-bold opacity-60 transition-all hover:opacity-100 hover:text-white hover:font-bold hover:[text-shadow:_2px_2px_0_black] hover:[-webkit-text-stroke:1px_black]" to="/komnews" onClick={closeDropdown}>Komnews</NavLink>
       <NavLink className="text-black font-bold opacity-60 transition-all hover:opacity-100 hover:text-white hover:font-bold hover:[text-shadow:_2px_2px_0_black] hover:[-webkit-text-stroke:1px_black]" to="/galeri" onClick={closeDropdown}>Galeri</NavLink>
       <NavLink className="text-black font-bold opacity-60 transition-all hover:opacity-100 hover:text-white hover:font-bold hover:[text-shadow:_2px_2px_0_black] hover:[-webkit-text-stroke:1px_black]" to="/megaproker" onClick={closeDropdown}>Megaproker</NavLink>
