@@ -17,6 +17,7 @@ import Galeri from './pages/Galeri';
 import Megaproker from './pages/Megaproker';
 import Riset from './pages/Riset';
 import Header from './components/header';
+import Footer from './components/footer';
 
 const App = () => {
   return (
@@ -42,6 +43,7 @@ const App = () => {
           <Route path="/riset" element={<Riset />} />
         </Routes>
       </MainLayout>
+      <Footer />
     </Router>
   );
 };

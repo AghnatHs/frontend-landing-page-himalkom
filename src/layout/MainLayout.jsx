@@ -3,7 +3,7 @@ import TImages from '../utils/images';
 
 const MainLayout = ({ children }) => {
   return (
-    <div className="relative">
+    <div className="relative min-h-screen flex-1">
       <img
         src={TImages.BACKGROUNDS.HERO_PATTERN}
         alt="Hero Background"
