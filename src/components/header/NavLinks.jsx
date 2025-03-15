@@ -4,9 +4,6 @@ import { NavLink } from 'react-router-dom';
 const communities = [
   { name: "Agriux", slug: "agriux" },
   { name: "IWDC", slug: "iwdc" },
-  { name: "MAD", slug: "mad" },
-  { name: "Agribot", slug: "agribot" },
-  { name: "CSI", slug: "csi" }
 ];
 
 const NavLinks = () => {
@@ -78,24 +75,27 @@ const NavLinks = () => {
       </div>
 
       <div className="relative" ref={communityRef}>
-        <button className="text-black font-bold opacity-60 transition-all hover:opacity-100 hover:text-white hover:font-bold hover:[text-shadow:_2px_2px_0_black] hover:[-webkit-text-stroke:1px_black]" onClick={() => setIsCommunityOpen(!isCommunityOpen)}>
-          Komunitas
-        </button>
-        {isCommunityOpen && (
-          <div className={`absolute mt-5 w-60 border font-bold border-black bg-white shadow-lg rounded-md p-2 flex flex-col gap-2 transition-all duration-300 transform origin-top ${isCommunityOpen ? "max-h-96 opacity-100 scale-100" : "max-h-0 opacity-0 scale-95"}`}>
-            {communities.map((community) => (
-              <NavLink
-                key={community.slug}
-                className="block px-4 py-2 hover:bg-purple-300 rounded-md transition"
-                to={`/community/${community.slug}`}
-                onClick={closeDropdown}
-              >
-                {community.name}
-              </NavLink>
-            ))}
-          </div>
-        )}
-      </div>
+      <button
+        className="text-black font-bold opacity-60 transition-all hover:opacity-100 hover:text-white hover:font-bold hover:[text-shadow:_2px_2px_0_black] hover:[-webkit-text-stroke:1px_black]"
+        onClick={() => setIsCommunityOpen(!isCommunityOpen)}
+      >
+        Komunitas
+      </button>
+      {isCommunityOpen && (
+        <div className="absolute mt-5 w-60 border font-bold border-black bg-white shadow-lg rounded-md p-2 flex flex-col gap-2 transition-all duration-300 transform origin-top max-h-96 opacity-100 scale-100">
+          {communities.map((community) => (
+            <NavLink
+              key={community.slug}
+              className="block px-4 py-2 hover:bg-purple-300 rounded-md transition"
+              to={`/community/${community.slug}`}
+              onClick={closeDropdown}
+            >
+              {community.name}
+            </NavLink>
+          ))}
+        </div>
+      )}
+    </div>
 
 
       <NavLink className="text-black font-bold opacity-60 transition-all hover:opacity-100 hover:text-white hover:font-bold hover:[text-shadow:_2px_2px_0_black] hover:[-webkit-text-stroke:1px_black]" to="/komnews" onClick={closeDropdown}>Komnews</NavLink>

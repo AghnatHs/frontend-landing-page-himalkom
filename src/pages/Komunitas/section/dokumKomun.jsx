@@ -1,86 +1,64 @@
-import { ChevronLeft, ChevronRight } from 'lucide-react';
-import React, {useState} from 'react';
+import { ChevronLeft, ChevronRight } from "lucide-react";
+import React, { useState } from "react";
 
-
-const dokumKomun = ({slides}) => {
+const DokumKomun = ({ slides }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
 
-  const visibleThumbs = [
-    currentIndex,
-    (currentIndex + 1) % slides.length,
-    (currentIndex + 2) % slides.length,
-    (currentIndex + 3) % slides.length
-  ];
+  if (!slides || slides.length === 0) {
+    return <p className="text-center text-gray-500">Belum ada dokumentasi tersedia.</p>;
+  }
 
-  const slideStyles = {   
-      backgroundPosition: 'center',
-      backgroundSize: "cover",
-      backgroundImage: `url(${slides[currentIndex].url})`,
-     
+  const slideStyles = {
+    backgroundPosition: "center",
+    backgroundSize: "cover",
+    backgroundImage: `url(${slides[currentIndex]?.url})`,
   };
 
   const goToPrevious = () => {
-      const isFirstSlide = currentIndex === 0;
-      const newIndex = isFirstSlide ? slides.length - 1 : currentIndex - 1;
-      setCurrentIndex(newIndex);
+    setCurrentIndex((prevIndex) => (prevIndex === 0 ? slides.length - 1 : prevIndex - 1));
   };
 
   const goToNext = () => {
-      const isLastSlide = currentIndex === slides.length - 1;
-      const newIndex = isLastSlide ? 0 : currentIndex + 1;
-      setCurrentIndex(newIndex);
+    setCurrentIndex((prevIndex) => (prevIndex === slides.length - 1 ? 0 : prevIndex + 1));
   };
 
-  // const goToSlide = (index) => {
-  //     setCurrentIndex(index);
-  // }
-
-  const getThumbnailIndex = (index) => {
-      if (currentIndex + index < slides.length) {
-          return currentIndex + index;
-      } else {
-          return currentIndex + index - slides.length;
-      }
-  };
+  const visibleThumbs = [
+    (currentIndex + 1) % slides.length,
+    (currentIndex + 2) % slides.length,
+    (currentIndex + 3) % slides.length,
+  ];
 
   return (
-    <div>
-      {/* Box Dokumentasi */}
-      <div className="mt-[80px] flex flex-col justify-center items-center overflow-hidden ">
-        {/* Bagian atas */}
-        <div className="head">
-          {/* Panah kiri */}
-          <ChevronLeft onClick={goToPrevious}/>
-          {/* Gambar tengah */}
-          <div className='image-preview w-[696px] h-[342px] border-[3px] border-solid inset-shadow-2xs' style={slideStyles}></div>
-          {/* Panah kanan */}
-          <ChevronRight onClick={goToNext}/>
-        </div>
-        {/* Bagian bawah */}
-        <div className="flex bg-black justify-center py-[54px] gap-[20px]">
-        {visibleThumbs.map((slide, slideIndex) => (
-              <div
-                key={slideIndex}
-                className="border-solid rounded-xl border-2 w-[215px] h-[136px] m-[5px] duration-300 ease-in-out"
-              >
-                <img
-                  src={slides[getThumbnailIndex(slideIndex)].url}
-                  alt={`Slide ${slideIndex + 1}`}
-                  className="cursor-pointer object-cover"
-                  onClick={() => setCurrentIndex(getThumbnailIndex(slideIndex))}
-                  onMouseEnter={(event) => {
-                    event.target.parentNode.style.transform = "scale(1.1)";
-                  }}
-                  onMouseLeave={(event) => {
-                    event.target.parentNode.style.transform = "scale(1)";
-                  }}
-                />
-              </div>
-            ))}
-        </div>
+    <div className="flex flex-col items-center overflow-hidden bg-white shadow-lg rounded-xl w-[848px] border border-purple-100">
+
+      {/* Banner */}
+      <div className="flex items-center gap-4 py-6">
+        {/* Panah kiri */}
+        <ChevronLeft onClick={goToPrevious} className="cursor-pointer text-gray-600 hover:text-black transition" />
+        {/* Gambar tengah */}
+        <div className="w-[700px] h-[350px] border-2 border-gray-300 rounded-lg shadow-lg bg-cover bg-center" style={slideStyles}></div>
+        {/* Panah kanan */}
+        <ChevronRight onClick={goToNext} className="cursor-pointer text-gray-600 hover:text-black transition" />
+      </div>
+
+      {/* Thumbnail Section */}
+      <div className="flex overflow-x-auto overflow-hidden py-6 gap-4">
+        {visibleThumbs.slice(0,3).map((slideIndex) => (
+          <div
+            key={slideIndex}
+            className="border-2 border-gray-300 rounded-lg w-[220px] h-[140px] overflow-hidden transition-transform transform hover:scale-105 cursor-pointer"
+          >
+            <img
+              src={slides[slideIndex]?.url}
+              alt={`Slide ${slideIndex + 1}`}
+              className="w-full h-full object-cover rounded-lg"
+              onClick={() => setCurrentIndex(slideIndex)}
+            />
+          </div>
+        ))}
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default dokumKomun;
+export default DokumKomun;

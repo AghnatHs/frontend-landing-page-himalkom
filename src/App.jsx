@@ -11,7 +11,7 @@ import External from './pages/External';
 import Internal from './pages/Internal';
 import Creative from './pages/Creative';
 import Ristek from './pages/Ristek';
-import Komunitas from './pages/Komunitas/Komunitas';
+import Komunitas from './pages/Komunitas';
 import Komnews from './pages/Komnews';
 import Galeri from './pages/Galeri';
 import Megaproker from './pages/Megaproker';
@@ -35,7 +35,7 @@ const App = () => {
           <Route path="/internal" element={<Internal />} />
           <Route path="/creative" element={<Creative />} />
           <Route path="/ristek" element={<Ristek />} />
-          <Route path="/community/slug" element={<Komunitas />} />
+          <Route path="/community/:slug" element={<Komunitas />} />
           <Route path="/komnews" element={<Komnews />} />
           <Route path="/galeri" element={<Galeri />} />
           <Route path="/megaproker" element={<Megaproker />} />
