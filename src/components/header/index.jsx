@@ -1,6 +1,5 @@
 import { useState, useEffect, useRef } from 'react';
-import { NavLink } from 'react-router-dom';
-import { X, Menu } from 'lucide-react';
+import { RxTextAlignJustify, RxCross2  } from "react-icons/rx";
 import Logo from './Logo';
 import NavLinks from './NavLinks';
 
@@ -19,7 +18,7 @@ const Nav = () => {
         </div>
         <div className="md:hidden">
           <button onClick={toggleNavbar}>
-            {isOpen ? <X /> : <Menu />}
+            {isOpen ? <RxCross2 /> : <RxTextAlignJustify />}
           </button>
         </div>
       </nav>

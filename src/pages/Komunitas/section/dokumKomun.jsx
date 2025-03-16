@@ -1,4 +1,4 @@
-import { ChevronLeft, ChevronRight } from "lucide-react";
+import { FaAngleRight, FaAngleLeft } from "react-icons/fa6";
 import React, { useState } from "react";
 
 const DokumKomun = ({ slides }) => {
@@ -34,11 +34,11 @@ const DokumKomun = ({ slides }) => {
       {/* Banner */}
       <div className="flex items-center gap-4 py-6">
         {/* Panah kiri */}
-        <ChevronLeft onClick={goToPrevious} className="cursor-pointer text-gray-600 hover:text-black transition" />
+        <FaAngleLeft onClick={goToPrevious} className="cursor-pointer text-gray-600 hover:text-black transition" size={30} />
         {/* Gambar tengah */}
         <div className="w-[700px] h-[350px] border-2 border-gray-300 rounded-lg shadow-lg bg-cover bg-center" style={slideStyles}></div>
         {/* Panah kanan */}
-        <ChevronRight onClick={goToNext} className="cursor-pointer text-gray-600 hover:text-black transition" />
+        <FaAngleRight onClick={goToNext} className="cursor-pointer text-gray-600 hover:text-black transition" size={30} />
       </div>
 
       {/* Thumbnail Section */}
