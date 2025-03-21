@@ -1,5 +1,6 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import MainLayout from './layout/MainLayout';
 import Home from './pages/Home';
 import Himalkom from './pages/Himalkom';
 import BP from './pages/BP';
@@ -16,31 +17,35 @@ import Galeri from './pages/Galeri';
 import Megaproker from './pages/Megaproker';
 import Riset from './pages/Riset';
 import Header from './components/header';
+import Footer from './components/footer';
 
 const App = () => {
   return (
     <Router>
       <Header />
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/home" element={<Home />} />
-        <Route path="/himalkom" element={<Himalkom />} />
-        <Route path="/bp" element={<BP />} />
-        <Route path="/bph" element={<BPH />} />
-        <Route path="/academic" element={<Academic />} />
-        <Route path="/business" element={<Business />} />
-        <Route path="/external" element={<External />} />
-        <Route path="/internal" element={<Internal />} />
-        <Route path="/creative" element={<Creative />} />
-        <Route path="/ristek" element={<Ristek />} />
-        <Route path="/komunitas" element={<Komunitas />} />
-        <Route path="/komnews" element={<Komnews />} />
-        <Route path="/galeri" element={<Galeri />} />
-        <Route path="/megaproker" element={<Megaproker />} />
-        <Route path="/riset" element={<Riset />} />
-      </Routes>
+      <MainLayout>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/home" element={<Home />} />
+          <Route path="/himalkom" element={<Himalkom />} />
+          <Route path="/bp" element={<BP />} />
+          <Route path="/bph" element={<BPH />} />
+          <Route path="/academic" element={<Academic />} />
+          <Route path="/business" element={<Business />} />
+          <Route path="/external" element={<External />} />
+          <Route path="/internal" element={<Internal />} />
+          <Route path="/creative" element={<Creative />} />
+          <Route path="/ristek" element={<Ristek />} />
+          <Route path="/community/:slug" element={<Komunitas />} />
+          <Route path="/komnews" element={<Komnews />} />
+          <Route path="/galeri" element={<Galeri />} />
+          <Route path="/megaproker" element={<Megaproker />} />
+          <Route path="/riset" element={<Riset />} />
+        </Routes>
+      </MainLayout>
+      <Footer />
     </Router>
   );
 };
 
-export default App;   
+export default App;

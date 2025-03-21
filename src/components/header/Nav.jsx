@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { X, Menu } from 'lucide-react';
+import { RxTextAlignJustify, RxCross2 } from "react-icons/rx";
 import NavLinks from './NavLinks';
 
 const Nav = () => {
@@ -17,7 +17,7 @@ const Nav = () => {
         </div>
         <div className="md:hidden">
           <button onClick={toggleNavbar}>
-            {isOpen ? <X /> : <Menu />}
+            {isOpen ? <RxCross2 /> : <RxTextAlignJustify />}
           </button>
           {isOpen && (
             <div className="absolute top-0 left-0 w-full bg-white shadow-lg">

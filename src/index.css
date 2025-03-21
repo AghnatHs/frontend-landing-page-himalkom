@@ -1,8 +1,12 @@
-
 /* FONT */
 @import url('https://fonts.googleapis.com/css2?family=Athiti:wght@200;300;400;500;600;700&display=swap');
 @import "tailwindcss"; 
 
 @theme {
   --font-athiti: Athiti, "sans-serif";
+}
+
+html,
+body {
+  font-family: 'Athiti', sans-serif;
 }
