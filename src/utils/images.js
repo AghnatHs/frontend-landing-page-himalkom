@@ -3,6 +3,7 @@ import logoHimalkom from "@/assets/logo-himalkom.svg";
 import garisHero from "@/assets/garis-hero.svg";
 import garisIlkomun from "@/assets/garis-ilkommunity.svg";
 import garisPrestasi from "@/assets/garis-prestasi.svg";
+import garisHimalkom from "@/assets/garis-himalkom.svg";
 
 const TImages = {
   BACKGROUNDS: {
@@ -15,6 +16,7 @@ const TImages = {
     GARIS_HERO_ELEVOR: garisHero,
     GARIS_ILKOMMUNITY: garisIlkomun,
     GARIS_PRESTASI: garisPrestasi,
+    GARIS_HIMALKOM: garisHimalkom,
   }
 }
 
