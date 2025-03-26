@@ -12,6 +12,11 @@ const MainLayout = ({ children }) => {
       <div className="relative overflow-hidden">
         {children}
       </div>
+      <img 
+        src={TImages.BACKGROUNDS.BOTTOM_PATTERN}
+        alt="Bottom Background"
+        className="absolute bottom-0 w-full h-auto -z-10 object-cover"
+      />
     </div>
   );
 };

@@ -54,20 +54,20 @@ const NavLinks = () => {
         </button>
         {isProfileOpen && (
           <div className={`absolute mt-5 w-60 border font-bold border-black bg-white shadow-lg rounded-md p-2 flex flex-col gap-2 transition-all duration-300 transform origin-top ${isProfileOpen ? "max-h-96 opacity-100 scale-100" : "max-h-0 opacity-0 scale-95"}`}>
-            <NavLink className="block px-4 py-2 hover:bg-purple-300 rounded-md transition" to="/himalkom" onClick={closeDropdown}>Himalkom</NavLink>
-            <button className="block w-full text-left px-4 py-2 hover:bg-purple-300 rounded-md transition" onClick={() => setIsDepartmentOpen(!isDepartmentOpen)}>
+            <NavLink className="block px-4 py-2 hover:bg-[#AFE1EA] rounded-md transition" to="/himalkom" onClick={closeDropdown}>Himalkom</NavLink>
+            <button className="block w-full text-left px-4 py-2 hover:bg-[#AFE1EA] rounded-md transition" onClick={() => setIsDepartmentOpen(!isDepartmentOpen)}>
               Departemen 
             </button>
             {isDepartmentOpen && (
               <div className={`absolute mt-24 ml-25 w-56 border font-bold border-black bg-white shadow-lg rounded-md flex flex-col transition-all duration-300 transform origin-top ${isDepartmentOpen ? "max-h-100 opacity-100 scale-100" : "max-h-0 opacity-0 scale-95"}`}>
-                <NavLink className="px-4 py-2 hover:bg-purple-300 transition" to="/bp" onClick={closeDropdown}>BP</NavLink>
-                <NavLink className="px-4 py-2 hover:bg-purple-300 transition" to="/bph" onClick={closeDropdown}>BPH</NavLink>
-                <NavLink className="px-4 py-2 hover:bg-purple-300 transition" to="/academic" onClick={closeDropdown}>Academic & Exploration</NavLink>
-                <NavLink className="px-4 py-2 hover:bg-purple-300 transition" to="/business" onClick={closeDropdown}>Business Ventures</NavLink>
-                <NavLink className="px-4 py-2 hover:bg-purple-300 transition" to="/external" onClick={closeDropdown}>External and Social Affairs</NavLink>
-                <NavLink className="px-4 py-2 hover:bg-purple-300 transition" to="/internal" onClick={closeDropdown}>Humaniora and Internalization</NavLink>
-                <NavLink className="px-4 py-2 hover:bg-purple-300 transition" to="/creative" onClick={closeDropdown}>Creative and Media Branding</NavLink>
-                <NavLink className="px-4 py-2 hover:bg-purple-300 transition" to="/ristek" onClick={closeDropdown}>Research and Technology</NavLink>
+                <NavLink className="px-4 py-2 hover:bg-[#AFE1EA] transition" to="/bp" onClick={closeDropdown}>BP</NavLink>
+                <NavLink className="px-4 py-2 hover:bg-[#AFE1EA] transition" to="/bph" onClick={closeDropdown}>BPH</NavLink>
+                <NavLink className="px-4 py-2 hover:bg-[#AFE1EA] transition" to="/academic" onClick={closeDropdown}>Academic & Exploration</NavLink>
+                <NavLink className="px-4 py-2 hover:bg-[#AFE1EA] transition" to="/business" onClick={closeDropdown}>Business Ventures</NavLink>
+                <NavLink className="px-4 py-2 hover:bg-[#AFE1EA] transition" to="/external" onClick={closeDropdown}>External and Social Affairs</NavLink>
+                <NavLink className="px-4 py-2 hover:bg-[#AFE1EA] transition" to="/internal" onClick={closeDropdown}>Humaniora and Internalization</NavLink>
+                <NavLink className="px-4 py-2 hover:bg-[#AFE1EA] transition" to="/creative" onClick={closeDropdown}>Creative and Media Branding</NavLink>
+                <NavLink className="px-4 py-2 hover:bg-[#AFE1EA] transition" to="/ristek" onClick={closeDropdown}>Research and Technology</NavLink>
               </div>
             )}
           </div>
@@ -86,7 +86,7 @@ const NavLinks = () => {
           {communities.map((community) => (
             <NavLink
               key={community.slug}
-              className="block px-4 py-2 hover:bg-purple-300 rounded-md transition"
+              className="block px-4 py-2 hover:bg-[#AFE1EA] rounded-md transition"
               to={`/community/${community.slug}`}
               onClick={closeDropdown}
             >
