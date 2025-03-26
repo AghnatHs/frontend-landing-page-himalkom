@@ -28,7 +28,7 @@ const Nav = () => {
 
 const Header = () => {
   return (
-    <header className="bg-white z-50 w-screen fixed mx-auto flex flex-wrap items-center px-[5vw] py-[1vw] justify-between top-0 shadow-[0px_0px_27.6px_-12px_#281871]">
+    <header className="z-50 w-screen mx-auto flex flex-wrap items-center px-[5vw] py-[1vw] justify-between bg-[#AFE1EA]">
       <Logo />
       <Nav />
     </header>

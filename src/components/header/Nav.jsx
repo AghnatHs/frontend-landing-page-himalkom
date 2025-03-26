@@ -13,7 +13,7 @@ const Nav = () => {
     <>
       <nav>
         <div className="hidden md:flex ">
-          <NavLinks className="font-athiti font-semibold text-[19px] text-black text-center leading-[44px]" />
+          <NavLinks className="font-athiti font-normal text-[19px] text-black text-center leading-[44px]" />
         </div>
         <div className="md:hidden">
           <button onClick={toggleNavbar}>
