@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom';
  */
 const MegaprokerCard = ({ megaproker, baseUrl }) => (
   <div
-    className="w-full max-w-[557px] h-[274px] rounded-[15px] bg-white shadow-[0px_0px_8px_0.3px_rgba(105,83,207,0.39)] flex items-center justify-evenly p-8"
+    className="w-full max-w-[557px] h-[274px] rounded-[15px] bg-white shadow-card flex items-center justify-evenly p-8"
   >
     <div className="flex justify-center items-center h-full w-2/5">
       <img
