@@ -1,15 +1,15 @@
-import React from 'react';
-import TImages from '../../utils/images';
 import { NavLink } from 'react-router-dom';
+import TImages from '../../utils/images';
 
 const Logo = () => {
   return (
-    <div className="">
-      <NavLink to="/home">
-      <img className="w-12" src={TImages.LOGO.LOGO_HIMALKOM} alt="Himalkom" />
-      </NavLink>
-      
-    </div>
+    <NavLink to="/home" className="block py-1">
+      <img 
+        src={TImages.LOGO.LOGO_HIMALKOM} 
+        alt="HIMALKOM" 
+        className="w-12 h-12 object-contain transition-transform hover:scale-110"
+      />
+    </NavLink>
   );
 };
 
