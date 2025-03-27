@@ -18,7 +18,7 @@ const Description = () => {
           <p className="text-[24px]"> Himpunan Mahasiswa Ilmu Komputer (HIMALKOM) adalah himpunan yang bergerak<br/> 
           dalam pengembangan dan eksistensi mahasiswa ilmu Komputer IPB.</p>
           <img className='pt-[20px]'
-            src={TImages.DECORATIVE_ELEMENTS.GARIS_HIMALKOM}
+            src={TImages.DECORATIVE_ELEMENTS.GARIS_HERO_ELEVOR}
           />
         </div>
       
@@ -28,7 +28,7 @@ const Description = () => {
           memperkuat internalisasi, meningkatkan eksistensi, dan membangun Ilmu Komputer <br/>
           IPB berdasarkan aspirasi Ilkomerz sehingga tercipta hasil yang dahsyat.</p>
           <img className='pt-[20px]'
-            src={TImages.DECORATIVE_ELEMENTS.GARIS_HIMALKOM}
+            src={TImages.DECORATIVE_ELEMENTS.GARIS_HERO_ELEVOR}
           />
         </div>
       </section>

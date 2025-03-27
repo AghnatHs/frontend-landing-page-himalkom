@@ -8,7 +8,7 @@ const DescSection = ({title, altText, width}) => (
     <h1 className="font-semibold pb-[10px] text-[48px] leading-11">{title}</h1>
     {/* Garis */}
     <img
-      src={TImages.DECORATIVE_ELEMENTS.GARIS_HIMALKOM}
+      src={TImages.DECORATIVE_ELEMENTS.GARIS_HERO_ELEVOR}
       alt={altText}
       className={width}
     />

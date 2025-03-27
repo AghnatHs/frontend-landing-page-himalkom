@@ -1,4 +1,6 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
+import { FaAngleRight } from "react-icons/fa6"; 
 
 /**
  * Card komunitas (komponen internal)
@@ -6,15 +8,10 @@ import React from 'react';
 const CommunityCard = ({ 
   community, 
   baseUrl, 
-  communityDetails, 
-  loadingDetails, 
-  expandedDescriptions, 
-  toggleDescription 
 }) => {
-  const hasLongDescription = communityDetails[community.slug]?.description?.length > 120;
   
   return (
-    <div className="w-full max-w-[287px] min-h-[250px] rounded-[15px] bg-white shadow-[0px_0px_8px_0.3px_rgba(105,83,207,0.39)] flex flex-col items-center p-6">
+    <div className="min-w-64 max-w-[287px] min-h-82 rounded-[15px] bg-white shadow-[0px_0px_8px_0.3px_rgba(105,83,207,0.39)] flex flex-col items-center p-6">
       {/* Logo Community */}
       <div className="w-full h-[100px] flex justify-center items-center mb-4">
         <img
@@ -26,41 +23,20 @@ const CommunityCard = ({
       
       {/* Community Name */}
       <h3 className="font-bold text-2xl text-center mb-3">{community.name}</h3>
-      
-      {/* Community Description */}
-      <div className="flex flex-col items-center w-full flex-grow">
-        <div className={`overflow-hidden transition-all duration-500 ${
-          expandedDescriptions[community.slug] ? 'max-h-[1000px]' : 'max-h-[4.5em]'
-        }`}>
-          <p className="text-center text-sm">
-            {communityDetails[community.slug]?.description || 
-             (loadingDetails ? "Loading description..." : community.slug)}
-          </p>
-        </div>
-        
-        {/* View More/Less Button */}
-        <div className="mt-auto pt-3">
-          {hasLongDescription && (
-            <button 
-              onClick={() => toggleDescription(community.slug)}
-              className="flex items-center gap-1 text-xs px-3 py-1 rounded-full bg-purple-100 text-purple-700 hover:bg-purple-200 transition-all duration-300"
-            >
-              <span>{expandedDescriptions[community.slug] ? 'View Less' : 'View More'}</span>
-              <svg 
-                xmlns="http://www.w3.org/2000/svg" 
-                width="12" 
-                height="12" 
-                viewBox="0 0 24 24" 
-                fill="none" 
-                stroke="currentColor" 
-                strokeWidth="2" 
-                className={`transition-transform duration-300 ${expandedDescriptions[community.slug] ? 'rotate-180' : ''}`}
-              >
-                <path d="M19 9l-7 7-7-7" />
-              </svg>
-            </button>
-          )}
-        </div>
+
+      {/* Selengkapnya Button*/}
+      <div className="mt-8 rounded-lg shadow-[0px_0px_8px_0.3px_rgba(105,83,207,0.39)] hover:shadow-[0px_0px_10px_1px_rgba(105,83,207,0.6)] transition-all duration-300 min-w-14 p-1 w-full">
+        <Link 
+          to={`/community/${community.slug}`}
+          className="flex items-center justify-between w-full transition-all duration-300 px-1 py-0.5 group"
+        >
+          <span className="text-sm font-medium mx-1 text-gray-700 group-hover: transition-colors duration-300">
+            Selengkapnya
+          </span>
+          <div className="bg-[#AFE1EA] p-0.5 rounded flex items-center justify-center transition-all duration-300 group-hover:bg-[#8CCED8] group-hover:transform group-hover:translate-x-1">
+            <FaAngleRight size={16} className="text-black transition-all duration-300" />
+          </div>
+        </Link>
       </div>
     </div>
   );

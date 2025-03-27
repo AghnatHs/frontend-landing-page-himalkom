@@ -17,11 +17,11 @@ const HeroSection = () => (
       />
       <div className="flex flex-col text-center sm:text-left mt-4 sm:mt-0">
         <img
-          src={TImages.LOGO.NAMA_ELEVOR}
+          src={TImages.TEXT.TEKS_ELEVOR}
           className="w-[559px] h-[127px]"
         />
         <img
-          src={TImages.DECORATIVE_ELEMENTS.GARIS_HIMALKOM}
+          src={TImages.DECORATIVE_ELEMENTS.GARIS_HERO_ELEVOR}
           alt="Garis Elevor"
           className="w-[200px] mt-3 sm:w-[260px] md:w-[300px] lg:w-[361px] mb-2 sm:mb-3 md:mb-4 mx-auto sm:mx-0"
         />

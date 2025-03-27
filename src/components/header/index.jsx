@@ -28,7 +28,7 @@ const Nav = () => {
 
 const Header = () => {
   return (
-    <header className="bg-[#AFE1EA]  z-50 w-screen mx-auto flex flex-wrap items-center px-[5vw] py-[1vw] justify-between top-0 border-b-2">
+    <header className="z-50 w-screen mx-auto flex flex-wrap items-center px-[5vw] py-[1vw] justify-between bg-[#AFE1EA]">
       <Logo />
       <Nav />
     </header>
