@@ -106,7 +106,7 @@ const Home = () => {
       <HeroSection />
 
       {/* Communities Section */}
-      <section className="px-4 flex flex-col mt-[400px]">
+      <section className="px-4 flex flex-col mx-auto mt-[400px]">
         <SectionHeader title="ILKOMMUNITY" altText="Garis Ilkommunity" />
         <Ilkomunity
           communitiesData={communitiesData}

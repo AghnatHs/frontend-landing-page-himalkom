@@ -1,6 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
-
+import ReadMoreButton from '../../../components/common/ReadMore';
 /**
  * Card megaproker (komponen internal)
  */
@@ -17,9 +16,7 @@ const MegaprokerCard = ({ megaproker, baseUrl }) => (
     </div>
     <div className='flex flex-col items-center justify-center gap-4 h-full w-3/5'>
       <h3 className="font-bold text-xl md:text-2xl text-center">{megaproker.name}</h3>
-      <Link to={`/megaproker/${megaproker.slug}`} className='px-4 py-2 text-sm rounded-sm bg-white shadow-[0px_0px_8px_0.3px_rgba(105,83,207,0.39)] cursor-pointer transition-all hover:shadow-[0px_0px_8px_2px_rgba(105,83,207,0.39)]'>
-        Selengkapnya
-      </Link>
+      <ReadMoreButton to={`/megaproker/${megaproker.slug}`} />
     </div>
   </div>
 );
