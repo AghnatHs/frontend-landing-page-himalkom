@@ -1,7 +1,7 @@
 import React from 'react';
 
 // Import sections untuk halaman 
-import HeroSection from './section/HeroSection';
+import HeroSection from '../Home/sections/HeroSection';
 import DescSection from './section/SectionHeader';
 import Filosofi from './section/Filosofi';
 import Division from './section/Division';
@@ -23,12 +23,12 @@ const Himalkom = () => {
     <HeroSection />
 
     {/* Desc Section */}
-    <section className="flex flex-row mt-[400px] justify-around h-[436px]">
+    <section className="flex flex-col sm:items-center md:items-center md:flex-col gap-11 lg:flex-row mt-[400px] justify-around h-auto">
       <Description />
     </section>
 
     {/* Filosofi Section */}
-    <section className="px-4 flex flex-col items-center text-center mt-[300px]">
+    <section className="px-4 flex flex-col items-center text-center justify-around mt-[300px]">
       <DescSection className="items-center" title="FILOSOFI LOGO" altText="Garis Prestasi" />
       <p className="text-2xl mt-[80px]"><b>Elevor</b> bukan sekadar nama kabinet, tetapi sebuah gerakan yang membawa perubahan nyata dalam Himalkom.</p>
       <Filosofi />

@@ -3,7 +3,7 @@ import TImages from '../../../utils/images';
 
 // Header Desc Section
 const DescSection = ({title, altText, width}) => (
-  <div className='flex flex-col  mb-[10px] '>
+  <div className='flex flex-col mb-[10px] '>
     {/* Judul */}
     <h1 className="font-semibold pb-[10px] text-[48px] leading-11">{title}</h1>
     {/* Garis */}
