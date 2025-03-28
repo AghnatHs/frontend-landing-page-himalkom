@@ -1,6 +1,5 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
-import { FaAngleRight } from "react-icons/fa6"; 
+import React, { useRef } from 'react';
+import ReadMoreButton from '@/components/common/ReadMore';
 
 /**
  * Card komunitas (komponen internal)
@@ -11,7 +10,7 @@ const CommunityCard = ({
 }) => {
   
   return (
-    <div className="min-w-64 max-w-[287px] min-h-82 rounded-[15px] bg-white shadow-[0px_0px_8px_0.3px_rgba(105,83,207,0.39)] flex flex-col items-center p-6">
+    <div className="min-w-64 max-w-[287px] min-h-82 rounded-[15px] bg-white shadow-card flex flex-col items-center p-6">
       {/* Logo Community */}
       <div className="w-full h-[100px] flex justify-center items-center mb-4">
         <img
@@ -22,22 +21,9 @@ const CommunityCard = ({
       </div>
       
       {/* Community Name */}
-      <h3 className="font-bold text-2xl text-center mb-3">{community.name}</h3>
-
-      {/* Selengkapnya Button*/}
-      <div className="mt-8 rounded-lg shadow-[0px_0px_8px_0.3px_rgba(105,83,207,0.39)] hover:shadow-[0px_0px_10px_1px_rgba(105,83,207,0.6)] transition-all duration-300 min-w-14 p-1 w-full">
-        <Link 
-          to={`/community/${community.slug}`}
-          className="flex items-center justify-between w-full transition-all duration-300 px-1 py-0.5 group"
-        >
-          <span className="text-sm font-medium mx-1 text-gray-700 group-hover: transition-colors duration-300">
-            Selengkapnya
-          </span>
-          <div className="bg-[#AFE1EA] p-0.5 rounded flex items-center justify-center transition-all duration-300 group-hover:bg-[#8CCED8] group-hover:transform group-hover:translate-x-1">
-            <FaAngleRight size={16} className="text-black transition-all duration-300" />
-          </div>
-        </Link>
-      </div>
+      <h3 className="font-bold text-2xl text-center mb-10">{community.name}</h3>
+      <ReadMoreButton to={`/ilkomunity/${community.slug}`} />
+      
     </div>
   );
 };
@@ -61,6 +47,39 @@ const Ilkomunity = ({
   if (errorCommunities) return <p className="text-red-500 font-bold text-xl text-center">Error: {errorCommunities}</p>;
   if (!communitiesData || !communitiesData.communities) return null;
 
+  // Touch handling untuk swipe gesture
+  const touchStartX = useRef(0);
+  const touchEndX = useRef(0);
+  
+  // Handle touch start event
+  const handleTouchStart = (e) => {
+    touchStartX.current = e.touches[0].clientX;
+  };
+  
+  // Handle touch end event
+  const handleTouchEnd = (e) => {
+    touchEndX.current = e.changedTouches[0].clientX;
+    handleSwipe();
+  };
+  
+  // Calculate swipe direction and navigate
+  const handleSwipe = () => {
+    // Minimal swipe distance (in pixels)
+    const minSwipeDistance = 50;
+    
+    const swipeDistance = touchEndX.current - touchStartX.current;
+    
+    if (swipeDistance > minSwipeDistance) {
+      // Swipe right to left (previous)
+      const prevIndex = (currentCommunityIndex - 1 + communitiesData.communities.length) % communitiesData.communities.length;
+      goToCommunitySlide(prevIndex);
+    } else if (swipeDistance < -minSwipeDistance) {
+      // Swipe left to right (next)
+      const nextIndex = (currentCommunityIndex + 1) % communitiesData.communities.length;
+      goToCommunitySlide(nextIndex);
+    }
+  };
+
   return (
     <>
       {/* Desktop View */}
@@ -78,13 +97,17 @@ const Ilkomunity = ({
         ))}
       </div>
 
-      {/* Mobile View with Carousel */}
+      {/* Mobile View with Carousel and Swipe Gesture */}
       <div className="sm:hidden w-full mx-auto max-w-6xl">
-        <div className="relative">
+        <div 
+          className="relative"
+          onTouchStart={handleTouchStart}
+          onTouchEnd={handleTouchEnd}
+        >
           {communitiesData.communities.map((community, index) => (
             <div
               key={community.slug}
-              className={`w-full min-h-[300px] max-h-fit rounded-[15px] bg-white shadow-[0px_0px_8px_0.3px_rgba(105,83,207,0.39)] flex flex-col items-center p-6 transition-opacity duration-500 ${
+              className={`w-full min-h-[300px] max-h-fit rounded-[15px] bg-white shadow-card flex flex-col items-center p-6 transition-opacity duration-500 ${
                 index === currentCommunityIndex ? 'opacity-100' : 'hidden opacity-0'
               }`}
             >
@@ -109,7 +132,7 @@ const Ilkomunity = ({
                   {communityDetails[community.slug]?.description?.length > 150 && (
                     <button 
                       onClick={() => toggleDescription(community.slug)}
-                      className="flex items-center gap-1 text-xs px-3 py-1 rounded-full bg-purple-100 text-purple-700 hover:bg-purple-200 transition-all duration-300"
+                      className="flex items-center gap-1 text-xs px-3 py-1 rounded-full bg-primary-light text-primary-dark hover:bg-primary/50 transition-all duration-300"
                     >
                       <span>{expandedDescriptions[community.slug] ? 'View Less' : 'View More'}</span>
                       <svg 
@@ -138,12 +161,13 @@ const Ilkomunity = ({
                 key={index}
                 onClick={() => goToCommunitySlide(index)}
                 className={`mx-2 w-3 h-3 rounded-full ${
-                  index === currentCommunityIndex ? 'bg-purple-600' : 'bg-gray-300'
+                  index === currentCommunityIndex ? 'bg-primary-dark' : 'bg-gray-300'
                 }`}
                 aria-label={`Go to community ${index + 1}`}
               />
             ))}
           </div>
+
         </div>
       </div>
     </>

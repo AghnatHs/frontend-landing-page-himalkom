@@ -10,7 +10,7 @@ const ReadMoreButton = ({
     <div className='rounded-lg shadow-card hover:shadow-card-hover transition-all duration-300 p-1'>
       <Link 
         to={to}
-        className="flex items-center justify-between w-full transition-all duration-300 px-2 py-1 group"
+        className="flex items-center justify-center transition-all duration-300 px-2 py-1 gap-4 group"
       >
         <span className="text-sm font-medium text-primary-darker group-hover:text-primary-dark transition-colors duration-300">
           {label}
