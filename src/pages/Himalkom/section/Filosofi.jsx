@@ -3,35 +3,34 @@ import TImages from "../../../utils/images";
 
 const Filosofi = () => {
   return(
-    <div className="max-w-4xl mx-auto p-6 flex flex-col md:flex-row items-center gap-8">
-      <div className="flex flex-col items-center md:items-start gap-6">
-        {/* Logo Section */}
+    <div className=" p-6 flex flex-col md:flex-row md:items-start gap-8">
+      {/* Logo + Teks Elevor (Kiri) */}
+      <div className="flex flex-col items-center md:items-start gap-6 md:w-1/2">
         <img 
           src={TImages.LOGO.LOGO_ELEVOR}
           alt="Logo Elevor"
-          className="w-40 md:w-60"
+          className="w-45 md:w-60 lg:w-70"
         />
-        {/* Teks ELevor */}
         <img
           src={TImages.TEXT.TEKS_ELEVOR}
           alt="Elevor"
-          className="w-32 md:w-48"
+          className="w-45 md:w-48 lg:w-65"
         />
       </div>
-      
-      {/* Explanation Cards */}
-      <div className="flex flex-col gap-4 w-full md:w-auto">
-        <div className="bg-[#AFE1EA] rounded-lg p-4 w-full md:w-[500px] shadow-md">
+
+      {/* Explanation Cards (Kanan) */}
+      <div className="flex flex-col gap-4 w-full ">
+        <div className="bg-[#AFE1EA] rounded-lg p-4 shadow-md">
           <h1 className="text-lg font-bold">ELEVATE</h1>
-          <p className="">Meninggikan Potensi, Meningkatkan Kualitas</p>
+          <p>Meninggikan Potensi, Meningkatkan Kualitas</p>
         </div>
-        <div className="bg-[#AFE1EA] rounded-lg p-4 w-full md:w-[500px] shadow-md">
+        <div className="bg-[#AFE1EA] rounded-lg p-4 shadow-md">
           <h1 className="text-lg font-bold">INVEST</h1>
-          <p className="">Menanam Nilai, Menuai Masa Depan</p>
+          <p>Menanam Nilai, Menuai Masa Depan</p>
         </div>
-        <div className="bg-[#AFE1EA] rounded-lg p-4 w-full md:w-[500px] shadow-md">
+        <div className="bg-[#AFE1EA] rounded-lg p-4 shadow-md">
           <h1 className="text-lg font-bold">OPPORTUNITY</h1>
-          <p className="">Membuka Jalan, Mewujudkan Peluang</p>
+          <p>Membuka Jalan, Mewujudkan Peluang</p>
         </div>
       </div>
     </div>

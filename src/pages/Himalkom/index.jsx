@@ -23,14 +23,14 @@ const Himalkom = () => {
     <HeroSection />
 
     {/* Desc Section */}
-    <section className="flex flex-col sm:items-center md:items-center md:flex-col gap-11 lg:flex-row mt-[400px] justify-around h-auto">
+    <section className="flex flex-col items-center mt-[200px] sm:items-center md:items-center md:flex-col gap-11 lg:flex-row lg:mt-[400px] justify-around h-auto">
       <Description />
     </section>
 
     {/* Filosofi Section */}
-    <section className="px-4 flex flex-col items-center text-center justify-around mt-[300px]">
-      <DescSection className="items-center" title="FILOSOFI LOGO" altText="Garis Prestasi" />
-      <p className="text-2xl mt-[80px]"><b>Elevor</b> bukan sekadar nama kabinet, tetapi sebuah gerakan yang membawa perubahan nyata dalam Himalkom.</p>
+    <section className="px-4 flex flex-col items-center text-center mt-[300px]">
+      <DescSection className="" title="FILOSOFI LOGO" altText="Garis Prestasi" />
+      <p className="text-2xl my-[30px]"><b>Elevor</b> bukan sekadar nama kabinet, tetapi sebuah gerakan yang membawa perubahan nyata dalam Himalkom.</p>
       <Filosofi />
     </section>
 
