@@ -29,27 +29,27 @@ const Komunitas = () => {
 
       {/* Hero Section */}
       <section className="font-athiti">
-        <div id="hero-section" className="flex justify-center gap-24 items-center mt-50 w-full px-4">
+        <div id="hero-section" className="flex flex-col justify-center items-center gap-6 sm:gap-12 md:gap-16 lg:gap-24 mt-24 sm:mt-48 md:mt-44 w-full px-4 sm:flex-row">
           <img
             src={`${baseUrl}/storage/${community.logo}`}
             alt={community.name}
-            className="w-70"
+            className="w-40 sm:w-40 md:w-48 lg:w-80"
           />
-          <div className="flex flex-col text-left">
-            <h1 className="font-semibold text-black pb-5 text-[110px] leading-24 sm:text-[90px] md:text-[110px] sm:w-[300px] md:w-[363px]">
+          <div className="flex flex-col items-center sm:items-start text-center sm:text-left mt-4 sm:mt-0">
+            <h1 className="font-semibold text-black pb-5 text-[90px] leading-24 md:text-[110px] sm:w-[300px] md:w-[363px] lg:text-[110px]">
               {community.name}
             </h1>
             <img
               src={TImages.DECORATIVE_ELEMENTS.GARIS_HERO_ELEVOR}
               alt="Garis Elevor"
-              className="w-[361px] mb-4"
+              className="w-[200px] sm:w-[260px] md:w-[300px] lg:w-[361px] my-4 sm:mb-3 md:mb-4 mx-auto sm:mx-0"
             />
           </div>
         </div>
       </section>
 
       {/* Description */}
-      <section className="relative font-athiti max-w-4xl mx-auto my-[20rem] text-[1.5rem] leading-relaxed">
+      <section className="relative w-90 font-athiti md:w-120 lg:w-200 mx-auto my-[20rem] text-[17px] sm:text-[20px] md:text-[25px] text-justify leading-relaxed">
         <p>{community.description}</p>
         <img
           src={TImages.DECORATIVE_ELEMENTS.GARIS_HERO_ELEVOR}
@@ -62,10 +62,10 @@ const Komunitas = () => {
       <section className="px-4 flex flex-col mt-[250px]">
         <SectionHeader title="PRESTASI" altText="Garis Prestasi" />
         <div className="flex justify-center items-center">
-          <div className="bg-white shadow-lg rounded-xl w-[768px] border border-purple-100">
+          <div className="bg-white shadow-lg rounded-xl lg:w-[780px] shadow-card">
             {community.achievements.length > 0 &&
               community.achievements.some((item) => item.value.trim() !== "-") ? (
-                <ul className="list-disc py-4 px-10 space-y-2 font-athiti text-[22px]">
+                <ul className="list-disc py-4 px-10 space-y-2 font-athiti lg:text-[25px]">
                   {community.achievements
                     .filter((item) => item.value.trim() !== "-") 
                     .map((item, index) => (
@@ -89,7 +89,7 @@ const Komunitas = () => {
       </section>
 
       {/* Narahubung Section */}
-      <section className="px-4 flex flex-col text-center text-2xl my-[200px]">
+      <section className="px-4 text-[24px] flex flex-col text-center  my-[200px]">
         <SectionHeader title="NARAHUBUNG" altText="Garis Narahubung" />
         <p>{community.contact}</p>
         <p>WhatsApp: {community.contact_whatsapp}</p>
