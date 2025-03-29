@@ -1,5 +1,7 @@
 import React from 'react';
 import ReadMoreButton from '../../../components/common/ReadMore';
+import LoadingSpinner from '@/components/common/LoadingSpinner';
+
 /**
  * Card megaproker (komponen internal)
  */
@@ -25,7 +27,7 @@ const MegaprokerCard = ({ megaproker, baseUrl }) => (
  * Section megaproker
  */
 const Megaproker = ({ megaprokerData, loadingMegaproker, errorMegaproker, baseUrl }) => {
-  if (loadingMegaproker) return <p className="text-center">Loading megaproker...</p>;
+  if (loadingMegaproker) return <LoadingSpinner variant="section" message="Memuat megaproker..." />;
   if (errorMegaproker) return <p className="text-red-500 font-bold text-xl text-center">Error: {errorMegaproker}</p>;
   if (!megaprokerData || !megaprokerData.megaprokers) return null;
 

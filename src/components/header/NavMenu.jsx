@@ -230,6 +230,19 @@ const NavMenu = () => {
       >
         Riset
       </NavLink>
+
+      {/* Item Menu: Syntax */}
+      <NavLink
+        to="/syntax"
+        className={({isActive}) => `
+          text-primary-darker transition-all duration-200
+          hover:text-primary-dark 
+          ${isActive ? 'font-bold' : 'font-medium'}
+        `}
+        onClick={closeDropdowns}
+        >
+          Syntax
+      </NavLink>
     </nav>
   );
 };

@@ -1,5 +1,6 @@
 import React, { useRef } from 'react';
 import ReadMoreButton from '@/components/common/ReadMore';
+import LoadingSpinner from '@/components/common/LoadingSpinner';
 
 /**
  * Card komunitas (komponen internal)
@@ -43,7 +44,10 @@ const Ilkomunity = ({
   goToCommunitySlide,
   baseUrl
 }) => {
-  if (loadingCommunities) return <p className="text-center">Loading communities...</p>;
+  // Untuk loading communities
+  if (loadingCommunities) {
+    return <LoadingSpinner variant="section" message="Memuat komunitas..." />;
+  }
   if (errorCommunities) return <p className="text-red-500 font-bold text-xl text-center">Error: {errorCommunities}</p>;
   if (!communitiesData || !communitiesData.communities) return null;
 
@@ -125,7 +129,7 @@ const Ilkomunity = ({
                 }`}>
                   <p className="text-center">
                     {communityDetails[community.slug]?.description || 
-                     (loadingDetails ? "Loading description..." : community.slug)}
+                     (loadingDetails ? <LoadingSpinner variant="inline" size="small" message="Memuat detail..." /> : community.slug)}
                   </p>
                 </div>
                 <div className="mt-auto pt-3">
