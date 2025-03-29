@@ -22,7 +22,7 @@ const LoadingSpinner = ({
   };
   
   // Warna utama sesuai dengan tema website
-  const color = '#7c3aed'; // Warna purple yang sesuai dengan desain
+  const color = '#2B4248';
 
   // Render spinner yang berbeda berdasarkan variant
   const renderSpinner = () => {

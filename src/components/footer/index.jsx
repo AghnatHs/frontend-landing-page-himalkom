@@ -3,7 +3,7 @@ import Section from "./footer";
 
 const Footer = () => {
   return (
-    <footer className="hidden lg:block mt-[15rem] left-0 bottom-0">
+    <footer className=" left-0 bottom-0">
       <Section />
     </footer>
   )
