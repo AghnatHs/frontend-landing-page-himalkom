@@ -1,36 +1,57 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
-// Import custom hooks
-import { useFetchData } from '../../hooks/useAPI';
-import { useCarousel } from '../../hooks/useCarousel';
+// Custom hooks
+import { useFetchData } from '@/hooks/useAPI';
+import { useCarousel } from '@/hooks/useCarousel';
 
-// Import komponen yang bisa dipakai ulang
-import SectionHeader from '../../components/common/SectionHeader';
+// Common components
+import SectionHeader from '@/components/common/SectionHeader';
 
-// Import sections untuk halaman Home
+// Page sections
 import HeroSection from './sections/HeroSection';
 import Ilkomunity from './sections/Ilkommunity';
 import Megaproker from './sections/Megaproker';
 import Komnews from './sections/KomNews';
 
 /**
- * Halaman utama (Home)
+ * Home Page Component
+ * 
+ * Main landing page of HIMALKOM website featuring:
+ * - Hero section
+ * - Communities section
+ * - Major programs/events section
+ * - Latest news section
+ * 
+ * @returns {JSX.Element}
  */
 const Home = () => {
   const baseUrl = import.meta.env.VITE_API_BASE_URL;
   
-  // Data dari API
-  const { data: communitiesData, loading: loadingCommunities, error: errorCommunities } = useFetchData('communities', baseUrl);
-  const { data: megaprokerData, loading: loadingMegaproker, error: errorMegaproker } = useFetchData('megaprokers', baseUrl);
-  const { data: newsData, loading: loadingNews, error: errorNews } = useFetchData('komnews', baseUrl);
+  // Fetch all required data using custom hook
+  const { 
+    data: communitiesData, 
+    loading: loadingCommunities, 
+    error: errorCommunities 
+  } = useFetchData('communities', baseUrl);
+  
+  const { 
+    data: megaprokerData, 
+    loading: loadingMegaproker, 
+    error: errorMegaproker 
+  } = useFetchData('megaprokers', baseUrl);
+  
+  const { 
+    data: newsData, 
+    loading: loadingNews, 
+    error: errorNews 
+  } = useFetchData('komnews', baseUrl);
 
-  // State untuk communities
+  // State for community details
   const [communityDetails, setCommunityDetails] = useState({});
   const [loadingDetails, setLoadingDetails] = useState(false);
-  const [expandedDescriptions, setExpandedDescriptions] = useState({});
   
-  // Carousel controls
+  // Initialize carousels with custom hook
   const { 
     currentIndex: currentNewsIndex,
     goToSlide: goToNewsSlide
@@ -42,21 +63,12 @@ const Home = () => {
     setPause: setCommunityCarouselPause
   } = useCarousel(communitiesData?.communities);
 
-  // Toggle community description
-  const toggleDescription = useCallback((slug) => {
-    setExpandedDescriptions(prev => ({
-      ...prev,
-      [slug]: !prev[slug]
-    }));
-  }, []);
-
-  // Fetch detailed data untuk setiap komunitas
+  // Fetch detailed information for each community
   useEffect(() => {
-    if (!communitiesData?.communities) return;
+    if (!communitiesData?.communities?.length) return;
 
     setLoadingDetails(true);
     
-    // Buat array promises untuk semua fetch detail komunitas
     const detailPromises = communitiesData.communities.map(community => 
       axios.get(`${baseUrl}/communities/${community.slug}`)
         .then(response => ({ 
@@ -69,7 +81,6 @@ const Home = () => {
         })
     );
     
-    // Tunggu semua fetch selesai
     Promise.all(detailPromises)
       .then(results => {
         const details = {};
@@ -88,44 +99,39 @@ const Home = () => {
       });
   }, [communitiesData, baseUrl]);
 
-  // Pause carousel saat deskripsi diperluas
-  useEffect(() => {
-    if (!communitiesData?.communities) return;
-    
-    const currentSlug = communitiesData.communities[currentCommunityIndex]?.slug;
-    if (currentSlug && expandedDescriptions[currentSlug]) {
-      setCommunityCarouselPause(true);
-    } else {
-      setCommunityCarouselPause(false);
-    }
-  }, [expandedDescriptions, currentCommunityIndex, communitiesData, setCommunityCarouselPause]);
-
   return (
-    <>
+    <div className="w-full">
       {/* Hero Section */}
-      <HeroSection />
+      <section className="w-full">
+        <HeroSection />
+      </section>
 
-      {/* Communities Section */}
-      <section className="px-4 flex flex-col mt-[400px]">
-        <SectionHeader title="ILKOMMUNITY" altText="Garis Ilkommunity" />
+      {/* Ilkomunity Section */}
+      <section className="mt-16 md:mt-24">
+        <SectionHeader 
+          title="ILKOMUNITAS" 
+          altText="Komunitas Ilmu Komputer" 
+        />
         <Ilkomunity
           communitiesData={communitiesData}
           loadingCommunities={loadingCommunities}
           errorCommunities={errorCommunities}
           communityDetails={communityDetails}
           loadingDetails={loadingDetails}
-          expandedDescriptions={expandedDescriptions}
-          toggleDescription={toggleDescription}
           currentCommunityIndex={currentCommunityIndex}
           goToCommunitySlide={goToCommunitySlide}
+          setCommunityCarouselPause={setCommunityCarouselPause}
           baseUrl={baseUrl}
         />
       </section>
 
       {/* Megaproker Section */}
-      <section className="px-4 flex flex-col mt-[200px]">
-        <SectionHeader title="MEGAPROKER" altText="Garis Megaproker" />
-        <Megaproker 
+      <section className="mt-16 md:mt-24">
+        <SectionHeader 
+          title="MEGAPROKER" 
+          altText="Program Kerja Utama" 
+        />
+        <Megaproker
           megaprokerData={megaprokerData}
           loadingMegaproker={loadingMegaproker}
           errorMegaproker={errorMegaproker}
@@ -133,10 +139,13 @@ const Home = () => {
         />
       </section>
 
-      {/* KOMnews Section */}
-      <section className="px-4 flex flex-col my-[200px]">
-        <SectionHeader title="BERITA TERKINI" altText="Garis Berita" />
-        <Komnews 
+      {/* Komnews Section */}
+      <section className="mt-16 md:mt-24 mb-16 md:mb-24">
+        <SectionHeader 
+          title="KOMNEWS" 
+          altText="Berita dan Aktivitas Terkini" 
+        />
+        <Komnews
           newsData={newsData}
           loadingNews={loadingNews}
           errorNews={errorNews}
@@ -145,7 +154,7 @@ const Home = () => {
           baseUrl={baseUrl}
         />
       </section>
-    </>
+    </div>
   );
 };
 

@@ -186,6 +186,15 @@ const MobileMenu = ({ onCloseMenu }) => {
           >
             Riset
           </NavLink>
+          
+          <NavLink 
+            to="/riset" 
+            className={({isActive}) => menuItemClass(isActive)}
+            onClick={onCloseMenu}
+          >
+            Syntax
+          </NavLink>
+
         </div>
 
         {/* Social Media */}
