@@ -49,7 +49,7 @@ const Komunitas = () => {
       </section>
 
       {/* Description */}
-      <section className="relative w-90 font-athiti md:w-120 lg:w-200 mx-auto my-[20rem] text-[17px] sm:text-[20px] md:text-[25px] text-justify leading-relaxed">
+      <section className="relative w-90 font-athiti md:w-120 lg:w-200 mx-auto mt-[200px] text-[17px] sm:text-[20px] md:text-[25px] text-justify leading-relaxed">
         <p>{community.description}</p>
         <img
           src={TImages.DECORATIVE_ELEMENTS.GARIS_HERO_ELEVOR}
@@ -59,10 +59,11 @@ const Komunitas = () => {
       </section>
 
       {/* Prestasi Section */}
-      <section className="px-4 flex flex-col mt-[250px]">
+      <section className="px-4 flex flex-col mt-[200px]">
         <SectionHeader title="PRESTASI" altText="Garis Prestasi" />
         <div className="flex justify-center items-center">
           <div className="bg-white shadow-lg rounded-xl lg:w-[780px] shadow-card">
+            {/* Punya achievment dan di API ga "-" */}
             {community.achievements.length > 0 &&
               community.achievements.some((item) => item.value.trim() !== "-") ? (
                 <ul className="list-disc py-4 px-10 space-y-2 font-athiti lg:text-[25px]">

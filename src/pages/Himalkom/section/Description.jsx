@@ -4,15 +4,16 @@ import TImages from "../../../utils/images";
 const Description = () => {
   return (
     <>
+      {/* Logo kanan */}
       <div className="flex ">
         <img
         src={TImages.LOGO.LOGO_HIMALKOM} 
         alt='Logo Himalkom'
-        className="w-40 sm:w-40 md:w-48 lg:w-74 h-auto drop-shadow-[0_10px_0_rgba(175,225,234,0.8)] mt-[50px] "
+        className="w-45 sm:w-45 md:w-50 lg:w-85 h-auto drop-shadow-[0_10px_5px_rgba(175,225,234,0.8)] "
         />
       </div>
 
-      <section  className="flex-col w-80 sm:w-150 md:w-180  lg:w-213">
+      <div className="flex-col w-80 sm:w-150 md:w-180 lg:w-213">
         <div className='pb-[50px]'>
           <h1 className="font-semibold pb-[10px] text-[48px] leading-relaxed">Apa itu HIMALKOM?</h1>
           <p className=" sm:text-base md:text-xl lg:text-2xl"> 
@@ -31,7 +32,7 @@ const Description = () => {
             src={TImages.DECORATIVE_ELEMENTS.GARIS_HERO_ELEVOR}
           />
         </div>
-      </section>
+      </div>
 
     </>
   );
