@@ -7,6 +7,7 @@ import teksElevor from "@/assets/elevor-teks.svg";
 import garisHimalkom from "@/assets/garis-himalkom.svg";
 import patternBottom from "@/assets/bg-pattern-bot.svg";
 import logoElevor from "@/assets/logo-elevor.svg";
+import garisKomnews from "@/assets/garis-pembatas-komnews.svg";	
 
 const TImages = {
   BACKGROUNDS: {
@@ -22,6 +23,7 @@ const TImages = {
     GARIS_HERO_ELEVOR: garisHero,
     GARIS_ILKOMMUNITY: garisIlkomun,
     GARIS_PRESTASI: garisPrestasi,
+    GARIS_KOMNEWS: garisKomnews,
   },
   TEXT: {
     TEKS_ELEVOR: teksElevor,
