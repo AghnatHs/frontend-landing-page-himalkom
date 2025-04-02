@@ -8,7 +8,11 @@ const Riset = () => {
   const baseUrl = import.meta.env.VITE_API_BASE_URL;
 
   // Data API
-  const { data: researchData, loading: researchLoading, error: researchError } = useFetchData('research', baseUrl);
+  const { 
+    data: researchData, 
+    loading: researchLoading, 
+    error: researchError 
+  } = useFetchData('research', baseUrl);
 
   return (
     <>

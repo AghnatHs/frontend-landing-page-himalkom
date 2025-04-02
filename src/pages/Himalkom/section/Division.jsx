@@ -1,6 +1,5 @@
 import React from "react";
-import { FaAngleRight } from "react-icons/fa6";
-import { Link } from "react-router-dom";
+import ReadMoreButton from '@/components/common/ReadMore';
 
 // Departement Section (API nya division dah)
 
@@ -13,18 +12,8 @@ const DeptCard = ({ division, baseUrl }) => (
       className=""
     />
     <h1>{division.name}</h1>
-      <div className="mt-8 rounded-lg shadow-[0px_0px_8px_0.3px_rgba(105,83,207,0.39)] hover:shadow-[0px_0px_10px_1px_rgba(105,83,207,0.6)] transition-all duration-300 min-w-14 p-1 w-full">
-        <Link 
-          to={`/divisions/${division.slug}`}
-          className="flex items-center justify-between w-full transition-all duration-300 px-1 py-0.5 group"
-        >
-          <span className="text-sm font-medium mx-1 text-gray-700 group-hover: transition-colors duration-300">
-            Selengkapnya
-          </span>
-          <div className="bg-[#AFE1EA] p-0.5 rounded flex items-center justify-center transition-all duration-300 group-hover:bg-[#8CCED8] group-hover:transform group-hover:translate-x-1">
-            <FaAngleRight size={16} className="text-black transition-all duration-300" />
-          </div>
-        </Link>
+      <div className="mt-4">
+        <ReadMoreButton to={`/division/${division.slug}`} />
       </div>
   </div>
 );
