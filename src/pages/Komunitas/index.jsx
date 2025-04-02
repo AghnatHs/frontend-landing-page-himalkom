@@ -29,16 +29,20 @@ const Komunitas = () => {
 
       {/* Hero Section */}
       <section className="font-athiti">
-        <div id="hero-section" className="flex flex-col justify-center items-center gap-6 sm:gap-12 md:gap-16 lg:gap-24 mt-24 sm:mt-48 md:mt-44 w-full px-4 sm:flex-row">
+        <div id="hero-section" 
+        className="flex flex-col justify-center items-center gap-6 sm:gap-12 md:gap-16 lg:gap-24 sm:mt-32 md:mt-20 w-full px-4 sm:flex-row">
+          {/* Logo Komunitas */}
           <img
             src={`${baseUrl}/storage/${community.logo}`}
             alt={community.name}
             className="w-40 sm:w-40 md:w-48 lg:w-80"
           />
           <div className="flex flex-col items-center sm:items-start text-center sm:text-left mt-4 sm:mt-0">
+            {/* Nama komunitas */}
             <h1 className="font-semibold text-black pb-5 text-[90px] leading-24 md:text-[110px] sm:w-[300px] md:w-[363px] lg:text-[110px]">
               {community.name}
             </h1>
+            {/* Garis Dekor */}
             <img
               src={TImages.DECORATIVE_ELEMENTS.GARIS_HERO_ELEVOR}
               alt="Garis Elevor"
@@ -49,7 +53,7 @@ const Komunitas = () => {
       </section>
 
       {/* Description */}
-      <section className="relative w-90 font-athiti md:w-120 lg:w-200 mx-auto mt-[200px] text-[17px] sm:text-[20px] md:text-[25px] text-justify leading-relaxed">
+      <section className="relative w-90 font-athiti md:w-120 lg:w-200 mx-auto mt-[250px] text-[17px] sm:text-[20px] md:text-[25px] text-justify leading-relaxed">
         <p>{community.description}</p>
         <img
           src={TImages.DECORATIVE_ELEMENTS.GARIS_HERO_ELEVOR}
