@@ -13,7 +13,7 @@ const DeptCard = ({ division, baseUrl }) => (
       className=""
     />
     <h1>{division.name}</h1>
-    <div className="mt-8 rounded-lg shadow-[0px_0px_8px_0.3px_rgba(105,83,207,0.39)] hover:shadow-[0px_0px_10px_1px_rgba(105,83,207,0.6)] transition-all duration-300 min-w-14 p-1 w-full">
+      <div className="mt-8 rounded-lg shadow-[0px_0px_8px_0.3px_rgba(105,83,207,0.39)] hover:shadow-[0px_0px_10px_1px_rgba(105,83,207,0.6)] transition-all duration-300 min-w-14 p-1 w-full">
         <Link 
           to={`/divisions/${division.slug}`}
           className="flex items-center justify-between w-full transition-all duration-300 px-1 py-0.5 group"
