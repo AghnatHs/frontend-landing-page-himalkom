@@ -9,6 +9,7 @@ import Departemen from './pages/Departemen';
 import Himalkom from './pages/Himalkom';
 import Komnews from './pages/Komnews';
 import Riset from './pages/Riset';
+import Syntax from './pages/Syntax';
 
 const App = () => {
   return (
@@ -23,6 +24,7 @@ const App = () => {
           <Route path="/division/:slug" element={<Departemen />} />
           <Route path="/komnews" element={<Komnews />} />
           <Route path="/riset" element={<Riset />} />
+          <Route path="/syntax" element={<Syntax />} />
         </Routes>
       </MainLayout>
       <Footer />
