@@ -7,19 +7,17 @@ const HeroSection = () => (
       id="hero-section"
       className="flex flex-col justify-center items-center gap-6 sm:gap-12 md:gap-16 lg:gap-24 sm:mt-32 md:mt-20 w-full px-4 sm:flex-row"
     >
-      {/* Logo Himalkom Elevor */}
+      {/* Logo Riset */}
       <img
-        src={TImages.LOGO.LOGO_ELEVOR}
+        src={TImages.LOGO.LOGO_RISET}
         alt="Logo Himalkom"
-        className="w-40 sm:w-40 md:w-48 lg:w-80"
+        className="w-40 sm:w-40 md:w-48 lg:w-85"
       />
       <div className="flex flex-col items-center sm:items-start text-center sm:text-left mt-4 sm:mt-0">
-        {/* Teks Elevor */}
-        <img 
-          src={TImages.TEXT.TEKS_ELEVOR}
-          alt="Elevor"
-          className="w-40 sm:w-40 md:w-48 lg:w-xl" 
-        />
+        {/* Title */}
+        <h1 className="text-[64px] font-semibold">
+          RISET ILKOMERZ
+        </h1>
         
         {/* Garis Dekoratif */}
         <img
@@ -29,9 +27,8 @@ const HeroSection = () => (
         />
         
         {/* Tagline dan Subtitle */}
-        <div className="flex flex-col items-center sm:items-start text-black text-lg sm:text-xl md:text-2xl font-normal">
-          <span>Elevate, Invest, Opportunity</span>
-          <span className="text-sm sm:text-base md:text-xl lg:text-2xl">Himpunan Mahasiswa Ilmu Komputer 2024/2025</span>
+        <div className="flex flex-col items-center sm:items-start max-w-lg sm:max-w-xl text-black text-lg sm:text-xl md:text-2xl font-normal">
+         <p><b>Riset Ilkomerz</b> merupakan kegiatan riset yang ditujukan untuk menjaring minat, pendapat, dan aspirasi ilkomerz untuk membangun Himalkom berdasarkan kebutuhan ilkomerz.</p>
         </div>
       </div>
     </div>

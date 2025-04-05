@@ -29,7 +29,7 @@ const Komunitas = () => {
 
       {/* Hero Section */}
       <section className="font-athiti">
-        <div id="hero-section" className="flex flex-col justify-center items-center gap-6 sm:gap-12 md:gap-16 lg:gap-24 sm:mt-32 md:mt-20 w-full px-4 sm:flex-row">
+        <div className="flex flex-col justify-center items-center gap-6 sm:gap-12 md:gap-16 lg:gap-24 sm:mt-32 md:mt-20 w-full px-4 sm:flex-row">
           <img
             src={`${baseUrl}/storage/${community.logo}`}
             alt={community.name}
