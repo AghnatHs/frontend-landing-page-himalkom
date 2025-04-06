@@ -35,7 +35,7 @@ const Komunitas = () => {
           <img
             src={`${baseUrl}/storage/${community.logo}`}
             alt={community.name}
-            className="w-40 sm:w-40 md:w-48 lg:w-80"
+            className="w-40 sm:w-40 md:w-48 lg:w-80 rounded-full border-2 border-white drop-shadow-[0_0_30px_rgba(255,255,255,0.8)]"
           />
           <div className="flex flex-col items-center sm:items-start text-center sm:text-left mt-4 sm:mt-0">
             {/* Nama komunitas */}
@@ -48,6 +48,13 @@ const Komunitas = () => {
               alt="Garis Elevor"
               className="w-[200px] sm:w-[260px] md:w-[300px] lg:w-[361px] my-4 sm:mb-3 md:mb-4 mx-auto sm:mx-0"
             />
+           <div className="max-w-lg sm:max-w-xl">
+            {community.purposes.map((item, index) => (
+              <p className="text-justify text-xl" key={index}>
+                {item.value}
+              </p>
+              ))}
+          </div>
           </div>
         </div>
       </section>
@@ -63,6 +70,7 @@ const Komunitas = () => {
       </section>
 
       {/* Prestasi Section */}
+      <section className="px-4 flex flex-col mt-[200px]">
       <section className="px-4 flex flex-col mt-[200px]">
         <SectionHeader title="PRESTASI" altText="Garis Prestasi" />
         <div className="flex justify-center items-center">

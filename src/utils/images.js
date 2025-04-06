@@ -8,6 +8,8 @@ import garisHimalkom from "@/assets/garis-himalkom.svg";
 import patternBottom from "@/assets/bg-pattern-bot.svg";
 import logoElevor from "@/assets/logo-elevor.svg";
 import garisKomnews from "@/assets/garis-pembatas-komnews.svg";	
+import logoRiset from "@/assets/logo-riset.svg";
+import logoSyntax from "@/assets/logo-syntax.svg";
 
 const TImages = {
   BACKGROUNDS: {
@@ -17,6 +19,8 @@ const TImages = {
   LOGO: {
     LOGO_HIMALKOM: logoHimalkom,
     LOGO_ELEVOR: logoElevor,
+    LOGO_RISET: logoRiset,
+    LOGO_SYNTAX: logoSyntax,
 
   },
   DECORATIVE_ELEMENTS: {

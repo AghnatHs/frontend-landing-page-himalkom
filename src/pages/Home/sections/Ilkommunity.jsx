@@ -53,7 +53,7 @@ const CommunityCard = ({ community, details, loading, baseUrl }) => {
       
       {/* Read More button */}
       <div className="mt-4">
-        <ReadMoreButton to={`/ilkomunity/${community.slug}`} />
+        <ReadMoreButton to={`/community/${community.slug}`} />
       </div>
     </div>
   );
@@ -112,7 +112,7 @@ const Ilkomunity = ({
       <div className="flex flex-col items-center max-w-6xl mx-auto py-12">
         {/* Desktop view - grid layout */}
         <div className="hidden md:grid grid-cols-1 md:grid-cols-3 gap-8">
-          {communitiesData.communities.slice(0, 6).map((community) => (
+          {communitiesData.communities.map((community) => (
             <CommunityCard
               key={community.id || `community-${community.slug}`}
               community={community}
