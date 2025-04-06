@@ -71,7 +71,6 @@ const Komunitas = () => {
 
       {/* Prestasi Section */}
       <section className="px-4 flex flex-col mt-[200px]">
-      <section className="px-4 flex flex-col mt-[200px]">
         <SectionHeader title="PRESTASI" altText="Garis Prestasi" />
         <div className="flex justify-center items-center">
           <div className="bg-white shadow-lg rounded-xl lg:w-[780px] shadow-card">
