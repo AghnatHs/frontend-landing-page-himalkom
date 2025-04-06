@@ -27,7 +27,7 @@ const HeroSection = () => (
         />
         
         {/* Tagline dan Subtitle */}
-        <div className="flex flex-col items-center sm:items-start max-w-lg sm:max-w-xl text-black text-lg sm:text-xl md:text-2xl font-normal">
+        <div className="flex flex-col text-justify items-center sm:items-start max-w-lg sm:max-w-xl text-black text-lg sm:text-xl md:text-2xl font-normal">
          <p><b>Riset Ilkomerz</b> merupakan kegiatan riset yang ditujukan untuk menjaring minat, pendapat, dan aspirasi ilkomerz untuk membangun Himalkom berdasarkan kebutuhan ilkomerz.</p>
         </div>
       </div>
