@@ -1,11 +1,11 @@
 import React from "react";
-import TImages from "../../../utils/images";
+import TImages from "@/utils/images";
 
 const HeroSection = () => (
   <section>
     <div
       id="hero-section"
-      className="flex flex-col justify-center items-center gap-6 sm:gap-12 md:gap-16 lg:gap-24 sm:mt-32 md:mt-20 w-full px-4 sm:flex-row"
+      className="flex flex-row justify-center items-center gap-6 sm:gap-12 md:gap-16 lg:gap-24 sm:mt-32 md:mt-20 w-full px-4 "
     >
       {/* Logo Riset */}
       <img

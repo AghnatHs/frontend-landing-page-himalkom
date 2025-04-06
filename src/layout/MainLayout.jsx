@@ -1,7 +1,13 @@
 import React from 'react';
 import TImages from '../utils/images';
+import { useLocation } from "react-router-dom";
+
 
 const MainLayout = ({ children }) => {
+  const location = useLocation();
+  // Jika pathname adalah "/megaproker", maka tidak tampilkan bottom pattern
+  const hideBottomPattern = location.pathname === "/megaproker";
+
   return (
     <div className="relative min-h-screen flex-1 pt-16"> 
 
@@ -16,11 +22,14 @@ const MainLayout = ({ children }) => {
       <div className="relative overflow-hidden">
         {children}
       </div>
-      <img 
-        src={TImages.BACKGROUNDS.BOTTOM_PATTERN}
-        alt="Bottom Background"
-        className="absolute bottom-0 w-full h-auto -z-10  object-cover"
-      />
+
+      {!hideBottomPattern && (
+        <img
+          src={TImages.BACKGROUNDS.BOTTOM_PATTERN}
+          alt="Bottom Background"
+          className="absolute bottom-0 w-full h-auto -z-10 object-cover"
+        />
+      )}
     </div>
   );
 };

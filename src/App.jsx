@@ -10,6 +10,7 @@ import Himalkom from './pages/Himalkom';
 import Komnews from './pages/Komnews';
 import Riset from './pages/Riset';
 import Syntax from './pages/Syntax';
+import Megaproker from './pages/Megaproker';
 
 const App = () => {
   return (
@@ -25,6 +26,7 @@ const App = () => {
           <Route path="/komnews" element={<Komnews />} />
           <Route path="/riset" element={<Riset />} />
           <Route path="/syntax" element={<Syntax />} />
+          <Route path="/megaproker" element={<Megaproker />} />
         </Routes>
       </MainLayout>
       <Footer />
