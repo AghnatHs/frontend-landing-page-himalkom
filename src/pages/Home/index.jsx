@@ -107,7 +107,7 @@ const Home = () => {
       </section>
 
       {/* Ilkomunity Section */}
-      <section className="mt-16 md:mt-24">
+      <section className="mt-24 md:mt-96">
         <SectionHeader 
           title="ILKOMUNITAS" 
           altText="Komunitas Ilmu Komputer" 
