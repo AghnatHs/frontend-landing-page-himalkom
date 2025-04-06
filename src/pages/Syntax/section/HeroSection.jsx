@@ -9,15 +9,14 @@ const HeroSection = () => (
     >
       {/* Logo Riset */}
       <img
-        src={TImages.LOGO.LOGO_SYNTAX
-        }
-        alt="Logo Himalkom"
+        src={TImages.LOGO.LOGO_SYNTAX}
+        alt="Logo Syntax"
         className="w-40 sm:w-40 md:w-48 lg:w-85"
       />
       <div className="flex flex-col items-center sm:items-start text-center sm:text-left mt-4 sm:mt-0">
         {/* Title */}
         <h1 className="text-[64px] font-semibold">
-          RISET ILKOMERZ
+          SYNTAX
         </h1>
         
         {/* Garis Dekoratif */}
@@ -28,8 +27,8 @@ const HeroSection = () => (
         />
         
         {/* Tagline dan Subtitle */}
-        <div className="flex flex-col items-center sm:items-start max-w-lg sm:max-w-xl text-black text-lg sm:text-xl md:text-2xl font-normal">
-         <p><b>Riset Ilkomerz</b> merupakan kegiatan riset yang ditujukan untuk menjaring minat, pendapat, dan aspirasi ilkomerz untuk membangun Himalkom berdasarkan kebutuhan ilkomerz.</p>
+        <div className="flex flex-col text-justify items-center sm:items-start max-w-lg sm:max-w-xl text-black text-lg sm:text-xl md:text-2xl font-normal">
+         <p><b>Syntax</b> merupakan majalah tahunan yang dibuat oleh HImalkom IPB untuk memberikan informasi mengenai kaleidoskop program kerja yang telah terlaksana serta informasi lainnya dalam ruang lingkup departemen Ilmu Komputer IPB.</p>
         </div>
       </div>
     </div>
