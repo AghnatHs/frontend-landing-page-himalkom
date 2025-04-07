@@ -27,7 +27,7 @@ const Riset = () => {
       <HeroSection />
 
       {/* Riset */}
-      <section className="px-4 flex flex-col items-center text-center my-[280px]">
+      <section className="px-4 flex flex-col items-center text-center my-[130px] md:my-[150px] lg:my-[280px]">
         <RisCard 
         data={data}
         baseUrl={baseUrl}

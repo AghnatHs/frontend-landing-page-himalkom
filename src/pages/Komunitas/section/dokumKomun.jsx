@@ -46,7 +46,7 @@ const DokumKomun = ({ slides }) => {
         {visibleThumbs.slice(0,3).map((slideIndex) => (
           <div
             key={slideIndex}
-            className="border-2 mb-2 w-[110px] sm:w-[150px] sm:h-[100px] md:w-[200px] border-gray-300 rounded-lg lg:w-[220px] lg:h-[140px] overflow-hidden transition-transform transform hover:scale-105 cursor-pointer"
+            className="border-2 mb-2 w-[110px] h-[98px] sm:w-[150px] sm:h-[100px] md:w-[200px] border-gray-300 rounded-lg lg:w-[220px] lg:h-[140px] overflow-hidden transition-transform transform hover:scale-105 cursor-pointer"
           >
             <img
               src={slides[slideIndex]?.url}

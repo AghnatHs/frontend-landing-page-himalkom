@@ -5,17 +5,18 @@ import { useLocation } from "react-router-dom";
 
 const MainLayout = ({ children }) => {
   const location = useLocation();
+  
   // Jika pathname adalah "/megaproker", maka tidak tampilkan bottom pattern
   const hideBottomPattern = location.pathname === "/megaproker";
 
   return (
-    <div className="relative min-h-screen flex-1 pt-16"> 
+    <div className="relative min-h-screen flex-1 md:pt-14 lg:pt-16"> 
 
       <div className="absolute inset-0 w-full h-full -z-10 bg-primary-light/30"> 
         <img
           src={TImages.BACKGROUNDS.HERO_PATTERN}
           alt="Hero Background"
-          className="absolute w-full h-auto object-cover -top-4"
+          className="absolute w-full object-cover lg:-top-24 h-96 sm:h-[500px] md:h-[600px] lg:h-[780px] xl:h-[920px] "
         />
       </div>
       

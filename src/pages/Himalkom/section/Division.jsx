@@ -1,5 +1,6 @@
 import React from "react";
 import ReadMoreButton from '@/components/common/ReadMore';
+import LoadingSpinner from "@/components/common/LoadingSpinner";
 
 // Departement Section (API nya division dah)
 
@@ -20,7 +21,7 @@ const DeptCard = ({ division, baseUrl }) => (
 
 /* Grid Departemen  */
 const Division = ({ divisionData, divisionLoading, divisionError, baseUrl }) => {
-  if (divisionLoading) return <p className="text-center">Loading division...</p>;
+  if (divisionLoading) return <LoadingSpinner variant="section" size="large" message="Memuat data research..." />;
   if (divisionError) return <p className="text-red-500 font-bold text-xl text-center">Error: {divisionError}</p>;
   if (!divisionData || !divisionData.divisions) return null;
 
