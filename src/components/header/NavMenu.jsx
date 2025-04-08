@@ -23,6 +23,13 @@ const NavMenu = () => {
   const defaultCommunities = [
     { name: "Agriux", slug: "agriux" },
     { name: "IWDC", slug: "iwdc" },
+    { name: "CSI", slug: "csi" },
+    { name: "Agribot", slug: "agribot" },
+    { name: "CP", slug: "cp" },
+    { name: "Daming", slug: "daming" },
+    { name: "Gary", slug: "gary" },
+    { name: "MAD", slug: "mad" },
+
   ];
   const communities = communitiesData?.communities || defaultCommunities;
   

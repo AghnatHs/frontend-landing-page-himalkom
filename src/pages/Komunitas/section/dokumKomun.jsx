@@ -42,7 +42,7 @@ const DokumKomun = ({ slides }) => {
       </div>
 
       {/* Thumbnail Section */}
-      <div className="flex overflow-x-auto overflow-hidden gap-2 sm:gap-3 lg:py-4 lg:gap-4">
+      <div className="flex overscroll-contain overflow-x-auto max-w-full overflow-hidden gap-2 sm:gap-3 lg:py-4 lg:gap-4 [&::-webkit-scrollbar]:hidden">
         {visibleThumbs.slice(0,3).map((slideIndex) => (
           <div
             key={slideIndex}

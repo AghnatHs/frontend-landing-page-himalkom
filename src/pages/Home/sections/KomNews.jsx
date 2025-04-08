@@ -79,8 +79,14 @@ const Komnews = ({
     return <div className="text-center py-8">Tidak ada berita terkini</div>;
   }
 
+  const scrollRevealOptions = {
+    threshold: 0.1,         
+    rootMargin: "-50px 0px", 
+    triggerOnce: true        
+  };
+
   return (
-    <ScrollReveal animation="fade-up">
+    <ScrollReveal animation="fade-up" options={scrollRevealOptions}>
       <div className="flex flex-col items-center max-w-6xl mx-auto py-12">
         {/* Main carousel container */}
         <div 

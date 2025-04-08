@@ -15,8 +15,14 @@ const HeroSection = ({ department }) => {
     return <div className="text-center py-8">Data departemen tidak tersedia</div>;
   }
 
+  const scrollRevealOptions = {
+    threshold: 0.2,         
+    rootMargin: "-100px 0px",  
+    triggerOnce: false       
+};
+
   return (
-    <ScrollReveal animation="fade-up" options={{ threshold: 0.3 }}>
+    <ScrollReveal animation="fade-up" options={scrollRevealOptions} delay={300}>
       <div className="flex flex-col md:flex-row justify-center gap-8 md:gap-16 lg:gap-24 items-center w-full px-4 sm:px-8 md:px-12 lg:px-24 py-8 md:py-12">
         {/* Department logo */}
         {department?.logo ? (
