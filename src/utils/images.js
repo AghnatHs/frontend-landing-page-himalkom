@@ -10,17 +10,23 @@ import logoElevor from "@/assets/logo-elevor.svg";
 import garisKomnews from "@/assets/garis-pembatas-komnews.svg";	
 import logoRiset from "@/assets/logo-riset.svg";
 import logoSyntax from "@/assets/logo-syntax.svg";
+import logoMegaproker from "@/assets/logo-megaproker.svg";
+import bgMegaprokerKiri from "@/assets/bg-kiri.svg";
+import bgMegaprokerKanan from "@/assets/bg-kanan.svg";
 
 const TImages = {
   BACKGROUNDS: {
     HERO_PATTERN: heroPatternHome,
-    BOTTOM_PATTERN: patternBottom
+    BOTTOM_PATTERN: patternBottom,
+    MEGPROK_KIRI: bgMegaprokerKiri,
+    MEGPROK_KANAN: bgMegaprokerKanan,
   },
   LOGO: {
     LOGO_HIMALKOM: logoHimalkom,
     LOGO_ELEVOR: logoElevor,
     LOGO_RISET: logoRiset,
     LOGO_SYNTAX: logoSyntax,
+    LOGO_MEGAPROKER: logoMegaproker,
 
   },
   DECORATIVE_ELEMENTS: {

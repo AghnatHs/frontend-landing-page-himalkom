@@ -32,7 +32,7 @@ const DokumKomun = ({ slides }) => {
     <div className="flex flex-col w-[380px] sm:w-[600px] md:w-[700px] items-center overflow-hidden bg-white shadow-card rounded-xl lg:w-[848px] ">
 
       {/* Banner */}
-      <div className="gap-1 md:gap-2 flex items-center lg:gap-4 py-6">
+      <div className="gap-1 md:gap-2 flex items-center lg:gap-4 ">
         {/* Panah kiri */}
         <FaAngleLeft onClick={goToPrevious} className="cursor-pointer text-gray-600 hover:text-black transition" size={30} />
         {/* Gambar tengah */}
@@ -46,7 +46,7 @@ const DokumKomun = ({ slides }) => {
         {visibleThumbs.slice(0,3).map((slideIndex) => (
           <div
             key={slideIndex}
-            className="border-2 mb-2 w-[110px] sm:w-[150px] sm:h-[100px] md:w-[200px] border-gray-300 rounded-lg lg:w-[220px] lg:h-[140px] overflow-hidden transition-transform transform hover:scale-105 cursor-pointer"
+            className="border-2 mb-2 w-[110px] h-[98px] sm:w-[150px] sm:h-[100px] md:w-[200px] border-gray-300 rounded-lg lg:w-[220px] lg:h-[140px] overflow-hidden transition-transform transform hover:scale-105 cursor-pointer"
           >
             <img
               src={slides[slideIndex]?.url}
