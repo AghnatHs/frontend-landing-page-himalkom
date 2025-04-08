@@ -98,7 +98,7 @@ const HeadlineSection = ({ headlines, baseUrl, loading }) => {
                         </div>
                     </div>
                     
-                    {/* Secondary Headlines - Tanpa Image, Hanya Judul & Deskripsi */}
+                    {/* Secondary Headlines */}
                     {headlinesList.length > 1 && (
                         <div className="grid grid-cols-3 gap-3 mt-4">
                             {headlinesList.map((headline, index) => (
