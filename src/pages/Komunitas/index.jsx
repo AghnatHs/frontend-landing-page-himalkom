@@ -1,10 +1,12 @@
 import React from 'react';
 import { useParams } from "react-router-dom";
 
+
 // Import custom hooks
 import { useFetchData } from '../../hooks/useAPI';
 
 // Import reuse komponen
+import LoadingSpinner from "@/components/common/LoadingSpinner";
 import SectionHeader from '../../components/common/SectionHeader';
 import TImages from '../../utils/images';
 
@@ -20,7 +22,7 @@ const Komunitas = () => {
 
   const community = data?.community
 
-  if (loading) return <p className="text-center">Loading communities...</p>;
+  if (loading) return <LoadingSpinner variant="page" size="large" message="Memuat data komunitas..." />;
   if (error) return <p className="text-red-500 font-bold text-xl text-center">Error: {error}</p>;
   if (!community) return null;
 
@@ -29,39 +31,36 @@ const Komunitas = () => {
 
       {/* Hero Section */}
       <section className="font-athiti">
-        <div className="flex flex-col justify-center items-center gap-6 sm:gap-12 md:gap-16 lg:gap-24 sm:mt-32 md:mt-20 w-full px-4 sm:flex-row">
+        <div id="hero-section" 
+        className="flex flex-row justify-center items-center gap-6 sm:gap-12 md:gap-16 lg:gap-24 mt-10 sm:mt-20 md:mt-0 w-full px-4">
+          {/* Logo Komunitas */}
           <img
             src={`${baseUrl}/storage/${community.logo}`}
             alt={community.name}
-            className="w-40 sm:w-40 md:w-48 lg:w-80 rounded-full border-2 border-white drop-shadow-[0_0_30px_rgba(255,255,255,0.8)]"
+            className="w-28 sm:w-40 md:w-60 xl:w-85 rounded-full border-2 border-white drop-shadow-[0_0_30px_rgba(255,255,255,0.8)]"
           />
-          <div className="flex flex-col items-center sm:items-start text-center sm:text-left mt-4 sm:mt-0">
-            <h1 className="font-semibold text-black pb-5 text-[90px] leading-24 md:text-[110px] sm:w-[300px] md:w-[363px] lg:text-[110px]">
+          <div className="flex flex-col items-start text-center sm:text-left mt-4 sm:mt-0">
+            {/* Nama komunitas */}
+            <h1 className="font-semibold text-black md:pb-3 text-[70px] leading-24 md:text-[110px] sm:w-[300px] md:w-[363px] lg:text-[110px]">
               {community.name}
             </h1>
+            {/* Garis Dekor */}
             <img
               src={TImages.DECORATIVE_ELEMENTS.GARIS_HERO_ELEVOR}
               alt="Garis Elevor"
-              className="w-[200px] sm:w-[260px] md:w-[300px] lg:w-[361px] my-4 sm:mb-3 md:mb-4 mx-auto sm:mx-0"
+              className="place-items-start w-[150px] sm:w-[260px] md:w-[300px] lg:w-[361px] my-2 sm:mb-3 md:mb-4 mx-1"
             />
-           <div className="max-w-lg sm:max-w-xl">
-            {community.purposes.map((item, index) => (
-              <p className="text-justify text-xl" key={index}>
-                {item.value}
-              </p>
-              ))}
-          </div>
           </div>
         </div>
       </section>
 
       {/* Description */}
-      <section className="relative w-90 font-athiti md:w-120 lg:w-200 mx-auto mt-[20rem] text-[17px] sm:text-[20px] md:text-[25px] text-justify leading-relaxed">
+      <section className="relative w-90 font-athiti md:w-120 lg:w-200 mx-auto mt-[250px] text-[17px] sm:text-[20px] md:text-[25px] text-justify leading-relaxed">
         <p>{community.description}</p>
         <img
           src={TImages.DECORATIVE_ELEMENTS.GARIS_HERO_ELEVOR}
           alt="Garis Elevor"
-          className="w-[361px] my-4"
+          className="place-items-start w-[260px] md:w-[300px] lg:w-[361px] my-2 sm:mb-3 md:mb-4 mx-1"
         />
       </section>
 
@@ -70,6 +69,7 @@ const Komunitas = () => {
         <SectionHeader title="PRESTASI" altText="Garis Prestasi" />
         <div className="flex justify-center items-center">
           <div className="bg-white shadow-lg rounded-xl lg:w-[780px] shadow-card">
+            {/* Punya achievment dan di API ga "-" */}
             {community.achievements.length > 0 &&
               community.achievements.some((item) => item.value.trim() !== "-") ? (
                 <ul className="list-disc py-4 px-10 space-y-2 font-athiti lg:text-[25px]">
