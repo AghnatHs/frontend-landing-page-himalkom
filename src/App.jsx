@@ -8,6 +8,7 @@ import Footer from './components/footer';
 import Departemen from './pages/Departemen';
 import Himalkom from './pages/Himalkom';
 import Komnews from './pages/Komnews';
+import News from './pages/Komnews/News';
 
 const App = () => {
   return (
@@ -21,6 +22,7 @@ const App = () => {
           <Route path="/himalkom" element={<Himalkom />} />
           <Route path="/division/:slug" element={<Departemen />} />
           <Route path="/komnews" element={<Komnews />} />
+          <Route path="/komnews/:slug" element={<News />} />
         </Routes>
       </MainLayout>
       <Footer />
