@@ -7,10 +7,10 @@ const HeroSection = () => (
       id="hero-section"
       className="flex flex-row justify-center items-center gap-6 sm:gap-12 md:gap-16 lg:gap-24 mt-15 w-full px-4"
     >
-      {/* Logo Riset */}
+      {/* Logo Megaproker */}
       <img
         src={TImages.LOGO.LOGO_MEGAPROKER}
-        alt="Logo Himalkom"
+        alt="Logo Megaproker"
         className="w-28 sm:w-40 md:w-60 xl:w-90"
       />
       <div className="flex flex-col items-start text-center sm:text-left mt-4 sm:mt-0">
