@@ -32,9 +32,7 @@ const Departemen = () => {
   return (
     <div className='w-full'>
       {/* Hero Section */}
-      <section className="px-4 w-full mt-[50px] font-athiti">
-        <HeroSection department={division}/>
-      </section>
+      <HeroSection department={division}/>
 
       {/* Staff Section */}
       <section className="px-4 flex flex-col mt-[250px] items-center font-athiti">
