@@ -5,7 +5,7 @@ const HeroSection = () => (
   <section>
     <div
       id="hero-section"
-      className="flex flex-row justify-center items-center gap-6 sm:gap-12 md:gap-16 lg:gap-24 sm:mt-15 md:mt-0 w-full px-4 "
+      className="flex flex-row justify-center items-center gap-6 sm:gap-12 md:gap-16 lg:gap-24 sm:mt-15 w-full px-4 "
     >
       {/* Logo Riset */}
       <img

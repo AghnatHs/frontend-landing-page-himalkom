@@ -31,26 +31,30 @@ const Himalkom = () => {
     <section className="px-4 flex flex-col text-center mt-[200px]">
       <div className='flex flex-col items-center mb-[1px] '>
         {/* Judul */}
-        <h1 className="font-semibold pb-[10px] text-[48px] leading-11">FILOSOFI LOGO</h1>
+        <h1 className="font-semibold pb-[10px] text-[35px] lg:text-[48px] leading-11">FILOSOFI LOGO</h1>
         {/* Garis */}
         <img
           src={TImages.DECORATIVE_ELEMENTS.GARIS_HERO_ELEVOR}
           alt="Garis Prestasi"
+          className="w-[250px] lg:w-[340px]"
         />
       </div>
-      <p className="text-2xl my-[30px]"><b>Elevor</b> bukan sekadar nama kabinet, tetapi sebuah gerakan yang membawa perubahan nyata dalam Himalkom.</p>
+      <p className="text-xl text-center lg:text-2xl my-[30px]">
+        <b>Elevor</b> bukan sekadar nama kabinet, tetapi sebuah gerakan yang membawa perubahan nyata dalam Himalkom.
+      </p>
       <Filosofi />
     </section>
 
     {/* Departemen Section */}
-    <section className="px-4 flex flex-col items-center text-center my-[200px]">
+    <section className="px-4 flex flex-col items-center text-center mt-[100px] mb-[200px] lg:my-[200px]">
       <div className='flex flex-col items-center mb-[1px] '>
         {/* Judul */}
-        <h1 className="font-semibold pb-[10px] text-[48px] leading-11">DEPARTEMEN HIMALKOM</h1>
+        <h1 className="font-semibold pb-[10px] text-[30px] lg:text-[48px] leading-11">DEPARTEMEN HIMALKOM</h1>
         {/* Garis */}
         <img
           src={TImages.DECORATIVE_ELEMENTS.GARIS_HERO_ELEVOR}
           alt="Garis Prestasi"
+          className="pb-8 w-[340px] lg:w-[500px]"
         />
       </div>
       <Division 

@@ -3,9 +3,9 @@ import TImages from "../../../utils/images";
 
 const Filosofi = () => {
   return(
-    <div className="px-10 py-10 flex flex-col md:flex-row min-lg:px-20 xl:px-30 lg:max items-center md:items-start gap-8">
+    <div className="px-10 py-10 flex flex-col md:flex-row lg:px-30 items-center md:items-start gap-8">
       {/* Logo + Teks Elevor (Kiri) */}
-      <div className="flex flex-col items-center md:items-start gap-6 w-full md:w-1/2">
+      <div className="flex flex-col items-center md:items-start gap-6 w-full">
         <img 
           src={TImages.LOGO.LOGO_ELEVOR}
           alt="Logo Elevor"
@@ -19,7 +19,7 @@ const Filosofi = () => {
       </div>
 
       {/* Explanation Cards (Kanan) */}
-      <div className="relative w-full items-center md:w-1/2 flex flex-col gap-6 md:items-end lg:items-end">
+      <div className="relative w-full py-15 items-center flex flex-col gap-6 md:items-end lg:items-end">
         <div className="bg-[#AFE1EA] rounded-lg p-4 text-center shadow-md w-[330px] lg:text-start xl:w-[505px] lg:w-[400px]">
           <h1 className="text-lg font-bold">ELEVATE</h1>
           <p>Meninggikan Potensi, Meningkatkan Kualitas</p>

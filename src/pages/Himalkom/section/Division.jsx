@@ -6,7 +6,7 @@ import LoadingSpinner from "@/components/common/LoadingSpinner";
 
 /* Card untuk departemen (Komponen Internal)*/
 const DeptCard = ({ division, baseUrl }) => (
-  <div className="w-[287px] h-[342px] rounded-[15px] bg-white shadow-[0px_0px_8px_0.3px_rgba(175,225,234,0.8)] flex flex-col items-center justify-evenly p-8"> 
+  <div className="rounded-[15px] bg-white shadow-[0px_0px_8px_0.3px_rgba(175,225,234,0.8)] flex flex-col items-center justify-evenly p-8 w-[170px] h-[240px] md:w-[240px] lg:h-[250px] lg:w-[270px] xl:w-[270px] xl:h-[300px]"> 
     <img
       src={`${baseUrl}/storage/${division.logo}`}
       alt={division.name}
@@ -27,7 +27,7 @@ const Division = ({ divisionData, divisionLoading, divisionError, baseUrl }) => 
 
   return (
     <>
-      <div className="gap-y-6 grid sm:grid-cols-2 sm:gap-6 lg:grid-cols-3 xl:grid-cols-4 lg:gap-[43px] justify-items-center mx-auto max-w-6xl lg:pt-[70px]">
+      <div className="gap-y-6 grid grid-cols-2 gap-6 lg:grid-cols-3 xl:grid-cols-4 lg:gap-[43px] justify-items-center mx-auto max-w-6xl lg:pt-[70px]">
         {divisionData.divisions.map((division) => (
           <DeptCard 
             key={division.id}

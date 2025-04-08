@@ -5,17 +5,17 @@ const HeroSection = () => (
   <section>
     <div
       id="hero-section"
-      className="flex flex-row justify-center md:items-center gap-6 sm:gap-12 md:gap-16 lg:gap-24 sm:mt-15 w-full px-4"
+      className="flex flex-row justify-center items-center gap-6 sm:gap-12 md:gap-16 lg:gap-24 mt-15 w-full px-4"
     >
       {/* Logo Riset */}
       <img
         src={TImages.LOGO.LOGO_MEGAPROKER}
         alt="Logo Himalkom"
-        className="w-25 sm:w-40 md:w-60 xl:w-90"
+        className="w-28 sm:w-40 md:w-60 xl:w-90"
       />
       <div className="flex flex-col items-start text-center sm:text-left mt-4 sm:mt-0">
         {/* Title */}
-        <h1 className="max-w-xl text-start font-semibold md:pb-3 text-[19px] sm:text-2xl md:text-4xl lg:text-[45px] leading-normal">
+        <h1 className="max-w-xl text-start font-semibold md:pb-3 text-[18px] sm:text-2xl md:text-4xl lg:text-[45px] leading-normal">
           MEGAPROKER HIMALKOM IPB UNIVERSITY 2024/2025
         </h1>
         

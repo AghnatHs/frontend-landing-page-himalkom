@@ -27,7 +27,7 @@ const Megaproker = () => {
       <HeroSection />
 
       {/* Megaproker */}
-      <div className="w-full my-[350px] space-y-20">
+      <section className="w-full my-[350px] space-y-20">
         {megaprokers.map((megaprokers, index) => (
           <MegaprokerSection 
             key={megaprokers.id || index} 
@@ -36,7 +36,7 @@ const Megaproker = () => {
             baseUrl={baseUrl} 
           />
         ))}
-      </div>
+      </section>
     </>
   );
 };
