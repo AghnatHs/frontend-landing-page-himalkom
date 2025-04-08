@@ -1,5 +1,5 @@
 import React from 'react';
-import { useParams } from "react-router-dom";
+import { useParams } from 'react-router-dom';
 
 // Import custom hooks
 import { useFetchData } from '@/hooks/useAPI';
@@ -15,12 +15,16 @@ import ProkerSection from './sections/Proker';
 
 /**
  * Departemen page component
+ * Displays detailed information about a specific department
+ * including hero section, staff members, and work programs
+ * 
+ * @returns {JSX.Element}
  */
 const Departemen = () => {
   const baseUrl = import.meta.env.VITE_API_BASE_URL;
   const { slug } = useParams();
 
-  // Fetch data departemen
+  // Fetch department data
   const { data, loading, error } = useFetchData(`divisions/${slug}`, baseUrl);
   const division = data?.division;
 
@@ -36,12 +40,13 @@ const Departemen = () => {
 
       {/* Staff Section */}
       <section className="px-4 flex flex-col mt-[250px] items-center font-athiti">
+        <SectionHeader title="Staff" altText="Staff List" />
         <StaffSection staff={division.staff} baseUrl={baseUrl} />
       </section>
 
       {/* Program Kerja Section */}
       <section className="px-4 flex flex-col mt-[200px] mb-[200px] items-center font-athiti">
-        <SectionHeader title="PROGRAM KERJA" altText="Garis Program Kerja" />
+        <SectionHeader title="Program Kerja" altText="Garis Program Kerja" />
         <ProkerSection proker={division.work_programs} baseUrl={baseUrl} />
       </section>
     </div>

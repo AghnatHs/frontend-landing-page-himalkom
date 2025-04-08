@@ -29,24 +29,24 @@ const DokumKomun = ({ slides }) => {
   ];
 
   return (
-    <div className="flex flex-col items-center overflow-hidden bg-white shadow-lg rounded-xl w-[848px] border border-purple-100">
+    <div className="flex flex-col w-[380px] sm:w-[600px] md:w-[700px] items-center overflow-hidden bg-white shadow-card rounded-xl lg:w-[848px] ">
 
       {/* Banner */}
-      <div className="flex items-center gap-4 py-6">
+      <div className="gap-1 md:gap-2 flex items-center lg:gap-4 py-6">
         {/* Panah kiri */}
         <FaAngleLeft onClick={goToPrevious} className="cursor-pointer text-gray-600 hover:text-black transition" size={30} />
         {/* Gambar tengah */}
-        <div className="w-[700px] h-[350px] border-2 border-gray-300 rounded-lg shadow-lg bg-cover bg-center" style={slideStyles}></div>
+        <div className="w-[300px] h-[200px] sm:w-[450px] sm:h-[280px] md:w-[600px] md:h-[310px] lg:w-[700px] lg:h-[350px] border-2 border-gray-300 rounded-lg shadow-lg bg-cover bg-center" style={slideStyles}></div>
         {/* Panah kanan */}
         <FaAngleRight onClick={goToNext} className="cursor-pointer text-gray-600 hover:text-black transition" size={30} />
       </div>
 
       {/* Thumbnail Section */}
-      <div className="flex overflow-x-auto overflow-hidden py-6 gap-4">
+      <div className="flex overscroll-contain overflow-x-auto max-w-full overflow-hidden gap-2 sm:gap-3 lg:py-4 lg:gap-4 [&::-webkit-scrollbar]:hidden">
         {visibleThumbs.slice(0,3).map((slideIndex) => (
           <div
             key={slideIndex}
-            className="border-2 border-gray-300 rounded-lg w-[220px] h-[140px] overflow-hidden transition-transform transform hover:scale-105 cursor-pointer"
+            className="border-2 mb-2 w-[110px] sm:w-[150px] sm:h-[100px] md:w-[200px] border-gray-300 rounded-lg lg:w-[220px] lg:h-[140px] overflow-hidden transition-transform transform hover:scale-105 cursor-pointer"
           >
             <img
               src={slides[slideIndex]?.url}

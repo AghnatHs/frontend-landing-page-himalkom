@@ -1,44 +1,57 @@
-import React, { useState, useRef, useEffect } from 'react';
-import { useCarousel } from '@/hooks/useCarousel';
-import SectionHeader from '@/components/common/SectionHeader';
-import ScrollReveal from '@/components/common/ScrollReveal';
+import React, { useRef } from 'react';
 import { FiChevronLeft, FiChevronRight } from 'react-icons/fi';
+import ScrollReveal from '@/components/common/ScrollReveal';
+import { useCarousel } from '@/hooks/useCarousel';
 
-const StaffCard = ({ staff, baseUrl, className, delay = 400, isCarousel = false }) => {
-  const [isVisible, setIsVisible] = useState(false);
-  const cardRef = useRef(null);
-  
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      setIsVisible(true);
-    }, delay);
-    
-    return () => clearTimeout(timer);
-  }, [delay]);
+/**
+ * Arranges staff members for grid layout
+ * Places department head (ketua) in the center
+ * 
+ * @param {Object} ketua - Department head data
+ * @param {Array} regularStaff - Regular staff members data
+ * @returns {Array} Arranged staff for grid display
+ */
+const arrangeStaffForGrid = (ketua, regularStaff) => {
+  // No staff or only regular staff
+  if (!regularStaff?.length) return ketua ? [ketua] : [];
+  if (!ketua) return regularStaff;
 
-  const imageUrl = staff.image
-    ? `${baseUrl}/storage/${staff.image}`
-    : 'https://placehold.co/200/primary-dark/white?text=No+Photo';
+  // If we have both ketua and regular staff
+  if (regularStaff.length <= 2) {
+    return [regularStaff[0], ketua, regularStaff[1] || null].filter(Boolean);
+  } else if (regularStaff.length <= 5) {
+    const middle = Math.floor(regularStaff.length / 2);
+    return [
+      ...regularStaff.slice(0, middle),
+      ketua,
+      ...regularStaff.slice(middle)
+    ];
+  } else {
+    // For larger departments, place ketua in the middle of first row
+    return [
+      regularStaff[0],
+      ketua,
+      regularStaff[1],
+      ...regularStaff.slice(2)
+    ];
+  }
+};
 
-  // Ukuran gambar lebih besar untuk carousel
-  const imageSize = isCarousel 
-    ? "w-36 h-36 md:w-40 md:h-40" 
-    : "w-24 h-24 md:w-28 md:h-28 lg:w-38 lg:h-40";
-
+/**
+ * Staff Card Component
+ * Displays individual staff member information
+ */
+const StaffCard = ({ staff, baseUrl }) => {
   return (
-    <div 
-      ref={cardRef}
-      className={`flex flex-col items-center text-center bg-white shadow-card rounded-lg mt-6 p-6 border min-w-64 border-primary-light transform transition-all duration-700 
-        ${isVisible ? `opacity-100 ${className || ''}` : 'opacity-0 translate-y-10'}`}
-    >
-      <div className={`${imageSize} rounded-full overflow-hidden border-2 border-primary-dark`}>
+    <div className="shadow-card bg-white rounded-2xl mx-8 py-4 flex flex-col items-center text-center w-[180px] sm:w-[150px] md:w-[240px]">
+      <div className="w-[100px] h-[100px] sm:w-[120px] sm:h-[120px] md:w-[150px] md:h-[150px] rounded-full overflow-hidden border-4 border-primary">
         <img
-          src={imageUrl}
-          alt={staff.name || 'Staff member'}
+          src={staff.image ? `${baseUrl}/storage/${staff.image}` : '/images/avatar-placeholder.png'}
+          alt={staff.name || 'Staff Member'}
           className="w-full h-full object-cover"
           onError={(e) => {
-            e.target.src = 'https://placehold.co/200/primary-dark/white?text=No+Photo';
             e.target.onerror = null;
+            e.target.src = '/images/avatar-placeholder.png';
           }}
         />
       </div>
@@ -48,22 +61,32 @@ const StaffCard = ({ staff, baseUrl, className, delay = 400, isCarousel = false 
   );
 };
 
+/**
+ * Staff Section Component
+ * Displays department staff with desktop grid and mobile carousel
+ * 
+ * @param {Object} props
+ * @param {Array} props.staff - Staff members data
+ * @param {string} props.baseUrl - API base URL
+ * @returns {JSX.Element}
+ */
 const StaffSection = ({ staff, baseUrl }) => {
   const sliderRef = useRef(null);
   
   if (!staff || staff.length === 0) {
-    
     return <p className="text-center text-gray-500 text-xl">No staff data available.</p>;
   }
 
+  // Separate department head from regular staff
   const ketua = staff.find(member => member.isKetua === 1);
   const regularStaff = staff.filter(member => member.isKetua !== 1);
   
-  // Persiapan data untuk grid dan carousel
+  // Prepare data for grid and carousel
   const carouselStaff = ketua ? [ketua, ...regularStaff] : regularStaff;
   const gridStaff = arrangeStaffForGrid(ketua, regularStaff);
   
-  const { currentIndex, goToSlide, setPause, goToPrev, goToNext } = useCarousel(carouselStaff, false);
+  // Initialize carousel using custom hook
+  const { currentIndex, goToSlide, setPause, goToPrev, goToNext } = useCarousel(carouselStaff);
   
   // Event handlers
   const handleMouseEnter = () => setPause(true);
@@ -83,92 +106,84 @@ const StaffSection = ({ staff, baseUrl }) => {
     threshold: 0.2,         
     rootMargin: "-100px 0px",  
     triggerOnce: false       
-};
-
+  };
 
   return (
     <ScrollReveal animation="fade-up" options={scrollRevealOptions} delay={300}>
       <div className="flex flex-col items-center max-w-6xl mx-auto py-12">
-        <SectionHeader title="STAFF" altText="Garis Staff" />
-        
-        {/* Grid Layout untuk Desktop - PURE CSS RESPONSIVE! */}
-        <div className="hidden md:grid grid-cols-2 md:grid-cols-3 gap-x-24 gap-y-32 justify-items-center w-full">
-          {gridStaff.map((member, index) => (
-            member.id === 'placeholder-0' ? (
-              <div key="placeholder" className="invisible" />
-            ) : (
-              <StaffCard 
-                key={member.id || index} 
-                staff={member} 
-                baseUrl={baseUrl}
-                className={getCardPositionClass(index)}
-                delay={index * 200}
-              />
-            )
+
+        {/* Desktop Grid - hidden on mobile */}
+        <div className="hidden md:grid grid-cols-3 gap-x-12 gap-y-16 md:gap-y-24">
+          {gridStaff.map((staffMember, index) => (
+            <div 
+              key={staffMember.id || `staff-grid-${index}`}
+              className={`flex justify-center ${getCardPositionClass(index)}`}
+            >
+              <StaffCard staff={staffMember} baseUrl={baseUrl} />
+            </div>
           ))}
         </div>
-        
-        {/* Carousel untuk Mobile*/}
+
+        {/* Mobile Carousel - only visible on mobile */}
         <div 
-          className="block md:hidden relative w-full max-w-xs mx-auto mb-8" 
-          onMouseEnter={handleMouseEnter} 
+          className="md:hidden relative w-full mx-auto" 
+          onMouseEnter={handleMouseEnter}
           onMouseLeave={handleMouseLeave}
         >
           <div 
             ref={sliderRef}
-            className="flex overflow-hidden"
+            className="flex overflow-hidden p-4"
           >
             <div 
               className="flex transition-transform duration-300 ease-out w-full"
               style={{ transform: `translateX(-${currentIndex * 100}%)` }}
             >
-              {carouselStaff.map((member, index) => (
+              {carouselStaff.map((staffMember, index) => (
                 <div 
-                  key={member.id || index} 
-                  className="w-full min-w-full flex-shrink-0 p-2"
+                  key={staffMember.id || `staff-carousel-${index}`}
+                  className="w-full min-w-full flex justify-center"
                 >
-                  <StaffCard 
-                    staff={member} 
-                    baseUrl={baseUrl}
-                    delay={0}
-                    isCarousel={true}
-                  />
+                  <StaffCard staff={staffMember} baseUrl={baseUrl} />
                 </div>
               ))}
             </div>
           </div>
-          
-          {/* Tombol Navigasi */}
-          <div className="absolute top-1/2 -left-6 -translate-y-1/2">
-            <button 
-              onClick={goToPrev}
-              className="w-10 h-10 flex items-center justify-center bg-white rounded-full shadow-md focus:outline-none border border-gray-200"
-              aria-label="Previous staff member"
-            >
-              <FiChevronLeft size={24} className="text-primary-dark" />
-            </button>
-          </div>
-          
-          <div className="absolute top-1/2 -right-6 -translate-y-1/2">
-            <button 
-              onClick={goToNext}
-              className="w-10 h-10 flex items-center justify-center bg-white rounded-full shadow-md focus:outline-none border border-gray-200"
-              aria-label="Next staff member"
-            >
-              <FiChevronRight size={24} className="text-primary-dark" />
-            </button>
-          </div>
-          
-          {/* Indikator Dots */}
+
+          {/* Navigation buttons */}
+          {carouselStaff.length > 1 && (
+            <>
+              <div className="absolute top-1/2 left-10 -translate-y-1/2">
+                <button
+                  onClick={goToPrev}
+                  className="w-10 h-10 flex items-center justify-center bg-white rounded-full shadow-md focus:outline-none border border-gray-200"
+                  aria-label="Previous staff member"
+                >
+                  <FiChevronLeft size={24} className="text-primary-dark" />
+                </button>
+              </div>
+              
+              <div className="absolute top-1/2 right-10 -translate-y-1/2">
+                <button
+                  onClick={goToNext}
+                  className="w-10 h-10 flex items-center justify-center bg-white rounded-full shadow-md focus:outline-none border border-gray-200"
+                  aria-label="Next staff member"
+                >
+                  <FiChevronRight size={24} className="text-primary-dark" />
+                </button>
+              </div>
+            </>
+          )}
+
+          {/* Pagination dots */}
           <div className="flex justify-center mt-6 gap-2">
             {carouselStaff.map((_, idx) => (
               <button
-                key={idx}
+                key={`dot-${idx}`}
                 onClick={() => goToSlide(idx)}
                 className={`w-3 h-3 rounded-full transition-colors ${
-                  idx === currentIndex ? 'bg-primary-dark' : 'bg-gray-300'
+                  idx === currentIndex ? 'bg-primary-dark' : 'bg-primary-light'
                 }`}
-                aria-label={`Go to slide ${idx + 1}`}
+                aria-label={`Go to staff ${idx + 1}`}
               />
             ))}
           </div>
@@ -177,25 +192,5 @@ const StaffSection = ({ staff, baseUrl }) => {
     </ScrollReveal>
   );
 };
-
-function arrangeStaffForGrid(ketua, regularStaff) {
-  const grid = [];
-  
-  if (regularStaff.length > 0) {
-    grid.push(regularStaff[0]);
-  } else {
-    grid.push({ id: 'placeholder-0', name: '', jabatan: '', image: '' });
-  }
-  
-  if (ketua) {
-    grid.push(ketua);
-  }
-  
-  if (regularStaff.length > 1) {
-    grid.push(...regularStaff.slice(1));
-  }
-  
-  return grid;
-}
 
 export default StaffSection;

@@ -9,14 +9,18 @@ const MainLayout = ({ children }) => {
         <img
           src={TImages.BACKGROUNDS.HERO_PATTERN}
           alt="Hero Background"
-          className="absolute w-full h-auto object-cover"
-          style={{ top: '-16px' }} 
+          className="absolute w-full h-auto object-cover -top-4"
         />
       </div>
       
       <div className="relative overflow-hidden">
         {children}
       </div>
+      <img 
+        src={TImages.BACKGROUNDS.BOTTOM_PATTERN}
+        alt="Bottom Background"
+        className="absolute bottom-0 w-full h-auto -z-10  object-cover"
+      />
     </div>
   );
 };

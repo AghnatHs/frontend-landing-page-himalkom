@@ -1,18 +1,34 @@
 import React, { useRef } from 'react';
+import { FiChevronLeft, FiChevronRight } from 'react-icons/fi';
+import ScrollReveal from '@/components/common/ScrollReveal';
 import ReadMoreButton from '@/components/common/ReadMore';
 import LoadingSpinner from '@/components/common/LoadingSpinner';
 
 /**
- * Card komunitas (komponen internal)
+ * Community Card Component
+ * 
+ * Displays individual community information in a card format
+ * 
+ * @param {Object} props
+ * @param {Object} props.community - Community data object
+ * @param {Object} props.details - Additional community details
+ * @param {boolean} props.loading - Loading state for details
+ * @param {string} props.baseUrl - API base URL for assets
+ * @returns {JSX.Element}
  */
-const CommunityCard = ({ 
-  community, 
-  baseUrl, 
-}) => {
-  
+const CommunityCard = ({ community, details, loading, baseUrl }) => {
+  // Truncate description if too long
+  const truncateDescription = (desc) => {
+    if (!desc) return '';
+    return desc.length > 100 ? desc.substring(0, 100) + '...' : desc;
+  };
+
+  const description = details?.description || '';
+  const truncatedDescription = truncateDescription(description);
+
   return (
-    <div className="min-w-64 max-w-[287px] min-h-82 rounded-[15px] bg-white shadow-card flex flex-col items-center p-6">
-      {/* Logo Community */}
+    <div className="w-full max-w-[287px] mx-auto h-[400px] rounded-[15px] bg-white shadow-card flex flex-col items-center p-6">
+      {/* Logo komunitas */}
       <div className="w-full h-[100px] flex justify-center items-center mb-4">
         <img
           src={`${baseUrl}/storage/${community.logo}`}
@@ -21,160 +37,167 @@ const CommunityCard = ({
         />
       </div>
       
-      {/* Community Name */}
-      <h3 className="font-bold text-2xl text-center mb-10">{community.name}</h3>
-      <ReadMoreButton to={`/ilkomunity/${community.slug}`} />
+      {/* Nama komunitas */}
+      <h3 className="font-bold text-2xl text-center mb-6">{community.name}</h3>
       
+      {/* Deskripsi komunitas */}
+      <div className="h-[120px] overflow-hidden mb-auto">
+        {loading ? (
+          <LoadingSpinner variant="inline" size="small" message="Memuat detail..." />
+        ) : (
+          <p className="text-center line-clamp-5">
+            {truncatedDescription || community.slug}
+          </p>
+        )}
+      </div>
+      
+      {/* Read More button */}
+      <div className="mt-4">
+        <ReadMoreButton to={`/community/${community.slug}`} />
+      </div>
     </div>
   );
 };
 
 /**
- * Section komunitas
+ * Ilkommunity Section Component
+ * 
+ * Displays communities section with responsive carousel for mobile
+ * and grid layout for desktop
+ * 
+ * @param {Object} props
+ * @param {Object} props.communitiesData - Communities data from API
+ * @param {boolean} props.loadingCommunities - Loading state for communities data
+ * @param {Object} props.errorCommunities - Error object from API request
+ * @param {Object} props.communityDetails - Detailed information about each community
+ * @param {boolean} props.loadingDetails - Loading state for community details
+ * @param {number} props.currentCommunityIndex - Current active slide index
+ * @param {Function} props.goToCommunitySlide - Function to navigate to specific slide
+ * @param {Function} props.setCommunityCarouselPause - Function to pause/resume carousel
+ * @param {string} props.baseUrl - API base URL for assets
+ * @returns {JSX.Element}
  */
-const Ilkomunity = ({ 
-  communitiesData, 
-  loadingCommunities, 
-  errorCommunities, 
+const Ilkomunity = ({
+  communitiesData,
+  loadingCommunities,
+  errorCommunities,
   communityDetails,
   loadingDetails,
-  expandedDescriptions, 
-  toggleDescription,
   currentCommunityIndex,
   goToCommunitySlide,
+  setCommunityCarouselPause,
   baseUrl
 }) => {
-  // Untuk loading communities
+  const sliderRef = useRef(null);
+  
+  // Pause carousel on mouse enter
+  const handleMouseEnter = () => setCommunityCarouselPause(true);
+  const handleMouseLeave = () => setCommunityCarouselPause(false);
+  
+  // Handle loading and error states
   if (loadingCommunities) {
-    return <LoadingSpinner variant="section" message="Memuat komunitas..." />;
+    return <div className="text-center py-8">Memuat data komunitas...</div>;
   }
-  if (errorCommunities) return <p className="text-red-500 font-bold text-xl text-center">Error: {errorCommunities}</p>;
-  if (!communitiesData || !communitiesData.communities) return null;
 
-  // Touch handling untuk swipe gesture
-  const touchStartX = useRef(0);
-  const touchEndX = useRef(0);
-  
-  // Handle touch start event
-  const handleTouchStart = (e) => {
-    touchStartX.current = e.touches[0].clientX;
-  };
-  
-  // Handle touch end event
-  const handleTouchEnd = (e) => {
-    touchEndX.current = e.changedTouches[0].clientX;
-    handleSwipe();
-  };
-  
-  // Calculate swipe direction and navigate
-  const handleSwipe = () => {
-    // Minimal swipe distance (in pixels)
-    const minSwipeDistance = 50;
-    
-    const swipeDistance = touchEndX.current - touchStartX.current;
-    
-    if (swipeDistance > minSwipeDistance) {
-      // Swipe right to left (previous)
-      const prevIndex = (currentCommunityIndex - 1 + communitiesData.communities.length) % communitiesData.communities.length;
-      goToCommunitySlide(prevIndex);
-    } else if (swipeDistance < -minSwipeDistance) {
-      // Swipe left to right (next)
-      const nextIndex = (currentCommunityIndex + 1) % communitiesData.communities.length;
-      goToCommunitySlide(nextIndex);
-    }
-  };
+  if (errorCommunities) {
+    return <div className="text-center py-8 text-red-500">Gagal memuat data komunitas</div>;
+  }
+
+  if (!communitiesData?.communities || communitiesData.communities.length === 0) {
+    return <div className="text-center py-8">Tidak ada data komunitas</div>;
+  }
 
   return (
-    <>
-      {/* Desktop View */}
-      <div className="hidden sm:grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-11 justify-items-center mx-auto max-w-6xl">
-        {communitiesData.communities.map((community) => (
-          <CommunityCard
-            key={community.slug}
-            community={community}
-            baseUrl={baseUrl}
-            communityDetails={communityDetails}
-            loadingDetails={loadingDetails}
-            expandedDescriptions={expandedDescriptions}
-            toggleDescription={toggleDescription}
-          />
-        ))}
-      </div>
-
-      {/* Mobile View with Carousel and Swipe Gesture */}
-      <div className="sm:hidden w-full mx-auto max-w-6xl">
-        <div 
-          className="relative"
-          onTouchStart={handleTouchStart}
-          onTouchEnd={handleTouchEnd}
-        >
-          {communitiesData.communities.map((community, index) => (
-            <div
-              key={community.slug}
-              className={`w-full min-h-[300px] max-h-fit rounded-[15px] bg-white shadow-card flex flex-col items-center p-6 transition-opacity duration-500 ${
-                index === currentCommunityIndex ? 'opacity-100' : 'hidden opacity-0'
-              }`}
-            >
-              <div className="w-full h-[120px] flex justify-center items-center mb-4">
-                <img
-                  src={`${baseUrl}/storage/${community.logo}`}
-                  alt={community.name}
-                  className="w-auto max-h-28 object-contain"
-                />
-              </div>
-              <h3 className="font-bold text-2xl text-center mb-3">{community.name}</h3>
-              <div className="flex flex-col items-center w-full flex-grow">
-                <div className={`overflow-hidden transition-all duration-500 ${
-                  expandedDescriptions[community.slug] ? 'max-h-[1000px]' : 'max-h-[6em]'
-                }`}>
-                  <p className="text-center">
-                    {communityDetails[community.slug]?.description || 
-                     (loadingDetails ? <LoadingSpinner variant="inline" size="small" message="Memuat detail..." /> : community.slug)}
-                  </p>
-                </div>
-                <div className="mt-auto pt-3">
-                  {communityDetails[community.slug]?.description?.length > 150 && (
-                    <button 
-                      onClick={() => toggleDescription(community.slug)}
-                      className="flex items-center gap-1 text-xs px-3 py-1 rounded-full bg-primary-light text-primary-dark hover:bg-primary/50 transition-all duration-300"
-                    >
-                      <span>{expandedDescriptions[community.slug] ? 'View Less' : 'View More'}</span>
-                      <svg 
-                        xmlns="http://www.w3.org/2000/svg" 
-                        width="12" 
-                        height="12" 
-                        viewBox="0 0 24 24" 
-                        fill="none" 
-                        stroke="currentColor" 
-                        strokeWidth="2" 
-                        className={`transition-transform duration-300 ${expandedDescriptions[community.slug] ? 'rotate-180' : ''}`}
-                      >
-                        <path d="M19 9l-7 7-7-7" />
-                      </svg>
-                    </button>
-                  )}
-                </div>
-              </div>
-            </div>
+    <ScrollReveal animation="fade-up">
+      <div className="flex flex-col items-center max-w-6xl mx-auto py-12">
+        {/* Desktop view - grid layout */}
+        <div className="hidden md:grid grid-cols-1 md:grid-cols-3 gap-8">
+          {communitiesData.communities.map((community) => (
+            <CommunityCard
+              key={community.id || `community-${community.slug}`}
+              community={community}
+              details={communityDetails[community.slug]}
+              loading={loadingDetails}
+              baseUrl={baseUrl}
+            />
           ))}
-
-          {/* Carousel Navigation Dots */}
-          <div className="flex justify-center mt-6">
-            {communitiesData.communities.map((_, index) => (
+        </div>
+        
+        {/* Mobile carousel */}
+        <div 
+          className="block md:hidden relative w-full mx-auto mb-8" 
+          onMouseEnter={handleMouseEnter}
+          onMouseLeave={handleMouseLeave}
+        >
+          <div 
+            ref={sliderRef}
+            className="flex overflow-hidden"
+          >
+            <div 
+              className="flex transition-transform duration-300 ease-out w-full"
+              style={{ transform: `translateX(-${currentCommunityIndex * 100}%)` }}
+            >
+              {communitiesData.communities.map((community) => (
+                <div 
+                  key={community.id || `community-mobile-${community.slug}`} 
+                  className="w-full min-w-full flex-shrink-0 flex justify-center"
+                >
+                  <CommunityCard
+                    community={community}
+                    details={communityDetails[community.slug]}
+                    loading={loadingDetails}
+                    baseUrl={baseUrl}
+                  />
+                </div>
+              ))}
+            </div>
+          </div>
+          
+          {/* Navigation buttons */}
+          <div className="absolute top-1/2 -left-2 sm:-left-6 -translate-y-1/2">
+            <button 
+              onClick={() => {
+                const items = communitiesData?.communities || [];
+                const newIndex = currentCommunityIndex === 0 ? items.length - 1 : currentCommunityIndex - 1;
+                goToCommunitySlide(newIndex);
+              }}
+              className="w-10 h-10 flex items-center justify-center bg-white rounded-full shadow-md focus:outline-none border border-gray-200"
+              aria-label="Previous community"
+            >
+              <FiChevronLeft size={24} className="text-primary-dark" />
+            </button>
+          </div>
+          
+          <div className="absolute top-1/2 -right-2 sm:-right-6 -translate-y-1/2">
+            <button 
+              onClick={() => {
+                const items = communitiesData?.communities || [];
+                const newIndex = currentCommunityIndex === items.length - 1 ? 0 : currentCommunityIndex + 1;
+                goToCommunitySlide(newIndex);
+              }}
+              className="w-10 h-10 flex items-center justify-center bg-white rounded-full shadow-md focus:outline-none border border-gray-200"
+              aria-label="Next community"
+            >
+              <FiChevronRight size={24} className="text-primary-dark" />
+            </button>
+          </div>
+          
+          {/* Pagination dots */}
+          <div className="flex justify-center mt-6 gap-2">
+            {communitiesData.communities.map((_, idx) => (
               <button
-                key={index}
-                onClick={() => goToCommunitySlide(index)}
-                className={`mx-2 w-3 h-3 rounded-full ${
-                  index === currentCommunityIndex ? 'bg-primary-dark' : 'bg-gray-300'
+                key={`dot-${idx}`}
+                onClick={() => goToCommunitySlide(idx)}
+                className={`w-3 h-3 rounded-full transition-colors ${
+                  idx === currentCommunityIndex ? 'bg-primary-dark' : 'bg-gray-300'
                 }`}
-                aria-label={`Go to community ${index + 1}`}
+                aria-label={`Go to slide ${idx + 1}`}
               />
             ))}
           </div>
-
         </div>
       </div>
-    </>
+    </ScrollReveal>
   );
 };
 
