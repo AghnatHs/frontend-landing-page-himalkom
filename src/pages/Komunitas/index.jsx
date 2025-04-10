@@ -55,8 +55,8 @@ const Komunitas = () => {
       </section>
 
       {/* Description */}
-      <section className="relative w-90 font-athiti md:w-120 lg:w-200 mx-auto mt-[250px] text-[17px] sm:text-[20px] md:text-[25px] text-justify leading-relaxed">
-        <p>{community.description}</p>
+      <section className="relative w-80 font-athiti md:w-120 lg:w-200 mx-auto mt-[250px] ">
+        <p className="text-[16px] sm:text-[20px] md:text-[25px] text-justify leading-relaxed">{community.description}</p>
         <img
           src={TImages.DECORATIVE_ELEMENTS.GARIS_HERO_ELEVOR}
           alt="Garis Elevor"

@@ -16,7 +16,7 @@ const MainLayout = ({ children }) => {
         <img
           src={TImages.BACKGROUNDS.HERO_PATTERN}
           alt="Hero Background"
-          className="absolute w-full object-cover lg:-top-24 h-96 sm:h-[500px] md:h-[600px] lg:h-[780px] xl:h-[920px] "
+          className="absolute w-full object-cover -top-2 lg:-top-20 h-96 sm:h-[500px] md:h-[600px] lg:h-[780px] xl:h-[920px] "
         />
       </div>
       
