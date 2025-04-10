@@ -9,7 +9,7 @@ const BGKiri = ({ className, imageUrl }) => (
     fill="none"
     className={className}
     preserveAspectRatio="xMidYMid slice"
-    opacity="0.5"
+    opacity="0.3"
   >
      <defs>
       {imageUrl && (
@@ -93,7 +93,7 @@ const BGKanan = ({ className, imageUrl }) => (
     fill="none"
     className={className}
     preserveAspectRatio="xMidYMid slice"
-    opacity="0.4"
+    opacity="0.3"
   >
       <defs>
         {imageUrl && (

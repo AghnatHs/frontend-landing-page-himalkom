@@ -12,7 +12,7 @@ const DeptCard = ({ division, baseUrl }) => (
       alt={division.name}
       className=""
     />
-    <h1>{division.name}</h1>
+    <h1 className="font-semibold text-2xl text-center ">{division.name}</h1>
       <div className="mt-4">
         <ReadMoreButton to={`/division/${division.slug}`} />
       </div>
