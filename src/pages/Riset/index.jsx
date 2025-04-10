@@ -25,11 +25,9 @@ const Riset = () => {
   return (
     <div className="w-full">
       {/* Hero Section */}
-      <section className="mt-24 md:mt-32">
-        <MotionReveal animation="fade-up">
-          <HeroSection />
-        </MotionReveal>
-      </section>
+      <MotionReveal animation="fade-up">
+        <HeroSection />
+      </MotionReveal>
 
       {/* Main content */}
       <section className="mt-16">
