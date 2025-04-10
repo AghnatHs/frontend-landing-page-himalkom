@@ -5,6 +5,7 @@ import { useFetchData } from "@/hooks/useAPI";
 
 // Import reusable components
 import LoadingSpinner from "@/components/common/LoadingSpinner";
+import MotionReveal from '@/components/common/MotionReveal';
 
 // Import sections
 import HeroSection from "./section/HeroSection";
@@ -22,7 +23,10 @@ const Syntax = () => {
   if (!syntaxes) return null;
 
   return (
-    <>
+    <div className="w-full">
+      <MotionReveal animation="fade-up">
+        {/* Header/intro content */}
+      </MotionReveal>
       {/* Hero Section */}
       <HeroSection />
 
@@ -33,7 +37,7 @@ const Syntax = () => {
         baseUrl={baseUrl}
         />
       </section>
-    </>
+    </div>
   );
 };
 

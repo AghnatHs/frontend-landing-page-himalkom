@@ -66,7 +66,7 @@ const Komnews = () => {
               </div>
               
               {/* News List */}
-              <div className="lg:w-1/3 mt-10">
+              <div className="lg:w-1/3 mt-3">
                 <NewsListSection 
                   news={filteredNews}
                   categories={newsData?.categories || []}
