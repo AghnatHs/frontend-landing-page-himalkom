@@ -1,6 +1,6 @@
 import React from 'react';
-
 import TImages from '../../utils/images';
+import MotionReveal from '@/components/common/MotionReveal';
 
 // Import sections untuk halaman 
 import HeroSection from '../Home/sections/HeroSection';
@@ -20,48 +20,63 @@ const Himalkom = () => {
   return (
    <>
    {/* Hero Section */}
-    <HeroSection />
+    <MotionReveal animation="fade-up">
+      <HeroSection />
+    </MotionReveal>
 
     {/* Desc Section */}
-    <section className="flex flex-col items-center mt-[280px] sm:items-center md:items-center md:flex-col gap-11 lg:flex-row justify-around h-auto">
-      <Description />
+      <MotionReveal animation="fade-up">
+    <section className="flex flex-col items-center mt-[280px] lg:mx-30 sm:items-center md:items-center md:flex-col gap-11 lg:flex-row justify-around h-auto">
+        <Description />
     </section>
+      </MotionReveal>
 
     {/* Filosofi Section */}
     <section className="px-4 flex flex-col text-center mt-[200px]">
-      <div className='flex flex-col items-center mb-[1px] '>
-        {/* Judul */}
-        <h1 className="font-semibold pb-[10px] text-[35px] lg:text-[48px] leading-11">FILOSOFI LOGO</h1>
-        {/* Garis */}
-        <img
-          src={TImages.DECORATIVE_ELEMENTS.GARIS_HERO_ELEVOR}
-          alt="Garis Prestasi"
-          className="w-[250px] lg:w-[340px]"
-        />
-      </div>
-      <p className="text-xl text-center lg:text-2xl my-[30px]">
-        <b>Elevor</b> bukan sekadar nama kabinet, tetapi sebuah gerakan yang membawa perubahan nyata dalam Himalkom.
-      </p>
-      <Filosofi />
+      <MotionReveal animation="fade-up">
+        <div className='flex flex-col items-center mb-[1px] '>
+          {/* Judul */}
+          <h1 className="font-semibold pb-[10px] text-[35px] lg:text-[48px] leading-11">FILOSOFI LOGO</h1>
+          {/* Garis */}
+          <img
+            src={TImages.DECORATIVE_ELEMENTS.GARIS_HERO_ELEVOR}
+            alt="Garis Prestasi"
+            className="w-[250px] lg:w-[340px]"
+          />
+        </div>
+        <p className="text-xl text-center lg:text-2xl my-[30px]">
+          <b>Elevor</b> bukan sekadar nama kabinet, tetapi sebuah gerakan yang membawa perubahan nyata dalam Himalkom.
+        </p>
+      </MotionReveal>
+      
+      <MotionReveal animation="fade-up" delay={0.2}>
+        <Filosofi />
+      </MotionReveal>
     </section>
 
     {/* Departemen Section */}
     <section className="px-4 flex flex-col items-center text-center mt-[100px] mb-[200px] lg:my-[200px]">
-      <div className='flex flex-col items-center mb-[1px] '>
-        {/* Judul */}
-        <h1 className="font-semibold pb-[10px] text-[30px] lg:text-[48px] leading-11">DEPARTEMEN HIMALKOM</h1>
-        {/* Garis */}
-        <img
-          src={TImages.DECORATIVE_ELEMENTS.GARIS_HERO_ELEVOR}
-          alt="Garis Prestasi"
-          className="pb-8 w-[340px] lg:w-[500px]"
+      <MotionReveal animation="fade-up">
+        <div className='flex flex-col items-center mb-[1px] '>
+          {/* Judul */}
+          <h1 className="font-semibold pb-[10px] text-[30px] lg:text-[48px] leading-11">DEPARTEMEN HIMALKOM</h1>
+          {/* Garis */}
+          <img
+            src={TImages.DECORATIVE_ELEMENTS.GARIS_HERO_ELEVOR}
+            alt="Garis Prestasi"
+            className="pb-8 w-[340px] lg:w-[500px]"
+          />
+        </div>
+      </MotionReveal>
+      
+      <MotionReveal animation="fade-up" delay={0.3}>
+        <Division 
+          divisionData={divisionData}
+          divisionError={divisionError}
+          divisionLoading={divisionLoading}
+          baseUrl={baseUrl}
         />
-      </div>
-      <Division 
-      divisionData={divisionData}
-      divisionError={divisionError}
-      divisionLoading={divisionLoading}
-      baseUrl={baseUrl}/>
+      </MotionReveal>
     </section>
    </>
   );

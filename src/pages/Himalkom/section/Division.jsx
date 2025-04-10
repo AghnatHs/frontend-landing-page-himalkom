@@ -1,6 +1,7 @@
 import React from "react";
 import ReadMoreButton from '@/components/common/ReadMore';
 import LoadingSpinner from "@/components/common/LoadingSpinner";
+import MotionReveal from '@/components/common/MotionReveal';
 
 // Departement Section (API nya division dah)
 
@@ -21,22 +22,25 @@ const DeptCard = ({ division, baseUrl }) => (
 
 /* Grid Departemen  */
 const Division = ({ divisionData, divisionLoading, divisionError, baseUrl }) => {
-  if (divisionLoading) return <LoadingSpinner variant="section" size="large" message="Memuat data research..." />;
+  if (divisionLoading) return <LoadingSpinner variant="section" size="large" message="Memuat data departemen..." />;
   if (divisionError) return <p className="text-red-500 font-bold text-xl text-center">Error: {divisionError}</p>;
   if (!divisionData || !divisionData.divisions) return null;
 
   return (
-    <>
-      <div className="gap-y-6 grid grid-cols-2 gap-6 lg:grid-cols-3 xl:grid-cols-4 lg:gap-[43px] justify-items-center mx-auto max-w-6xl lg:pt-[70px]">
-        {divisionData.divisions.map((division) => (
+    <div className="gap-y-6 grid grid-cols-2 gap-6 lg:grid-cols-3 xl:grid-cols-4 lg:gap-[43px] justify-items-center mx-auto max-w-6xl lg:pt-[70px]">
+      {divisionData.divisions.map((division, index) => (
+        <MotionReveal 
+          key={division.id} 
+          animation="fade-up" 
+          delay={0.1 + (index * 0.05)}
+        >
           <DeptCard 
-            key={division.id}
             division={division} 
             baseUrl={baseUrl}
           />
-        ))}
-      </div>
-    </>
+        </MotionReveal>
+      ))}
+    </div>
   );
 };
 
