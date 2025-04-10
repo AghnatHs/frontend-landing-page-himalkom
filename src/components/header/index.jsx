@@ -43,17 +43,17 @@ const Header = () => {
 
   return (
     <header className="z-50 w-screen top-0 left-0 bg-primary">
-      <div className="container mx-auto flex items-center justify-between px-6 py-3">
+      <div className="container mx-auto flex items-center justify-between px-6 xl:px-15 py-3">
         {/* Logo */}
         <Logo />
         
         {/* Navigation untuk Desktop */}
-        <div className="hidden md:block">
+        <div className="hidden lg:block">
           <NavMenu />
         </div>
         
         {/* Burger Menu untuk Mobile dengan animasi yang rapi */}
-        <div className="block md:hidden">
+        <div className="block lg:hidden">
           <button 
             className="burger-button relative z-50 p-2 hover:bg-primary-light/40 rounded-md transition-all duration-300"
             onClick={toggleMobileMenu}
