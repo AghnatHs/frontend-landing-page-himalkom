@@ -24,13 +24,12 @@ const Syntax = () => {
 
   return (
     <div className="w-full">
-      <MotionReveal animation="fade-up">
-        {/* Header/intro content */}
-      </MotionReveal>
       {/* Hero Section */}
-      <HeroSection />
-
-      {/* Riset */}
+      <MotionReveal animation="fade-up">
+        <HeroSection />
+      </MotionReveal>
+      
+      {/* Syntax */}
       <section className="px-4 flex flex-col items-center text-center my-[130px] md:my-[150px] lg:my-[280px]">
         <SynCard 
         data={data}
