@@ -28,34 +28,34 @@ const MegaprokerSection = ({ megaprokers, index, baseUrl }) => {
           )}
         </div>
 
-        <div className={`flex flex-col ${isEven ? 'lg:flex-row-reverse' : 'lg:flex-row'} items-center justify-between gap-6 md:gap-8 px-4 md:px-6 max-w-7xl mx-auto h-full`}>
+        <div className={`flex flex-col ${isEven ? 'md:flex-row-reverse' : 'md:flex-row'} items-center justify-center py-25 gap-6 md:gap-8 px-4 md:px-6 max-w-7xl mx-auto h-full`}>
           {/* Logo container */}
           <div className="w-full md:w-1/2 flex items-center justify-center py-6 md:py-0">
             <img 
               src={`${baseUrl}/storage/${megaprokers.logo}`}
               alt={megaprokers.name} 
-              className="w-[300px] md:w-[400px] lg:w-[500px] pb-6 rounded-2xl"
+              className="w-[280px] md:w-[400px] lg:w-[450px] h-auto pb-6 rounded-2xl"
             />
           </div>
 
           {/* Konten */}
-          <div className="w-full  max-w-full md:max-w-lg items-center text-center lg:text-start px-4 md:px-0">
-            <div className="items-center">
-              <h1 className="text-4xl lg:text-6xl font-bold mb-3 md:mb-4">{megaprokers.name}</h1>
+          <div className={`text-center ${isEven ? 'md:text-start md:place-items-start' : 'md:text-end md:place-items-end'} px-4 md:px-0`}>
+            <div className="place-items-center">
+              <h1 className="text-5xl lg:text-6xl font-bold mb-3 md:mb-4">{megaprokers.name}</h1>
               <img
                 src={TImages.DECORATIVE_ELEMENTS.GARIS_HERO_ELEVOR}
                 alt="Garis Elevor"
-                className="w-[200px] sm:w-[260px] md:w-[300px] lg:w-[361px] my-2 sm:mb-3 md:mb-4 mx-1"
+                className="items-center w-[200px] sm:w-[260px] md:w-[300px] lg:w-[361px] my-2 sm:mb-3 md:mb-4 mx-1"
               />
             </div>
-              <div>
+            <div className="py-5">
               <p className="mb-4 text-2xl">{megaprokers.description}</p>
-              </div>
+            </div>
 
-            <div className="mt-4 md:mt-6">
-              <h3 className="font-semibold">DOKUMENTASI</h3>
+            <div className={`place-items-center mt-4 md:mt-6 ${isEven ? 'md:place-items-start' : 'md:place-items-end'}`}>
+              <h3 className="font-semibold text-4xl pb-4">DOKUMENTASI</h3>
               {/* Tombol atau link dokumentasi */}
-              <div className="bg-white">
+              <div className="bg-white w-[155px] rounded-[3px]">
                 <ReadMoreButton to={megaprokers.video_url} />
               </div>
             </div>
