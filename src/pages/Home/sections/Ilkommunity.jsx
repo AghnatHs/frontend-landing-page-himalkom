@@ -1,8 +1,8 @@
 import React, { useRef } from 'react';
 import { FiChevronLeft, FiChevronRight } from 'react-icons/fi';
-import ScrollReveal from '@/components/common/ScrollReveal';
 import ReadMoreButton from '@/components/common/ReadMore';
 import LoadingSpinner from '@/components/common/LoadingSpinner';
+import MotionReveal from '@/components/common/MotionReveal';
 
 /**
  * Community Card Component
@@ -108,7 +108,7 @@ const Ilkomunity = ({
   }
 
   return (
-    <ScrollReveal animation="fade-up">
+    <MotionReveal animation="fade-up">
       <div className="flex flex-col items-center max-w-6xl mx-auto py-12">
         {/* Desktop view - grid layout */}
         <div className="hidden md:grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -197,7 +197,7 @@ const Ilkomunity = ({
           </div>
         </div>
       </div>
-    </ScrollReveal>
+    </MotionReveal>
   );
 };
 

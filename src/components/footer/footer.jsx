@@ -23,26 +23,26 @@ const Section = () => {
       <div className="border-t border-gray-300 w-full"></div>
 
       {/* Bagian bawah garis */}
-      <div className="relative flex md:flex-row gap-2 items-center px-4 md:px-12 flex-col py-4 w-full overflow-hidden">
+      <div className="relative flex md:flex-row gap-2 items-center px-4 md:px-12 flex-col py-4 w-full">
         
         {/* Ikon Sosial Media */}
-        <div className="flex gap-4 md:justify-end justify-center items-center w-full">
-          <a href="https://www.facebook.com/himalkom/?locale=id_ID" className="hover:text-blue-900 transition-colors">
+        <div className="flex gap-4 md:justify-end justify-center items-center w-full z-10">
+          <a href="https://www.facebook.com/himalkom/?locale=id_ID" className="hover:text-blue-900 transition-colors p-2">
             <FaFacebook size={20} />
           </a>
-          <a href="https://www.instagram.com/himalkomipb/" className="hover:text-pink-400 transition-colors">
+          <a href="https://www.instagram.com/himalkomipb/" className="hover:text-pink-400 transition-colors p-2">
             <FaInstagram size={20} />
           </a>
-          <a href="https://twitter.com/HimalkomIPB" className="hover:text-purple-950 transition-colors">
+          <a href="https://twitter.com/HimalkomIPB" className="hover:text-purple-950 transition-colors p-2">
             <FaXTwitter size={20} />
           </a>
-          <a href="https://www.youtube.com/@himalkomipb4653" className="hover:text-red-500 transition-colors">
+          <a href="https://www.youtube.com/@himalkomipb4653" className="hover:text-red-500 transition-colors p-2">
             <FaYoutube size={20} />
           </a>
         </div>
 
         {/* Copyright*/}
-        <div className="text-center md:absolute  w-full">
+        <div className="text-center md:absolute w-full">
           <p className="font-athiti font-bold text-sm md:text-center">
             Copyright © Himalkom 2025. All rights reserved. 
           </p>

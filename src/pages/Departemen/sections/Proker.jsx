@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
-import ScrollReveal from '@/components/common/ScrollReveal';
-import { FiChevronUp, FiChevronDown } from 'react-icons/fi';
+import MotionReveal from '@/components/common/MotionReveal';
 
 /**
  * Program Kerja Section Component
@@ -27,42 +26,25 @@ const ProkerSection = ({ proker }) => {
         }));
     }
 
-    // Animation options for scroll reveal
-    const scrollRevealOptions = {
-        threshold: 0.2,         
-        rootMargin: "-100px 0px",  
-        triggerOnce: false       
-    };
-
     return (
-        <ScrollReveal 
-            animation="fade-up" 
-            options={scrollRevealOptions}
-            delay={300}  
-        >
+        <MotionReveal animation="fade-up" delay={0.3}>
             <div className="flex flex-col bg-white p-6 md:p-4 rounded-2xl shadow-card w-full max-w-6xl mx-auto">
                 {proker.map((item, index) => (
                     <React.Fragment key={index}>
                         {/* Accordion header */}
                         <div 
-                            className="flex flex-col p-4 w-full hover:bg-primary rounded-2xl transition duration-200 ease-in-out" 
+                            className="py-3 px-2 flex justify-between items-center cursor-pointer"
                             onClick={() => toggleItem(index)}
                         >
-                            <div className='flex justify-between items-center w-full'> 	
-                                <h2 className="text-lg font-normal">{item.name}</h2>
-                                <button aria-label={expandedItems[index] ? "Collapse" : "Expand"}>
-                                    {expandedItems[index] ? (
-                                        <FiChevronUp className="text-primary-darker" size={24} />
-                                    ) : (
-                                        <FiChevronDown className='text-primary-darker' size={24} />
-                                    )}
-                                </button>
-                            </div>
+                            <h3 className="font-semibold text-lg">{item.name}</h3>
+                            <span className={`transform transition-transform ${expandedItems[index] ? 'rotate-180' : ''}`}>
+                                ▼
+                            </span>
                         </div>
-
-                        {/* Accordion content with smooth animation */}
-                        <div
-                            className={`overflow-hidden transition-all duration-300 ease-in-out ${
+                        
+                        {/* Accordion content */}
+                        <div 
+                            className={`transition-all duration-300 overflow-hidden ${
                                 expandedItems[index] ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'
                             }`}
                         >
@@ -78,7 +60,7 @@ const ProkerSection = ({ proker }) => {
                     </React.Fragment>
                 ))}
             </div>
-        </ScrollReveal>
+        </MotionReveal>
     );
 };
 

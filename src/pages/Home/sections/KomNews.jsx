@@ -1,8 +1,8 @@
 import React, { useRef } from 'react';
 import { FiChevronLeft, FiChevronRight } from 'react-icons/fi';
 import ReadMoreButton from '@/components/common/ReadMore';
+import MotionReveal from '@/components/common/MotionReveal';
 import DOMPurify from 'dompurify';
-import ScrollReveal from '@/components/common/ScrollReveal';
 import { timeAgo } from '@/utils/formatting';
 
 /**
@@ -79,14 +79,9 @@ const Komnews = ({
     return <div className="text-center py-8">Tidak ada berita terkini</div>;
   }
 
-  const scrollRevealOptions = {
-    threshold: 0.1,         
-    rootMargin: "-50px 0px", 
-    triggerOnce: true        
-  };
 
   return (
-    <ScrollReveal animation="fade-up" options={scrollRevealOptions}>
+    <MotionReveal animation="fade-up" delay={0.3}>
       <div className="flex flex-col items-center max-w-6xl mx-auto py-12">
         {/* Main carousel container */}
         <div 
@@ -201,7 +196,7 @@ const Komnews = ({
           ))}
         </div>
       </div>
-    </ScrollReveal>
+    </MotionReveal>
   );
 };
 
