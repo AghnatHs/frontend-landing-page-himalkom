@@ -3,14 +3,24 @@ import { Link } from 'react-router-dom';
 import { FaAngleRight } from "react-icons/fa6";
 
 const ReadMoreButton = ({ 
-  to, 
-  label = "Selengkapnya", 
-}) => {
+    to, 
+    label = "Selengkapnya", 
+  }) => {
+
+  // Fungsi biar pas di pencet mulai dari atas halaman
+  const handleClick = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth'
+    });
+  };
+
   return (
     <div className='rounded-lg shadow-card hover:shadow-card-hover transition-all duration-300 p-1'>
       <Link 
         to={to}
         className="flex items-center justify-center transition-all duration-300 px-2 py-1 gap-4 group"
+        onClick={handleClick}
       >
         <span className="text-sm font-medium text-primary-darker group-hover:text-primary-dark transition-colors duration-300">
           {label}
