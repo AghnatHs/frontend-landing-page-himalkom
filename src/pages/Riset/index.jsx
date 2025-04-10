@@ -31,14 +31,12 @@ const Riset = () => {
 
       {/* Main content */}
       <section className="mt-16">
-        <MotionReveal animation="fade-up" delay={0.2}>
           <div className="px-4 flex flex-col items-center text-center my-[130px] md:my-[150px] lg:my-[280px]">
             <RisCard 
               data={data}
               baseUrl={baseUrl}
             />
           </div>
-        </MotionReveal>
       </section>
     </div>
   );
