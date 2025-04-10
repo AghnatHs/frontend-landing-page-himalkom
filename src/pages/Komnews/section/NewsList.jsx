@@ -20,7 +20,7 @@ const CategoriesFilter = ({ categories, activeCategory, setActiveCategory }) => 
             <div 
               onClick={() => setActiveCategory('all')}
               className={`flex items-center px-3 py-1 shadow-card bg-white rounded-md cursor-pointer ${
-                activeCategory === 'all' ? 'bg-primary text-white' : ''
+                activeCategory === 'all' ? 'bg-primary-dark text-white' : ''
               }`}
             >
                 <p className="font-normal text-xs md:text-sm">All</p>
@@ -31,7 +31,7 @@ const CategoriesFilter = ({ categories, activeCategory, setActiveCategory }) => 
                 <div 
                   key={`topic-${index}`} 
                   className={`flex items-center px-3 py-1 shadow-card bg-white rounded-md cursor-pointer ${
-                    activeCategory === item.slug ? 'bg-primary text-white' : ''
+                    activeCategory === item.slug ? 'bg-primary-dark text-white' : ''
                   }`}
                   onClick={() => setActiveCategory(item.slug)}
                 >
@@ -53,6 +53,7 @@ const CategoriesFilter = ({ categories, activeCategory, setActiveCategory }) => 
  * @param {string} props.activeCategory - Currently active category
  * @param {Function} props.setActiveCategory - Function to change active category
  * @param {string} props.baseUrl - Base URL for API assets
+ * @param {boolean} props.compactView - Whether to show in compact mode (no category filters)
  * @returns {JSX.Element}
  */
 const NewsListSection = ({ 
@@ -60,7 +61,8 @@ const NewsListSection = ({
     categories, 
     activeCategory, 
     setActiveCategory, 
-    baseUrl 
+    baseUrl,
+    compactView = false
 }) => {
     // Konstanta untuk batasan panjang judul
     const SHORT_TITLE_LENGTH = 40;  // Judul dianggap pendek jika <= 40 karakter
@@ -88,26 +90,27 @@ const NewsListSection = ({
     };
 
     return (
-        <div>
-            <h3 className="font-semibold text-xl mb-4">Berita Terbaru</h3>
-            
-            <CategoriesFilter 
-                categories={categories} 
-                activeCategory={activeCategory} 
-                setActiveCategory={setActiveCategory} 
-            />
+        <div>            
+            {/* Filter kategori hanya ditampilkan jika tidak dalam compact view */}
+            {!compactView && (
+                <CategoriesFilter 
+                    categories={categories} 
+                    activeCategory={activeCategory} 
+                    setActiveCategory={setActiveCategory} 
+                />
+            )}
             
             {/* Main news container */}
             <div className="bg-white rounded-xl shadow-card p-4">
                 {news && news.length > 0 ? (
-                    news.slice(0, 5).map((newsItem, index) => (
+                    news.map((newsItem, index) => (
                         <React.Fragment key={`news-list-${newsItem.id}`}>
                             {/* News item */}
                             <div className="py-4">
-                                <Link to={`/komnews/${newsItem.slug}`} className="flex gap-3 hover:opacity-80">
-                                    {/* Konten (di kiri) */}
+                                <Link to={`/komnews/${newsItem.slug}`} className={compactView ? "block" : "flex gap-3"}>
+                                    {/* Konten */}
                                     <div className="flex-1">
-                                        <h4 className="font-medium text-sm line-clamp-2">
+                                        <h4 className={`font-bold ${compactView ? "text-base" : "text-sm"} line-clamp-2`}>
                                             {formatTitle(newsItem.title)}
                                         </h4>
                                         
@@ -122,18 +125,20 @@ const NewsListSection = ({
                                         )}
                                     </div>
                                     
-                                    {/* Gambar (di kanan) */}
-                                    <div className="w-20 h-20 flex-shrink-0">
-                                        <img 
-                                            src={`${baseUrl}/storage/${newsItem.image}`}
-                                            alt={newsItem.title}
-                                            className="w-full h-full object-cover rounded"
-                                            onError={(e) => {
-                                                e.target.onerror = null;
-                                                e.target.src = '/images/placeholder-news.jpg';
-                                            }}
-                                        />
-                                    </div>
+                                    {/* Gambar (hanya ditampilkan jika bukan compact view) */}
+                                    {!compactView && (
+                                        <div className="w-20 h-20 flex-shrink-0">
+                                            <img 
+                                                src={`${baseUrl}/storage/${newsItem.image}`}
+                                                alt={newsItem.title}
+                                                className="w-full h-full object-cover rounded"
+                                                onError={(e) => {
+                                                    e.target.onerror = null;
+                                                    e.target.src = '/images/placeholder-news.jpg';
+                                                }}
+                                            />
+                                        </div>
+                                    )}
                                 </Link>
                             </div>
                             
@@ -156,7 +161,8 @@ const NewsListSection = ({
                 )}
             </div>
             
-            {news?.length > 5 && (
+            {/* Tombol "Lihat semua" hanya ditampilkan jika tidak dalam compact view */}
+            {!compactView && news?.length > 5 && (
                 <div className="text-center mt-6">
                     <Link 
                         to="/komnews/all" 

@@ -8,6 +8,7 @@ import Footer from './components/footer';
 import Departemen from './pages/Departemen';
 import Himalkom from './pages/Himalkom';
 import Komnews from './pages/Komnews';
+import News from './pages/Komnews/News';
 import Riset from './pages/Riset';
 import Syntax from './pages/Syntax';
 import Megaproker from './pages/Megaproker';
@@ -24,6 +25,7 @@ const App = () => {
           <Route path="/himalkom" element={<Himalkom />} />
           <Route path="/division/:slug" element={<Departemen />} />
           <Route path="/komnews" element={<Komnews />} />
+          <Route path="/komnews/:slug" element={<News />} />
           <Route path="/riset" element={<Riset />} />
           <Route path="/syntax" element={<Syntax />} />
           <Route path="/megaproker" element={<Megaproker />} />
