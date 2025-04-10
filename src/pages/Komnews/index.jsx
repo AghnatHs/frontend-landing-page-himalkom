@@ -1,6 +1,7 @@
 import React, { useState, useMemo } from 'react';
 import { useFetchData } from '@/hooks/useAPI';
 import LoadingSpinner from '@/components/common/LoadingSpinner';
+import MotionReveal from '@/components/common/MotionReveal';
 
 // Sections
 import HeroSection from './section/Hero';
@@ -53,27 +54,29 @@ const Komnews = () => {
             <p className="text-sm mt-2">{errorNews}</p>
           </div>
         ) : newsData ? (
-          <div className="flex flex-col lg:flex-row gap-8">
-            {/* News Headlines */}
-            <div className="lg:w-2/3">
-              <HeadlineSection 
-                headlines={newsData?.todayHeadlines || []}
-                baseUrl={baseUrl}
-                loading={loadingNews}
-              />
+          <MotionReveal animation="fade-up">
+            <div className="flex flex-col lg:flex-row gap-8">
+              {/* News Headlines */}
+              <div className="lg:w-2/3">
+                <HeadlineSection 
+                  headlines={newsData?.todayHeadlines || []}
+                  baseUrl={baseUrl}
+                  loading={loadingNews}
+                />
+              </div>
+              
+              {/* News List */}
+              <div className="lg:w-1/3 mt-10">
+                <NewsListSection 
+                  news={filteredNews}
+                  categories={newsData?.categories || []}
+                  activeCategory={activeCategory}
+                  setActiveCategory={setActiveCategory}
+                  baseUrl={baseUrl}
+                />
+              </div>
             </div>
-            
-            {/* News List */}
-            <div className="lg:w-1/3 mt-10">
-              <NewsListSection 
-                news={filteredNews}
-                categories={newsData?.categories || []}
-                activeCategory={activeCategory}
-                setActiveCategory={setActiveCategory}
-                baseUrl={baseUrl}
-              />
-            </div>
-          </div>
+          </MotionReveal>
         ) : null}
       </section>
     </div>

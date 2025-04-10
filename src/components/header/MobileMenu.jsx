@@ -188,7 +188,7 @@ const MobileMenu = ({ onCloseMenu }) => {
           </NavLink>
           
           <NavLink 
-            to="/riset" 
+            to="/syntax" 
             className={({isActive}) => menuItemClass(isActive)}
             onClick={onCloseMenu}
           >

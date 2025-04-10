@@ -3,7 +3,7 @@ import { useParams } from 'react-router-dom';
 import { useFetchData } from '@/hooks/useAPI';
 import { formatDate } from '@/utils/formatting';
 import LoadingSpinner from '@/components/common/LoadingSpinner';
-import ScrollReveal from '@/components/common/ScrollReveal';
+import MotionReveal from '@/components/common/MotionReveal';
 import TImages from '@/utils/images';
 import DOMPurify from 'dompurify';
 
@@ -50,7 +50,7 @@ const NewsDetail = () => {
     };
 
     if (loadingNews) {
-        return <LoadingSpinner variant="inline" size="medium" message="Memuat berita..." />;
+        return <LoadingSpinner variant="page" size="medium" message="Memuat berita..." />;
     }
 
     if (errorNews) {
@@ -69,7 +69,7 @@ const NewsDetail = () => {
                 <div className="flex flex-col lg:flex-row gap-24">
                     {/* Left Column - News Detail */}
                     <div className="lg:w-2/3">
-                        <ScrollReveal animation="fade-up">
+                        <MotionReveal animation="fade-up">
                             <div className="bg-white shadow-card rounded-[15px] overflow-hidden">
                                 {/* News Header */}
                                 <div className="md:p-6">
@@ -113,31 +113,36 @@ const NewsDetail = () => {
                                     )}
                                 </div>
                             </div>
-                        </ScrollReveal>
+                        </MotionReveal>
 
                         {/* Content */}
-                        <div
-                            className="prose max-w-none mt-6 text-justify text-lg"
-                            dangerouslySetInnerHTML={{ __html: sanitizeHtml(news.content) }}
-                        ></div>
+                        <MotionReveal animation="fade-up" delay={0.2}>
+                            <div
+                                className="prose max-w-none mt-6 text-justify text-lg"
+                                dangerouslySetInnerHTML={{ __html: sanitizeHtml(news.content) }}
+                            ></div>
+                        </MotionReveal>
                     </div>
 
                     {/* Right Column - News List Section */}
                     <div className="lg:w-1/3">
-                                                {loadingAllNews ? (
-                            <div className="text-center py-4">Memuat berita...</div>
-                        ) : errorAllNews ? (
-                            <div className="text-center py-4 text-red-500">Gagal memuat berita</div>
-                        ) : (
-                            <NewsListSection
-                                news={filteredNews}
-                                categories={allNewsData?.categories || []}
-                                activeCategory={activeCategory}
-                                setActiveCategory={setActiveCategory}
-                                baseUrl={baseUrl}
-                                compactView={true}
-                            />
-                        )}
+                        <MotionReveal animation="fade-up" delay={0.3}>
+                            <h3 className="font-semibold text-xl mb-4">Berita Lainnya</h3>
+                            {loadingAllNews ? (
+                                <div className="text-center py-4">Memuat berita...</div>
+                            ) : errorAllNews ? (
+                                <div className="text-center py-4 text-red-500">Gagal memuat berita</div>
+                            ) : (
+                                <NewsListSection
+                                    news={filteredNews}
+                                    categories={allNewsData?.categories || []}
+                                    activeCategory={activeCategory}
+                                    setActiveCategory={setActiveCategory}
+                                    baseUrl={baseUrl}
+                                    compactView={true}
+                                />
+                            )}
+                        </MotionReveal>
                     </div>
                 </div>
             </section>

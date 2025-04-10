@@ -1,7 +1,8 @@
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
 import TImages from "@/utils/images";
 import ReadMoreButton from "@/components/common/ReadMore";
-import ScrollReveal from "@/components/common/ScrollReveal";
+import MotionReveal from "@/components/common/MotionReveal";
 import { formatDate, timeAgo, truncateText, stripHtml } from "@/utils/formatting";
 
 const HeadlineHeader = () => {
@@ -31,24 +32,21 @@ const HeadlineHeader = () => {
  * @returns {JSX.Element}
  */
 const HeadlineSection = ({ headlines, baseUrl, loading }) => {
-    // Handling edge cases
-    const headlinesList = headlines || [];
-    
-    // State untuk active headline
     const [activeHeadlineIndex, setActiveHeadlineIndex] = useState(0);
-    const activeHeadline = headlinesList[activeHeadlineIndex] || null;
-    
+    const activeHeadline = headlines?.[activeHeadlineIndex];
+
     if (loading) {
         return <div className="text-center py-8">Memuat headline...</div>;
     }
-    
-    return (
-        <div className="mb-8">
-            <HeadlineHeader />
 
-            {/* Main Headline Card */}
-            {activeHeadline ? (
-                <ScrollReveal animation="fade-up">
+    return (
+        <div className="w-full">
+            <MotionReveal animation="fade-up">
+                <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold mb-6">Berita Utama</h2>
+            </MotionReveal>
+
+            {headlines && headlines.length > 0 ? (
+                <MotionReveal animation="fade-up" delay={0.2}>
                     <div className="mt-6 rounded-[15px] bg-white shadow-card overflow-hidden">
                         <div className="flex flex-col md:flex-row">
                             <div className="md:w-1/2 p-6">
@@ -97,35 +95,38 @@ const HeadlineSection = ({ headlines, baseUrl, loading }) => {
                             </div>
                         </div>
                     </div>
+                </MotionReveal>
                     
-                    {/* Secondary Headlines */}
-                    {headlinesList.length > 1 && (
-                        <div className="grid grid-cols-3 gap-3 mt-4">
-                            {headlinesList.map((headline, index) => (
-                                <div 
-                                    key={`headline-${headline.id}`} 
-                                    className={`rounded-lg shadow-card bg-white p-3 cursor-pointer transition-all duration-300
-                                              ${activeHeadlineIndex === index 
-                                                  ? 'border-b-2 border-primary font-medium' 
-                                                  : 'opacity-75 hover:opacity-100'}`}
-                                    onClick={() => setActiveHeadlineIndex(index)}
-                                >
-                                    <h4 className="text-xs line-clamp-2 font-medium">{headline.title}</h4>
-                                    <p className="text-[10px] text-gray-500 mt-1">
-                                        {timeAgo(headline.created_at)}
-                                    </p>
-                                    <p className="text-[10px] text-gray-600 line-clamp-2 mt-1">
-                                        {stripHtml(headline.content).substring(0, 50)}...
-                                    </p>
-                                </div>
-                            ))}
-                        </div>
-                    )}
-                </ScrollReveal>
             ) : (
                 <div className="h-64 flex items-center justify-center bg-gray-100 rounded-[15px] mt-6">
-                    <p className="text-gray-500">Tidak ada headline saat ini.</p>
+                    <p className="text-gray-500">Tidak ada headline saat ini</p>
                 </div>
+            )}
+
+            {/* Secondary Headlines */}
+            {headlines && headlines.length > 1 && (
+                <MotionReveal animation="fade-up" delay={0.3}>
+                    <div className="grid grid-cols-3 gap-3 mt-4">
+                        {headlines.map((headline, index) => (
+                            <div 
+                                key={`headline-${headline.id}`} 
+                                className={`rounded-lg shadow-card bg-white p-3 cursor-pointer transition-all duration-300
+                                          ${activeHeadlineIndex === index 
+                                              ? 'border-b-2 border-primary font-medium' 
+                                              : 'opacity-75 hover:opacity-100'}`}
+                                onClick={() => setActiveHeadlineIndex(index)}
+                            >
+                                <h4 className="text-xs line-clamp-2 font-medium">{headline.title}</h4>
+                                <p className="text-[10px] text-gray-500 mt-1">
+                                    {timeAgo(headline.created_at)}
+                                </p>
+                                <p className="text-[10px] text-gray-600 line-clamp-2 mt-1">
+                                    {stripHtml(headline.content).substring(0, 50)}...
+                                </p>
+                            </div>
+                        ))}
+                    </div>
+                </MotionReveal>
             )}
         </div>
     );

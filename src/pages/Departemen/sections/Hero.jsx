@@ -1,6 +1,6 @@
 import React from 'react';
 import TImages from '@/utils/images';
-import ScrollReveal from '@/components/common/ScrollReveal';
+import MotionReveal from '@/components/common/MotionReveal';
 
 /**
  * Hero section for department page
@@ -15,14 +15,8 @@ const HeroSection = ({ department }) => {
     return <div className="text-center py-8">Data departemen tidak tersedia</div>;
   }
 
-  const scrollRevealOptions = {
-    threshold: 0.2,         
-    rootMargin: "-100px 0px",  
-    triggerOnce: false       
-};
-
   return (
-    <ScrollReveal animation="fade-up" options={scrollRevealOptions} delay={300}>
+    <MotionReveal animation="fade-up" delay={0.3}>
       <div className="flex flex-row justify-center items-center gap-6 sm:gap-12 md:gap-16 lg:gap-24 w-full px-4">
         {/* Department logo */}
         {department?.logo ? (
@@ -56,7 +50,7 @@ const HeroSection = ({ department }) => {
           </p>
         </div>
       </div>
-    </ScrollReveal>
+    </MotionReveal>
   );
 };
 
