@@ -69,43 +69,49 @@ const Komunitas = () => {
       </MotionReveal>
 
       {/* Prestasi Section */}
-      <section className="px-4 flex flex-col mt-[200px]">
-        <SectionHeader title="PRESTASI" altText="Garis Prestasi" />
-        <div className="flex justify-center items-center">
-          <div className="bg-white shadow-lg rounded-xl lg:w-[780px] shadow-card">
-            {/* Punya achievment dan di API ga "-" */}
-            {community.achievements.length > 0 &&
-              community.achievements.some((item) => item.value.trim() !== "-") ? (
-                <ul className="list-disc py-4 px-10 space-y-2 font-athiti lg:text-[25px]">
-                  {community.achievements
-                    .filter((item) => item.value.trim() !== "-") 
-                    .map((item, index) => (
-                      <li key={index}>{item.value}</li>
-                    ))}
-                </ul>
-              ) : (
-                <p className="py-6 px-10 text-center text-gray-500 font-athiti text-[22px]">Coming Soon</p>
-            )}
+      <MotionReveal animation="fade-up" delay={0.2}>
+        <section className="px-4 flex flex-col mt-[200px]">
+          <SectionHeader title="PRESTASI" altText="Garis Prestasi" />
+          <div className="flex justify-center items-center">
+            <div className="bg-white shadow-lg rounded-xl lg:w-[780px] shadow-card">
+              {/* Punya achievment dan di API ga "-" */}
+              {community.achievements.length > 0 &&
+                community.achievements.some((item) => item.value.trim() !== "-") ? (
+                  <ul className="list-disc py-4 px-10 space-y-2 font-athiti lg:text-[25px]">
+                    {community.achievements
+                      .filter((item) => item.value.trim() !== "-") 
+                      .map((item, index) => (
+                        <li key={index}>{item.value}</li>
+                      ))}
+                  </ul>
+                ) : (
+                  <p className="py-6 px-10 text-center text-gray-500 font-athiti text-[22px]">Coming Soon</p>
+              )}
+            </div>
           </div>
-        </div>
-      </section>
+        </section>
+      </MotionReveal>
 
       {/* Dokumentasi Section */}
-      <section className="px-4 flex flex-col mt-[200px] items-center">
-        <SectionHeader title="DOKUMENTASI" altText="Garis Dokumentasi" />
-        <DokumKomun slides={community.images.map(img => ({
-          ...img,      
-          url: `${baseUrl}/storage/${img.url}`
-           }))} />
-      </section>
+      <MotionReveal animation="fade-up" delay={0.2}>
+        <section className="px-4 flex flex-col mt-[200px] items-center">
+          <SectionHeader title="DOKUMENTASI" altText="Garis Dokumentasi" />
+          <DokumKomun slides={community.images.map(img => ({
+            ...img,      
+            url: `${baseUrl}/storage/${img.url}`
+            }))} />
+        </section>
+      </MotionReveal>
 
       {/* Narahubung Section */}
-      <section className="px-4 text-[24px] flex flex-col text-center  my-[200px]">
-        <SectionHeader title="NARAHUBUNG" altText="Garis Narahubung" />
-        <p>{community.contact}</p>
-        <p>WhatsApp: {community.contact_whatsapp}</p>
-        <p>@{community.instagram}</p>
-      </section>
+      <MotionReveal animation="fade-up" delay={0.1}>
+        <section className="px-4 text-[24px] flex flex-col text-center  my-[200px]">
+          <SectionHeader title="NARAHUBUNG" altText="Garis Narahubung" />
+          <p>{community.contact}</p>
+          <p>WhatsApp: {community.contact_whatsapp}</p>
+          <p>@{community.instagram}</p>
+        </section>
+      </MotionReveal>
     </div>
   );
 };

@@ -27,35 +27,37 @@ const CommunityCard = ({ community, details, loading, baseUrl }) => {
   const truncatedDescription = truncateDescription(description);
 
   return (
-    <div className="w-full max-w-[287px] mx-auto h-[400px] rounded-[15px] bg-white shadow-card flex flex-col items-center p-6">
-      {/* Logo komunitas */}
-      <div className="w-full h-[100px] flex justify-center items-center mb-4">
-        <img
-          src={`${baseUrl}/storage/${community.logo}`}
-          alt={community.name}
-          className="w-auto max-h-24 object-contain"
-        />
+    <MotionReveal animation="fade-up" delay={0.1}>
+      <div className="w-full max-w-[287px] mx-auto h-[400px] rounded-[15px] bg-white shadow-card flex flex-col items-center p-6">
+        {/* Logo komunitas */}
+        <div className="w-full h-[100px] flex justify-center items-center mb-4">
+          <img
+            src={`${baseUrl}/storage/${community.logo}`}
+            alt={community.name}
+            className="w-auto max-h-24 object-contain"
+          />
+        </div>
+        
+        {/* Nama komunitas */}
+        <h3 className="font-bold text-2xl text-center mb-6">{community.name}</h3>
+        
+        {/* Deskripsi komunitas */}
+        <div className="h-[120px] overflow-hidden mb-auto">
+          {loading ? (
+            <LoadingSpinner variant="inline" size="small" message="Memuat detail..." />
+          ) : (
+            <p className="text-center line-clamp-5">
+              {truncatedDescription || community.slug}
+            </p>
+          )}
+        </div>
+        
+        {/* Read More button */}
+        <div className="mt-4">
+          <ReadMoreButton to={`/community/${community.slug}`} />
+        </div>
       </div>
-      
-      {/* Nama komunitas */}
-      <h3 className="font-bold text-2xl text-center mb-6">{community.name}</h3>
-      
-      {/* Deskripsi komunitas */}
-      <div className="h-[120px] overflow-hidden mb-auto">
-        {loading ? (
-          <LoadingSpinner variant="inline" size="small" message="Memuat detail..." />
-        ) : (
-          <p className="text-center line-clamp-5">
-            {truncatedDescription || community.slug}
-          </p>
-        )}
-      </div>
-      
-      {/* Read More button */}
-      <div className="mt-4">
-        <ReadMoreButton to={`/community/${community.slug}`} />
-      </div>
-    </div>
+    </MotionReveal>
   );
 };
 
@@ -108,7 +110,6 @@ const Ilkomunity = ({
   }
 
   return (
-    <MotionReveal animation="fade-up">
       <div className="flex flex-col items-center max-w-6xl mx-auto py-12">
         {/* Desktop view - grid layout */}
         <div className="hidden md:grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -197,7 +198,6 @@ const Ilkomunity = ({
           </div>
         </div>
       </div>
-    </MotionReveal>
   );
 };
 

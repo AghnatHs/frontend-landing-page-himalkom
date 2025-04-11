@@ -3,6 +3,7 @@ import MotionReveal from '@/components/common/MotionReveal';
 import ReadMoreButton from "@/components/common/ReadMore";
 
 const Card = ({ research, baseUrl }) => (
+ <MotionReveal animation="fade-up" delay={0.1}>
   <div className="shadow-card rounded-2xl flex flex-col bg-white w-[177px] h-[390px] sm:w-[250px] sm:h-[460px] md:w-[250px] md:h-[460px] lg:w-[370px] lg:h-[620px]">
     <div className="">
       <img 
@@ -21,13 +22,11 @@ const Card = ({ research, baseUrl }) => (
       </div>
     </div>
   </div>
+ </MotionReveal>
 );
 
 const RisCard = ({ data, baseUrl }) => {
-
-
   return (
-    <MotionReveal animation="fade-up" delay={0.3}>
       <div className="justify-items-center mx-auto max-w-6xl gap-y-4 gap-8 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-2 xl:grid-cols-3 lg:gap-[50px] lg:pt-[70px]">
         {data.research.map((research) => (
           <Card 
@@ -37,7 +36,6 @@ const RisCard = ({ data, baseUrl }) => {
          />
        ))}
       </div>
-    </MotionReveal>
   );
 };
 
