@@ -5,6 +5,7 @@ import { useFetchData } from "../../hooks/useAPI";
 
 // Import reusable components
 import LoadingSpinner from "@/components/common/LoadingSpinner";
+import MotionReveal from "@/components/common/MotionReveal";
 
 // Import section
 import HeroSection from "./section/HeroSection";
@@ -24,17 +25,21 @@ const Megaproker = () => {
   return (
     <>
       {/* Hero Section */}
-      <HeroSection />
+      <MotionReveal animation="fade-up">
+        <HeroSection />
+      </MotionReveal>
 
       {/* Megaproker */}
       <section className="w-full my-[150px] md:my-[300px] space-y-20">
         {megaprokers.map((megaprokers, index) => (
-          <MegaprokerSection 
-            key={megaprokers.id || index} 
-            megaprokers={megaprokers} 
-            index={index} 
-            baseUrl={baseUrl} 
-          />
+          <MotionReveal animation="fade-up" delay={0.2}>
+            <MegaprokerSection 
+              key={megaprokers.id || index} 
+              megaprokers={megaprokers} 
+              index={index} 
+              baseUrl={baseUrl} 
+            />
+          </MotionReveal>
         ))}
       </section>
     </>
