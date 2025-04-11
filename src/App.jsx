@@ -12,6 +12,8 @@ import News from './pages/Komnews/News';
 import Riset from './pages/Riset';
 import Syntax from './pages/Syntax';
 import Megaproker from './pages/Megaproker';
+import Galeri from './pages/Galeri'; 
+import GalleryDetail from './pages/Galeri/Detail';
 
 const App = () => {
   return (
@@ -29,6 +31,8 @@ const App = () => {
           <Route path="/riset" element={<Riset />} />
           <Route path="/syntax" element={<Syntax />} />
           <Route path="/megaproker" element={<Megaproker />} />
+          <Route path="/galeri" element={<Galeri />} />
+          <Route path="/galeri/:id" element={<GalleryDetail />} /> 
         </Routes>
       </MainLayout>
       <Footer />
