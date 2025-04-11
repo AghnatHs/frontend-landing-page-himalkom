@@ -38,7 +38,7 @@ const MegaprokerCard = ({ megaproker, baseUrl }) => (
       {/* Informasi dan tombol navigasi */}
       <div className='flex flex-col items-center justify-center gap-4 h-full w-3/5'>
         <h3 className="font-bold text-xl md:text-2xl text-center">{megaproker.name}</h3>
-        <ReadMoreButton to={`/megaproker/${megaproker.slug}`} />
+        <ReadMoreButton to={`/megaproker/`} />
       </div>
     </div>
   </MotionReveal>
