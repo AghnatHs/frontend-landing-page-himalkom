@@ -56,7 +56,7 @@ const MegaprokerSection = ({ megaprokers, index, baseUrl }) => {
               <h3 className="font-semibold text-4xl pb-4">DOKUMENTASI</h3>
               {/* Tombol atau link dokumentasi */}
               <div className="bg-white w-[155px] rounded-[3px]">
-                <ReadMoreButton to={megaprokers.video_url} />
+                <ReadMoreButton to={megaprokers.video_url} newTab="True"/>
               </div>
             </div>
           </div>
