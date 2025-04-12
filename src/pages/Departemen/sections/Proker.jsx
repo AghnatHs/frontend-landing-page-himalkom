@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { FaAngleDown } from "react-icons/fa6";
 import MotionReveal from '@/components/common/MotionReveal';
 
 /**
@@ -33,19 +34,19 @@ const ProkerSection = ({ proker }) => {
                     <React.Fragment key={index}>
                         {/* Accordion header */}
                         <div 
-                            className="py-3 px-2 flex justify-between items-center cursor-pointer"
+                            className={`py-3 px-2 flex justify-between items-center cursor-pointer rounded-[7px] hover:bg-primary ${expandedItems[index] ? 'bg-primary' : ''}`}
                             onClick={() => toggleItem(index)}
                         >
                             <h3 className="font-semibold text-lg">{item.name}</h3>
                             <span className={`transform transition-transform ${expandedItems[index] ? 'rotate-180' : ''}`}>
-                                ▼
+                                <FaAngleDown />
                             </span>
                         </div>
                         
                         {/* Accordion content */}
                         <div 
-                            className={`transition-all duration-300 overflow-hidden ${
-                                expandedItems[index] ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'
+                            className={`transition-all duration-300 overflow-hidden rounded-[7px] ${
+                                expandedItems[index] ? 'max-h-96 opacity-100 hover:bg-[#CFEFF4]' : 'max-h-0 opacity-0'
                             }`}
                         >
                             <div className="p-4 text-gray-700">
