@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import MainLayout from './layout/MainLayout';
 import Home from './pages/Home';
 import Komunitas from './pages/Komunitas';
@@ -14,10 +14,12 @@ import Syntax from './pages/Syntax';
 import Megaproker from './pages/Megaproker';
 import Galeri from './pages/Galeri'; 
 import GalleryDetail from './pages/Galeri/Detail';
+import ScrollToTop from './components/common/ScrollToTop';
 
 const App = () => {
   return (
-    <Router>
+    <BrowserRouter>
+      <ScrollToTop />
       <Header />
       <MainLayout>
         <Routes>
@@ -36,7 +38,7 @@ const App = () => {
         </Routes>
       </MainLayout>
       <Footer />
-    </Router>
+    </BrowserRouter>
   );
 };
 
