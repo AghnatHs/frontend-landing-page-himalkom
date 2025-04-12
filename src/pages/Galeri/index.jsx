@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import { useFetchData } from '@/hooks/useAPI';
 import LoadingSpinner from '@/components/common/LoadingSpinner';
 import MotionReveal from '@/components/common/MotionReveal';
-import TImages from '@/utils/images';
 
 // Import sections
 import GaleriHero from './sections/HeroSection';

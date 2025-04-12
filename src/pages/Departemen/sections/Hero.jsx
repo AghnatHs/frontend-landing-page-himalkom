@@ -10,7 +10,7 @@ import MotionReveal from '@/components/common/MotionReveal';
  * @param {Object} props.department - Department data
  * @returns {JSX.Element}
  */
-const HeroSection = ({ department }) => {  
+const HeroSection = ({ department, baseUrl }) => {  
   if (!department) {
     return <div className="text-center py-8">Data departemen tidak tersedia</div>;
   }
@@ -21,7 +21,7 @@ const HeroSection = ({ department }) => {
         {/* Department logo */}
         {department?.logo ? (
           <img
-            src={`${import.meta.env.VITE_API_BASE_URL}/storage/${department.logo}`}
+            src={`${baseUrl}/storage/${department.logo}`}
             alt={department.name || 'Logo Departemen'}
             className="w-45 sm:w-50 md:w-60 xl:w-85"
           />

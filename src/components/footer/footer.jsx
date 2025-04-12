@@ -22,7 +22,7 @@ const Section = () => {
       {/* Garis */}
       <div className="border-t border-gray-300 w-full"></div>
 
-      {/* Bagian bawah garis */}
+      {/* Bagian bawah garis */}  
       <div className="relative flex md:flex-row gap-2 items-center px-4 md:px-12 flex-col py-4 w-full">
         
         {/* Ikon Sosial Media */}
@@ -42,7 +42,7 @@ const Section = () => {
         </div>
 
         {/* Copyright*/}
-        <div className="text-center md:absolute w-full">
+        <div className="text-center w-full md:absolute md:w-auto">
           <p className="font-athiti font-bold text-sm md:text-center">
             Copyright © Himalkom 2025. All rights reserved. 
           </p>

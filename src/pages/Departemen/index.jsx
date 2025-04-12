@@ -36,10 +36,10 @@ const Departemen = () => {
   return (
     <div className='w-full'>
       {/* Hero Section */}
-      <HeroSection department={division}/>
+      <HeroSection department={division} baseUrl={baseUrl}/>
 
       {/* Staff Section */}
-      <section className="px-4 flex flex-col mt-[250px] items-center font-athiti">
+      <section className="px-4 flex flex-col lg:mt-96 md:mt-64 items-center font-athiti">
         <SectionHeader title="Staff" altText="Staff List" />
         <StaffSection staff={division.staff} baseUrl={baseUrl} />
       </section>

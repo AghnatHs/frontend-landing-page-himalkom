@@ -83,10 +83,16 @@ const StaffSection = ({ staff, baseUrl }) => {
   // Layout styling for desktop grid
   const getCardPositionClass = (index) => {
     const column = index % 3;
-    if (column === 1) {
-      if (index === 1) return '-translate-y-20';
-      else if (index === 4 || index === 7) return 'translate-y-20';
+    const row = Math.floor(index / 3);
+    
+    if (column === 1) { // Middle column
+      // First row, middle position (department head) - shift up
+      if (row === 0) return '-translate-y-20';
+      
+      // All other rows, middle position - shift down
+      return 'translate-y-20';
     }
+    
     return '';
   };
 
