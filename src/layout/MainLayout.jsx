@@ -11,7 +11,7 @@ const MainLayout = ({ children }) => {
     const fullHeight = document.documentElement.scrollHeight;
 
     // Hide bottom pattern if hero pattern height is too large
-    setHideBottomPattern(heroPatternHeight >= fullHeight * 0.8);
+    setHideBottomPattern(heroPatternHeight >= fullHeight * 0.7);
   }, [location]);
 
   // Jika pathname adalah "/megaproker", maka tidak tampilkan bottom pattern

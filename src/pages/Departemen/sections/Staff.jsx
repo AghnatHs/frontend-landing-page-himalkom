@@ -3,7 +3,7 @@ import MotionReveal from '@/components/common/MotionReveal';
 
 /**
  * Arranges staff members for grid layout
- * Places department head (ketua) in the center
+ * Places department head (ketua) in the center of first row (index 1)
  * 
  * @param {Object} ketua - Department head data
  * @param {Array} regularStaff - Regular staff members data
@@ -14,18 +14,13 @@ const arrangeStaffForGrid = (ketua, regularStaff) => {
   if (!regularStaff?.length) return ketua ? [ketua] : [];
   if (!ketua) return regularStaff;
 
-  // If we have both ketua and regular staff
-  if (regularStaff.length <= 2) {
-    return [regularStaff[0], ketua, regularStaff[1] || null].filter(Boolean);
-  } else if (regularStaff.length <= 5) {
-    const middle = Math.floor(regularStaff.length / 2);
-    return [
-      ...regularStaff.slice(0, middle),
-      ketua,
-      ...regularStaff.slice(middle)
-    ];
+  // Always place ketua in the middle of first row (index 1)
+  if (regularStaff.length === 0) {
+    return [null, ketua, null].filter(Boolean);
+  } else if (regularStaff.length === 1) {
+    return [regularStaff[0], ketua, null].filter(Boolean);
   } else {
-    // For larger departments, place ketua in the middle of first row
+    // For any number of regular staff, always place ketua at index 1
     return [
       regularStaff[0],
       ketua,
