@@ -15,15 +15,15 @@ const MegaprokerSection = ({ megaprokers, index, baseUrl }) => {
             <BGKiri 
               className="w-full h-full object-cover" 
               imageUrl={`${baseUrl}/storage/${
-              megaprokers.images?.find(img => img.megaproker_id === megaprokers.id)?.url || ''
-              }`} 
+                (megaprokers.images && megaprokers.images.length > 0) ? megaprokers.images[0].url : ''
+                }`}
             />
           ) : (
             <BGKanan 
               className="w-full h-full object-cover" 
               imageUrl={`${baseUrl}/storage/${
-              megaprokers.images?.find(img => img.megaproker_id === megaprokers.id)?.url || ''
-              }`}
+                (megaprokers.images && megaprokers.images.length > 0) ? megaprokers.images[0].url : ''
+                }`}
             />
           )}
         </div>
