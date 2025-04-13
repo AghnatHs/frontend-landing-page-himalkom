@@ -166,24 +166,6 @@ const NewsListSection = ({
                     )}
                 </div>
             </MotionReveal>
-
-            {/* Tombol "Lihat semua" hanya ditampilkan jika tidak dalam compact view */}
-            {!compactView && news?.length > 5 && (
-                <MotionReveal 
-                    animation="fade-up" 
-                    delay={0.2}
-                    key={`view-all-${activeCategory}`} 
-                >
-                    <div className="text-center mt-6">
-                        <Link
-                            to="/komnews/all"
-                            className="inline-block px-4 py-2 bg-primary text-white rounded-lg hover:bg-primary-dark transition duration-200"
-                        >
-                            Lihat semua berita
-                        </Link>
-                    </div>
-                </MotionReveal>
-            )}
         </div>
     );
 };

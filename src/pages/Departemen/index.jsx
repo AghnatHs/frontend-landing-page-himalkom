@@ -39,7 +39,7 @@ const Departemen = () => {
       <HeroSection department={division} baseUrl={baseUrl}/>
 
       {/* Staff Section */}
-      <section className="px-4 flex flex-col lg:mt-96 md:mt-64 items-center font-athiti">
+      <section className="px-4 flex flex-col lg:mt-96 md:mt-64 mt-32 items-center font-athiti">
         <SectionHeader title="Staff" altText="Staff List" />
         <StaffSection staff={division.staff} baseUrl={baseUrl} />
       </section>
