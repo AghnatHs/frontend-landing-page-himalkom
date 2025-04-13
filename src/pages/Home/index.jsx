@@ -110,7 +110,7 @@ const Home = () => {
       </section>
 
       {/* Ilkomunity Section */}
-      <section className="mt-24 md:mt-96">
+      <section className="px-4 flex flex-col items-center text-center my-[230px]">
         <MotionReveal animation="fade-up">
           <SectionHeader
             title="ILKOMUNITAS"
@@ -131,7 +131,7 @@ const Home = () => {
       </section>
 
       {/* Megaproker Section */}
-      <section className="mt-16 md:mt-24">
+      <section className="px-4 flex flex-col items-center mt-16 md:mt-24">
         <MotionReveal animation="fade-up">
           <SectionHeader
             title="MEGAPROKER"
