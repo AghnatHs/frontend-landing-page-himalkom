@@ -1,5 +1,4 @@
-import React, { useRef } from 'react';
-import { FiChevronLeft, FiChevronRight } from 'react-icons/fi';
+import React from 'react';
 import ReadMoreButton from '@/components/common/ReadMore';
 import LoadingSpinner from '@/components/common/LoadingSpinner';
 import MotionReveal from '@/components/common/MotionReveal';
@@ -28,21 +27,19 @@ const CommunityCard = ({ community, details, loading, baseUrl }) => {
 
   return (
     <MotionReveal animation="fade-up" delay={0.1}>
-      <div className="w-full max-w-[287px] mx-auto h-[400px] rounded-[15px] bg-white shadow-card flex flex-col items-center p-6">
+      <div className="rounded-[15px] bg-white shadow-card flex flex-col items-center justify-around p-8 w-[170px] h-[240px] md:w-[240px] md:h-[300px] lg:h-[400px] lg:w-[270px]">
         {/* Logo komunitas */}
-        <div className="w-full h-[100px] flex justify-center items-center mb-4">
           <img
             src={`${baseUrl}/storage/${community.logo}`}
             alt={community.name}
-            className="w-auto max-h-24 object-contain"
+            className="w-[122px] h-[122px] "
           />
-        </div>
         
         {/* Nama komunitas */}
-        <h3 className="font-bold text-2xl text-center mb-6">{community.name}</h3>
+        <h3 className="font-bold text-2xl text-center">{community.name}</h3>
         
         {/* Deskripsi komunitas */}
-        <div className="h-[120px] overflow-hidden mb-auto">
+        <div className="hidden lg:block h-[120px] overflow-hidden mb-auto">
           {loading ? (
             <LoadingSpinner variant="inline" size="small" message="Memuat detail..." />
           ) : (
@@ -85,16 +82,8 @@ const Ilkomunity = ({
   errorCommunities,
   communityDetails,
   loadingDetails,
-  currentCommunityIndex,
-  goToCommunitySlide,
-  setCommunityCarouselPause,
   baseUrl
 }) => {
-  const sliderRef = useRef(null);
-  
-  // Pause carousel on mouse enter
-  const handleMouseEnter = () => setCommunityCarouselPause(true);
-  const handleMouseLeave = () => setCommunityCarouselPause(false);
   
   // Handle loading and error states
   if (loadingCommunities) {
@@ -110,94 +99,19 @@ const Ilkomunity = ({
   }
 
   return (
-      <div className="flex flex-col items-center max-w-6xl mx-auto py-12">
-        {/* Desktop view - grid layout */}
-        <div className="hidden md:grid grid-cols-1 md:grid-cols-3 gap-8">
-          {communitiesData.communities.map((community) => (
-            <CommunityCard
-              key={community.id || `community-${community.slug}`}
-              community={community}
-              details={communityDetails[community.slug]}
-              loading={loadingDetails}
-              baseUrl={baseUrl}
-            />
-          ))}
-        </div>
-        
-        {/* Mobile carousel */}
-        <div 
-          className="block md:hidden relative w-full mx-auto mb-8" 
-          onMouseEnter={handleMouseEnter}
-          onMouseLeave={handleMouseLeave}
-        >
-          <div 
-            ref={sliderRef}
-            className="flex overflow-hidden"
-          >
-            <div 
-              className="flex transition-transform duration-300 ease-out w-full"
-              style={{ transform: `translateX(-${currentCommunityIndex * 100}%)` }}
-            >
-              {communitiesData.communities.map((community) => (
-                <div 
-                  key={community.id || `community-mobile-${community.slug}`} 
-                  className="w-full min-w-full flex-shrink-0 flex justify-center"
-                >
-                  <CommunityCard
-                    community={community}
-                    details={communityDetails[community.slug]}
-                    loading={loadingDetails}
-                    baseUrl={baseUrl}
-                  />
-                </div>
-              ))}
-            </div>
-          </div>
-          
-          {/* Navigation buttons */}
-          <div className="absolute top-1/2 -left-2 sm:-left-6 -translate-y-1/2">
-            <button 
-              onClick={() => {
-                const items = communitiesData?.communities || [];
-                const newIndex = currentCommunityIndex === 0 ? items.length - 1 : currentCommunityIndex - 1;
-                goToCommunitySlide(newIndex);
-              }}
-              className="w-10 h-10 flex items-center justify-center bg-white rounded-full shadow-md focus:outline-none border border-gray-200"
-              aria-label="Previous community"
-            >
-              <FiChevronLeft size={24} className="text-primary-dark" />
-            </button>
-          </div>
-          
-          <div className="absolute top-1/2 -right-2 sm:-right-6 -translate-y-1/2">
-            <button 
-              onClick={() => {
-                const items = communitiesData?.communities || [];
-                const newIndex = currentCommunityIndex === items.length - 1 ? 0 : currentCommunityIndex + 1;
-                goToCommunitySlide(newIndex);
-              }}
-              className="w-10 h-10 flex items-center justify-center bg-white rounded-full shadow-md focus:outline-none border border-gray-200"
-              aria-label="Next community"
-            >
-              <FiChevronRight size={24} className="text-primary-dark" />
-            </button>
-          </div>
-          
-          {/* Pagination dots */}
-          <div className="flex justify-center mt-6 gap-2">
-            {communitiesData.communities.map((_, idx) => (
-              <button
-                key={`dot-${idx}`}
-                onClick={() => goToCommunitySlide(idx)}
-                className={`w-3 h-3 rounded-full transition-colors ${
-                  idx === currentCommunityIndex ? 'bg-primary-dark' : 'bg-gray-300'
-                }`}
-                aria-label={`Go to slide ${idx + 1}`}
-              />
-            ))}
-          </div>
-        </div>
-      </div>
+    <div className="gap-y-6 grid grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5 lg:gap-5 justify-items-center max-w-6xl lg:pt-[70px]">
+      {communitiesData.communities.map((community) => (
+        <CommunityCard
+          key={community.id || `community-${community.slug}`}
+          community={community}
+          details={communityDetails[community.slug]}
+          loading={loadingDetails}
+          baseUrl={baseUrl}
+        />
+      ))}
+    </div>
+       
+     
   );
 };
 

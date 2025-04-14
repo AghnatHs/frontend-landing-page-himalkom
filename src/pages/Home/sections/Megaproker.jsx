@@ -20,14 +20,14 @@ import MotionReveal from '@/components/common/MotionReveal';
 const MegaprokerCard = ({ megaproker, baseUrl }) => (
   <MotionReveal animation="fade-up" delay={0.2}>
     <div
-      className="w-full max-w-[557px] h-[274px] rounded-[15px] bg-white shadow-card flex items-center justify-evenly p-8"
+      className=" w-[320px] h-[180px] md:w-[390px] md:h-[220px] lg:w-[400px] lg:h-[274px] xl:w-[557px] rounded-[15px] bg-white shadow-card flex items-center justify-between md:justify-evenly p-5"
     >
       {/* Logo megaproker - container dengan ukuran tetap */}
-      <div className="flex justify-center items-center h-full w-2/5">
+      <div className="flex justify-center items-center h-full ">
         <img
           src={`${baseUrl}/storage/${megaproker.logo}`}
           alt={megaproker.name}
-          className="max-w-full max-h-44 object-contain"
+          className="w-[130px] lg:w-[220px]"
           onError={(e) => {
             e.target.onerror = null;
             e.target.src = '/images/placeholder-logo.jpg';
@@ -36,7 +36,7 @@ const MegaprokerCard = ({ megaproker, baseUrl }) => (
       </div>
       
       {/* Informasi dan tombol navigasi */}
-      <div className='flex flex-col items-center justify-center gap-4 h-full w-3/5'>
+      <div className='flex flex-col items-center justify-center gap-4 h-full'>
         <h3 className="font-bold text-xl md:text-2xl text-center">{megaproker.name}</h3>
         <ReadMoreButton to={`/megaproker/`} />
       </div>
@@ -75,7 +75,7 @@ const Megaproker = ({ megaprokerData, loadingMegaproker, errorMegaproker, baseUr
   }
 
   return (
-    <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-18 justify-items-center mx-auto max-w-6xl py-8">
+    <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-18 justify-items-center mx-auto max-w-6xl py-8">
       {megaprokerData.megaprokers.map((megaproker) => (
         <MegaprokerCard 
           key={megaproker.id || `megaproker-${megaproker.slug}`} 
