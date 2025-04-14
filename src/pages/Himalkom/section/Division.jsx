@@ -11,9 +11,9 @@ const DeptCard = ({ division, baseUrl }) => (
     <img
       src={`${baseUrl}/storage/${division.logo}`}
       alt={division.name}
-      className=""
+      className="w-[120px] h-[100px] "
     />
-    <h1 className="font-semibold text-2xl text-center ">{division.name}</h1>
+    <h1 className="font-semibold text-sm md:text-2xl text-center pt-2 ">{division.name}</h1>
       <div className="mt-4">
         <ReadMoreButton to={`/division/${division.slug}`} />
       </div>
