@@ -28,12 +28,14 @@ const Card = ({ syntaxes, baseUrl }) => (
 const SynCard = ({ data, baseUrl }) => {
   return (
       <div className="justify-items-center mx-auto max-w-6xl gap-y-4 gap-8 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-2 xl:grid-cols-3 lg:gap-[50px] lg:pt-[70px]">
-        {data.syntaxes.map((syntaxes) => (
-          <Card 
-            key={syntaxes.id}
-            syntaxes={syntaxes} 
-            baseUrl={baseUrl}
-          />
+        {data.syntaxes.map((syntaxes, index) => (
+          <MotionReveal key={syntaxes.id} animation="fade-up" delay={0.1 + (index * 0.05)}>
+            <Card 
+              key={syntaxes.id}
+              syntaxes={syntaxes} 
+              baseUrl={baseUrl}
+            />
+          </MotionReveal>
         ))}
       </div>
   );
