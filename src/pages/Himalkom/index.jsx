@@ -25,14 +25,13 @@ const Himalkom = () => {
     </MotionReveal>
 
     {/* Desc Section */}
-      <MotionReveal animation="fade-up">
-    <section className="flex flex-col items-center mt-[280px] lg:mx-30 sm:items-center md:items-center md:flex-col gap-11 lg:flex-row justify-around h-auto">
-        <Description />
+    <section className="flex flex-col items-center mt-70 lg:mx-30 sm:items-center md:items-center md:flex-col gap-11 lg:flex-row justify-around h-auto">
+      <Description />
     </section>
-      </MotionReveal>
+    
 
     {/* Filosofi Section */}
-    <section className="px-4 flex flex-col text-center mt-[200px]">
+    <section className="px-4 flex flex-col text-center mt-50">
       <MotionReveal animation="fade-up">
         <div className='flex flex-col items-center mb-[1px] '>
           {/* Judul */}
@@ -55,7 +54,7 @@ const Himalkom = () => {
     </section>
 
     {/* Departemen Section */}
-    <section className="px-4 flex flex-col items-center text-center mt-[100px] mb-[200px] lg:my-[200px]">
+    <section className="px-4 flex flex-col items-center text-center mt-25 mb-50 lg:my-50">
       <MotionReveal animation="fade-up">
         <div className='flex flex-col items-center mb-[1px] '>
           {/* Judul */}
