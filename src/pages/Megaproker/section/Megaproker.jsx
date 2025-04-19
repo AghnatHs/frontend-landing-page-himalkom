@@ -34,7 +34,7 @@ const MegaprokerSection = ({ megaprokers, index, baseUrl }) => {
             <img 
               src={`${baseUrl}/storage/${megaprokers.logo}`}
               alt={megaprokers.name} 
-              className="w-[280px] md:w-[400px] lg:w-[450px] h-auto pb-6 rounded-2xl"
+              className="w-[280px] md:w-[400px] lg:w-[450px] h-auto pb-6"
             />
           </div>
 
