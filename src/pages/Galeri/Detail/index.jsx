@@ -111,8 +111,7 @@ const GalleryDetail = () => {
         }
       } else {
         // Tidak perlu redirect, cukup render NotFound component
-        setError("Gallery not found");
-        setProject(null);
+        setError("Galeri tidak ditemukan");
       }
       
       setLoading(false);
