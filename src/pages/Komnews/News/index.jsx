@@ -9,7 +9,7 @@ import DOMPurify from 'dompurify';
 import { FaArrowLeft } from 'react-icons/fa';
 
 // Import section dari Komnews
-import NewsListSection from '../section/NewsList';
+import NotFound from '../../NotFound';
 
 /**
  * News Detail Component
@@ -62,13 +62,10 @@ const NewsDetail = () => {
         return <LoadingSpinner variant="page" size="medium" message="Memuat berita..." />;
     }
 
-    if (errorNews) {
-        return <div className="text-red-500 text-center py-8">Error: {errorNews}</div>;
-    }
-
     const news = newsData?.komnews;
-    if (!news) {
-        return <div className="text-center py-8">Berita tidak ditemukan</div>;
+    
+    if (errorNews || !news) {
+        return <NotFound/>;
     }
 
     return (

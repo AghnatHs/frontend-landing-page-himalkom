@@ -6,6 +6,7 @@ import MotionReveal from '@/components/common/MotionReveal';
 import TImages from '@/utils/images';
 import ReadMoreButton from '@/components/common/ReadMore'; // Tambahkan import ini
 import { FaGithub, FaExternalLinkAlt, FaArrowLeft, FaUserFriends, FaCode, FaCalendarAlt } from 'react-icons/fa';
+import NotFound from '@/pages/NotFound';
 
 /**
  * Project Card Component for similar projects
@@ -109,7 +110,9 @@ const GalleryDetail = () => {
           setSimilarProjects(similar);
         }
       } else {
-        setError('Proyek tidak ditemukan');
+        // Tidak perlu redirect, cukup render NotFound component
+        setError("Gallery not found");
+        setProject(null);
       }
       
       setLoading(false);
@@ -121,11 +124,11 @@ const GalleryDetail = () => {
     return <LoadingSpinner variant="page" size="medium" message="Memuat data proyek..." />;
   }
   
-  if (errorGalleries || error) {
+  if (errorGalleries) {
     return (
       <div className="mt-32 mb-32 max-w-6xl mx-auto px-4">
         <div className="bg-red-50 text-red-500 p-8 rounded-lg text-center">
-          <p className="text-lg font-semibold">Error: {errorGalleries || error}</p>
+          <p className="text-lg font-semibold">Error: {errorGalleries}</p>
           <Link to="/galeri" className="mt-4 inline-block text-primary hover:underline">
             &larr; Kembali ke galeri
           </Link>
@@ -134,17 +137,8 @@ const GalleryDetail = () => {
     );
   }
   
-  if (!project) {
-    return (
-      <div className="mt-32 mb-32 max-w-6xl mx-auto px-4">
-        <div className="bg-gray-50 p-8 rounded-lg text-center">
-          <p className="text-lg text-gray-500">Proyek tidak ditemukan</p>
-          <Link to="/galeri" className="mt-4 inline-block text-primary hover:underline">
-            &larr; Kembali ke galeri
-          </Link>
-        </div>
-      </div>
-    );
+  if (error && !project) {
+    return <NotFound />;
   }
   
   return (

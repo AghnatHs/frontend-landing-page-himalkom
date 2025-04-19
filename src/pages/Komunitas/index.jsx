@@ -10,6 +10,7 @@ import LoadingSpinner from "@/components/common/LoadingSpinner";
 import SectionHeader from '../../components/common/SectionHeader';
 import TImages from '../../utils/images';
 import MotionReveal from '@/components/common/MotionReveal';
+import NotFound from '../NotFound';
 
 // Import section
 import DokumKomun from './section/dokumKomun';
@@ -24,8 +25,7 @@ const Komunitas = () => {
   const community = data?.community
 
   if (loading) return <LoadingSpinner variant="page" size="large" message="Memuat data komunitas..." />;
-  if (error) return <p className="text-red-500 font-bold text-xl text-center">Error: {error}</p>;
-  if (!community) return null;
+  if (error || !community) return <NotFound/>;
 
   return (
     <div className="w-full">
