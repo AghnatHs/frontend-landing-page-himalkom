@@ -2,8 +2,19 @@ import React from "react";
 import MotionReveal from '@/components/common/MotionReveal';
 import ReadMoreButton from "@/components/common/ReadMore";
 
-const Card = ({ research, baseUrl }) => (
-  <div className="shadow-card rounded-2xl flex flex-col bg-white w-[177px] h-[390px] sm:w-[250px] sm:h-[470px] lg:w-[370px] lg:h-[650px] gap-2">
+const Card = ({ research, baseUrl }) => {
+
+  // Create a function to truncate text
+  const truncateText = (text, maxLength) => {
+    if (!text) return '';
+    return text.length > maxLength ? text.substring(0, maxLength) + '...' : text;
+  };
+
+  const title = research.title || '';
+  const truncatedTitle = truncateText(title, 61);
+
+  return (
+  <div className="shadow-card rounded-2xl flex flex-col bg-white w-[177px] h-[380px] sm:w-[250px] sm:h-[460px] lg:w-[370px] lg:h-[650px] gap-2">
     <div className="">
       <img 
         src={`${baseUrl}/storage/${research.image}`}
@@ -13,15 +24,19 @@ const Card = ({ research, baseUrl }) => (
     </div>
     <div className="justify-evenly p-2 lg:p-4">
       <div className="h-15 lg:h-22 text-start">
-        <h1 className="font-medium text-[13px] lg:text-xl">{research.title}</h1>
+        <h1 className="font-medium text-[13px] lg:text-xl">
+          <span className="lg:hidden">{truncatedTitle}</span>
+          <span className="hidden lg:block">{research.title}</span>
+        </h1>
         <p className="font-light text-[15px] lg:text-xl ">{research.year}</p>
       </div>
-      <div className="place-items-start pt-10 lg:py-6">
+      <div className="place-items-start pt-8 lg:py-9">
         <ReadMoreButton to={research.link}/>
       </div>
     </div>
   </div>
-);
+  );
+};
 
 const RisCard = ({ data, baseUrl }) => {
   return (
