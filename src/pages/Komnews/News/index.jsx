@@ -16,6 +16,9 @@ import NotFound from '../../NotFound';
  * 
  * Displays a single news article with its details and a list of other news articles
  */
+
+
+
 const NewsDetail = () => {
     const { slug } = useParams();
     const baseUrl = import.meta.env.VITE_API_BASE_URL;
@@ -53,8 +56,9 @@ const NewsDetail = () => {
     const sanitizeHtml = (html) => {
         if (!html) return '';
         return DOMPurify.sanitize(html, {
-            ALLOWED_TAGS: ['b', 'i', 'em', 'strong', 'p', 'br', 'ul', 'ol', 'li', 'a', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6'],
-            ALLOWED_ATTR: ['href', 'target', 'rel'],
+            ALLOWED_TAGS: ['p', 'b', 'i', 'em', 'strong', 'a', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6',
+                          'img', 'figure', 'figcaption'],
+            ALLOWED_ATTR: ['href', 'src', 'alt', 'class', 'style', 'width', 'height'],
         });
     };
 
@@ -138,11 +142,11 @@ const NewsDetail = () => {
                                 </div>
                             </MotionReveal>
 
-                            {/* Content - Better typography for mobile */}
+                            {/* Content */}
                             <MotionReveal animation="fade-up" delay={0.2}>
                                 <div className="bg-white shadow-card rounded-xl p-4 sm:p-6 mt-4 sm:mt-6">
                                     <div
-                                        className="prose prose-sm sm:prose max-w-none text-gray-800"
+                                        className="indent-10 text-md md:text-lg leading-relaxed mb-8 px-4 space-y-2 text-justify max-w-none text-gray-800 news-content"
                                         dangerouslySetInnerHTML={{ __html: sanitizeHtml(news.content) }}
                                     ></div>
                                 </div>

@@ -14,6 +14,7 @@ import logoMegaproker from "@/assets/logo-megaproker.svg";
 import bgMegaprokerKiri from "@/assets/bg-kiri.svg";
 import bgMegaprokerKanan from "@/assets/bg-kanan.svg";
 import logoIgallery from "@/assets/logo-igaleri.svg";
+import logoKomnews from "@/assets/logo-komnews.svg"
 
 const TImages = {
   BACKGROUNDS: {
@@ -29,6 +30,7 @@ const TImages = {
     LOGO_SYNTAX: logoSyntax,
     LOGO_MEGAPROKER: logoMegaproker,
     LOGO_IGALLERY: logoIgallery,
+    LOGO_KOMNEWS: logoKomnews,
   },
   DECORATIVE_ELEMENTS: {
     GARIS_HERO_ELEVOR: garisHero,

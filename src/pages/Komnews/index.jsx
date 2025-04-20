@@ -40,12 +40,12 @@ const Komnews = () => {
   return (
     <div className="w-full">
       {/* Hero Section */}
-      <section className="mt-24 md:mt-32">
+      <section className="mt-12 md:mt-32">
         <HeroSection />
       </section>
 
       {/* Content Section */}
-      <section className="mt-64 mb-64 max-w-6xl mx-auto px-4">
+      <section className="md:mt-64 mt-24 mb-64 max-w-6xl mx-auto px-4">
         {loadingNews ? (
           <LoadingSpinner variant="section" size="medium" message="Memuat berita..." />
         ) : errorNews ? (

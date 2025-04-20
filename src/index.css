@@ -94,6 +94,23 @@ body {
   transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
 }
 
+.news-content img {
+    max-width: 50%;
+    height: auto;
+    margin: 0.5rem auto;
+    border-radius: 0.5rem;
+}
+
+.news-content figure {
+    margin: 1.5rem 0;
+}
+
+.news-content figcaption {
+    text-align: center;
+    font-size: 0.875rem;
+    color: #6b7280;
+    margin-top: 0.5rem;
+}
 
 /* Global Styling */
 body {

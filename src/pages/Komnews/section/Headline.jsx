@@ -1,9 +1,8 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
 import TImages from "@/utils/images";
 import ReadMoreButton from "@/components/common/ReadMore";
 import MotionReveal from "@/components/common/MotionReveal";
-import { formatDate, timeAgo, truncateText, stripHtml } from "@/utils/formatting";
+import { timeAgo, stripHtml } from "@/utils/formatting";
 
 const HeadlineHeader = () => {
     return(
