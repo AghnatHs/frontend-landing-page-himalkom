@@ -1,14 +1,15 @@
-import React from 'react';
-import { motion } from 'framer-motion';
+import React, { useRef } from 'react';
+import { motion, useReducedMotion, useInView } from 'framer-motion';
 
 /**
- * MotionReveal - Simple component for revealing elements with smooth animations
+ * MotionReveal - Component untuk animasi reveal saat scroll
  * 
  * @param {Object} props
  * @param {ReactNode} props.children - Elements to animate
  * @param {string} props.animation - Animation preset ('fade-up', 'fade-down', 'fade-left', 'fade-right', 'zoom')
  * @param {number} props.delay - Delay before animation starts (in seconds)
  * @param {number} props.duration - Animation duration (in seconds)
+ * @param {boolean} props.forceVisible - Force the element to be immediately visible
  * @param {string} props.className - Additional CSS classes
  */
 const MotionReveal = ({ 
@@ -16,10 +17,21 @@ const MotionReveal = ({
   animation = 'fade-up',
   delay = 0, 
   duration = 0.5,
+  forceVisible = false,
+  once = false, 
   className = '',
   ...props 
 }) => {
-  // Pre-defined animation variants
+
+  const prefersReducedMotion = useReducedMotion();
+  
+  const ref = useRef(null);
+
+  const isInView = useInView(ref, { 
+    margin: "-50px 0px",
+    once, 
+  });
+  
   const variants = {
     'fade-up': {
       hidden: { opacity: 0, y: 20 },
@@ -43,15 +55,17 @@ const MotionReveal = ({
     }
   };
 
-  const selectedVariant = variants[animation] || variants['fade-up'];
+  const selectedVariant = prefersReducedMotion 
+    ? { hidden: { opacity: 0 }, visible: { opacity: 1 } } 
+    : (variants[animation] || variants['fade-up']);
   
   return (
     <motion.div
+      ref={ref}
       initial="hidden"
-      whileInView="visible"
-      viewport={{ once: false, margin: "-100px 0px" }}
+      animate={forceVisible ? "visible" : isInView ? "visible" : "hidden"}
       transition={{ 
-        duration, 
+        duration: prefersReducedMotion ? 0.2 : duration, 
         delay,
         ease: "easeOut" 
       }}

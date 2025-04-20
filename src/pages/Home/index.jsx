@@ -110,7 +110,7 @@ const Home = () => {
       </section>
 
       {/* Ilkomunity Section */}
-      <section className="px-4 flex flex-col items-center text-center my-[230px]">
+      <section className="px-4 flex flex-col items-center text-center my-[230px] md:mt-80">
         <MotionReveal animation="fade-up">
           <SectionHeader
             title="ILKOMUNITAS"
@@ -149,7 +149,7 @@ const Home = () => {
       </section>
 
       {/* Komnews Section */}
-      <section className="my-[200px]">
+      <section className="my-50">
         <MotionReveal animation="fade-up">
           <SectionHeader
             title="KOMNEWS"

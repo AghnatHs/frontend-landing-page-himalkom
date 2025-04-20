@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { Link, useParams, useLocation } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import MotionReveal from '@/components/common/MotionReveal';
 import { FiSearch, FiCode, FiWifi } from 'react-icons/fi';
 
@@ -26,18 +26,6 @@ const NotFound = () => {
     contentType = "Departemen";
     detailText = "Departemen tidak ditemukan";
   }
-
-  useEffect(() => {
-    // Scroll ke tengah untuk layout yang bagus
-    const pageHeight = document.documentElement.scrollHeight;
-    const viewportHeight = window.innerHeight;
-    const scrollToY = Math.max(0, (pageHeight - viewportHeight) / 2 - 50);
-    
-    window.scrollTo({
-      top: scrollToY,
-      behavior: 'smooth'
-    });
-  }, []);
 
   return (
     <MotionReveal animation="fade-up">
