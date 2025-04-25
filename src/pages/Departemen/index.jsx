@@ -13,6 +13,9 @@ import StaffSection from './sections/Staff';
 import HeroSection from './sections/Hero';
 import ProkerSection from './sections/Proker';
 
+// NotFound
+import NotFound from '../NotFound';
+
 /**
  * Departemen page component
  * Displays detailed information about a specific department
@@ -30,8 +33,7 @@ const Departemen = () => {
 
   // Handle loading and error states
   if (loading) return <LoadingSpinner variant="page" size="large" message="Memuat data departemen..." />;
-  if (error) return <p className="text-red-500 font-bold text-xl text-center font-athiti">Error: {error}</p>;
-  if (!division) return null;
+  if (error || !division) return <NotFound/>;
 
   return (
     <div className='w-full'>

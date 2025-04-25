@@ -65,7 +65,7 @@ const Komnews = ({
         >
           {limitedNews.map((komnews, index) => (
             <SwiperSlide key={komnews.id || `news-${index}`}>
-              <div className="px-4 md:px-0">
+              <div className="px-8">
                 <div className="rounded-[15px] bg-white shadow-card h-[550px] md:h-[400px] flex flex-col md:flex-row p-6 mx-auto md:mx-0 my-3 max-w-[90%] md:max-w-full">
 
                   {/* Mobile image */}

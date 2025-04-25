@@ -62,30 +62,11 @@ const NewsListSection = ({
     baseUrl,
     compactView = false
 }) => {
-    // Konstanta untuk batasan panjang judul
-    const SHORT_TITLE_LENGTH = 40;  // Judul dianggap pendek jika <= 40 karakter
-    const LONG_TITLE_LENGTH = 65;   // Judul dianggap sangat panjang jika > 65 karakter
-
     /**
      * Menentukan apakah harus menampilkan deskripsi berdasarkan panjang judul
      * @param {string} title - Judul berita
      * @returns {boolean} - True jika deskripsi harus ditampilkan
      */
-    const shouldShowDescription = (title) => {
-        return title.length <= SHORT_TITLE_LENGTH;
-    };
-
-    /**
-     * Truncate judul jika terlalu panjang
-     * @param {string} title - Judul berita
-     * @returns {string} - Judul yang sudah di-truncate jika perlu
-     */
-    const formatTitle = (title) => {
-        if (title.length > LONG_TITLE_LENGTH) {
-            return title.substring(0, LONG_TITLE_LENGTH) + '...';
-        }
-        return title;
-    };
 
     return (
         <div>
@@ -116,18 +97,15 @@ const NewsListSection = ({
                                         {/* Konten */}
                                         <div className="flex-1">
                                             <h4 className={`font-bold ${compactView ? "text-base" : "text-sm"} line-clamp-2`}>
-                                                {formatTitle(newsItem.title)}
+                                                {stripHtml(newsItem.title).substring(0, 80)}...
                                             </h4>
 
                                             <p className="text-xs text-gray-500 mt-1">
                                                 {timeAgo(newsItem.created_at)}
                                             </p>
-
-                                            {shouldShowDescription(newsItem.title) && (
                                                 <p className="text-xs text-gray-600 mt-1 line-clamp-2">
                                                     {stripHtml(newsItem.content).substring(0, 80)}...
                                                 </p>
-                                            )}
                                         </div>
 
                                         {/* Gambar (hanya ditampilkan jika bukan compact view) */}
@@ -148,7 +126,7 @@ const NewsListSection = ({
                                 </div>
 
                                 {/* Separator (except for last item) */}
-                                {index < news.slice(0, 5).length - 1 && (
+                                {index < news.length - 1 && (
                                     <div className="flex justify-center py-2">
                                         <img
                                             src={TImages.DECORATIVE_ELEMENTS.GARIS_KOMNEWS}

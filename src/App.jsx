@@ -14,6 +14,7 @@ import Syntax from './pages/Syntax';
 import Megaproker from './pages/Megaproker';
 import Galeri from './pages/Galeri'; 
 import GalleryDetail from './pages/Galeri/Detail';
+import NotFound from './pages/NotFound'; 
 import ScrollToTop from './components/common/ScrollToTop';
 
 const App = () => {
@@ -34,7 +35,8 @@ const App = () => {
           <Route path="/syntax" element={<Syntax />} />
           <Route path="/megaproker" element={<Megaproker />} />
           <Route path="/galeri" element={<Galeri />} />
-          <Route path="/galeri/:id" element={<GalleryDetail />} /> 
+          <Route path="/galeri/:id" element={<GalleryDetail />} />
+          <Route path="*" element={<NotFound />} />
         </Routes>
       </MainLayout>
       <Footer />

@@ -36,8 +36,8 @@ const arrangeStaffForGrid = (ketua, regularStaff) => {
  */
 const StaffCard = ({ staff, baseUrl }) => {
   return (
-    <div className="shadow-card bg-white rounded-2xl mx-2 md:mx-8 py-4 flex flex-col items-center text-center w-[150px] sm:w-[160px] md:w-[240px]">
-      <div className="w-[80px] h-[80px] sm:w-[100px] sm:h-[100px] md:w-[150px] md:h-[150px] rounded-full overflow-hidden border-4 border-primary">
+    <div className="shadow-card bg-white rounded-2xl mx-2 md:mx-8 p-4 flex flex-col items-center text-center w-[150px] sm:w-[160px] md:w-[240px] min-h-[220px] sm:min-h-[250px] md:min-h-[300px]">
+      <div className="w-[80px] h-[80px] sm:w-[100px] sm:h-[100px] md:w-[150px] md:h-[150px] rounded-full overflow-hidden border-4 border-primary flex-shrink-0">
         <img
           src={staff.image ? `${baseUrl}/storage/${staff.image}` : '/images/avatar-placeholder.png'}
           alt={staff.name || 'Staff Member'}
@@ -48,8 +48,16 @@ const StaffCard = ({ staff, baseUrl }) => {
           }}
         />
       </div>
-      <h3 className="mt-4 font-semibold text-base md:text-lg lg:text-2xl">{staff.jabatan || 'Staff'}</h3>
-      <p className="text-primary-darker text-xs md:text-sm lg:text-base">{staff.name || 'Unnamed'}</p>
+      
+      {/* Container untuk teks dengan height yang konsisten */}
+      <div className="mt-4 w-full flex-1 flex flex-col justify-start">
+        <h3 className="font-semibold text-base md:text-lg lg:text-xl">
+          {staff.jabatan || 'Staff'}
+        </h3>
+        <p className="text-primary-darker text-xs md:text-sm lg:text-base mt-1">
+          {staff.name || 'Unnamed'}
+        </p>
+      </div>
     </div>
   );
 };
@@ -69,8 +77,8 @@ const StaffSection = ({ staff, baseUrl }) => {
   }
 
   // Separate department head from regular staff
-  const ketua = staff.find(member => member.isKetua === 1);
-  const regularStaff = staff.filter(member => member.isKetua !== 1);
+  const ketua = staff.find(member => member.isKetua == 1);
+  const regularStaff = staff.filter(member => member.isKetua != 1);
   
   // Prepare data for desktop grid
   const gridStaff = arrangeStaffForGrid(ketua, regularStaff);
