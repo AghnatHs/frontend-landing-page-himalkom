@@ -51,13 +51,13 @@ const NewsDetail = () => {
         if (!allNewsData?.komnews) return [];
         return allNewsData.komnews.filter(item => item.slug !== slug);
     }, [allNewsData, slug]);
-    
+
     // HTML sanitization to prevent XSS attacks
     const sanitizeHtml = (html) => {
         if (!html) return '';
         return DOMPurify.sanitize(html, {
             ALLOWED_TAGS: ['p', 'b', 'i', 'em', 'strong', 'a', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6',
-                          'img', 'figure', 'figcaption'],
+                'img', 'figure', 'figcaption'],
             ALLOWED_ATTR: ['href', 'src', 'alt', 'class', 'style', 'width', 'height'],
         });
     };
@@ -67,9 +67,9 @@ const NewsDetail = () => {
     }
 
     const news = newsData?.komnews;
-    
+
     if (errorNews || !news) {
-        return <NotFound/>;
+        return <NotFound />;
     }
 
     return (
@@ -79,15 +79,15 @@ const NewsDetail = () => {
                 <div className="max-w-6xl mx-auto px-4 sm:px-6">
                     {/* Back button - Mobile friendly */}
                     <MotionReveal animation="fade-up">
-                        <Link 
-                            to="/komnews" 
+                        <Link
+                            to="/komnews"
                             className="inline-flex items-center gap-2 text-primary-darker hover:text-primary-dark transition mb-6 text-sm sm:text-base"
                         >
                             <FaArrowLeft size={14} />
                             <span>Kembali ke berita</span>
                         </Link>
                     </MotionReveal>
-                    
+
                     <div className="flex flex-col lg:flex-row gap-8 lg:gap-16">
                         {/* Left Column - News Detail */}
                         <div className="lg:w-2/3">
@@ -126,16 +126,20 @@ const NewsDetail = () => {
                                                 e.target.src = '/images/placeholder-news.jpg';
                                             }}
                                         />
-                                        
+
                                         {/* Gradient Overlay - Better gradient */}
                                         <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent"></div>
-                                        
+
                                         {/* Categories - Positioned at bottom right of image */}
                                         {news.categories && news.categories.length > 0 && (
                                             <div className="absolute bottom-3 right-3 z-10">
-                                                <span className="inline-block bg-primary-light text-primary-dark text-xs px-3 py-1.5 rounded-full font-medium shadow-sm">
-                                                    {news.categories[0].name}
-                                                </span>
+                                                {news.categories.map(category => (
+                                                    <span
+                                                        key={`tag-${category.id}`} 
+                                                        className="inline-block bg-primary-light mr-2 text-primary-dark text-xs px-3 py-1.5 rounded-full font-medium shadow-sm">
+                                                        {category.name}
+                                                    </span>
+                                                ))}
                                             </div>
                                         )}
                                     </div>
@@ -160,7 +164,7 @@ const NewsDetail = () => {
                                     <h3 className="text-lg sm:text-xl font-semibold p-4 sm:p-5 border-b border-gray-100">
                                         Berita Lainnya
                                     </h3>
-                                    
+
                                     {loadingAllNews ? (
                                         <div className="text-center py-6">
                                             <LoadingSpinner variant="inline" size="small" message="Memuat berita..." />
@@ -175,7 +179,7 @@ const NewsDetail = () => {
                                                 <div className="space-y-4">
                                                     {filteredNews.slice(0, 5).map((item) => (
                                                         <div key={item.id} className="pb-4 border-b border-gray-100 last:border-0 last:pb-0">
-                                                            <Link 
+                                                            <Link
                                                                 to={`/komnews/${item.slug}`}
                                                                 className="group block"
                                                             >
@@ -194,10 +198,10 @@ const NewsDetail = () => {
                                                     Tidak ada berita lainnya
                                                 </p>
                                             )}
-                                            
+
                                             <div className="mt-6 text-center">
-                                                <Link 
-                                                    to="/komnews" 
+                                                <Link
+                                                    to="/komnews"
                                                     className="inline-block px-4 py-2 bg-primary-light text-primary-dark hover:bg-primary-dark hover:text-white transition-colors rounded-full text-sm font-medium"
                                                 >
                                                     Lihat semua berita
