@@ -39,20 +39,17 @@ const NewsDetail = () => {
         error: errorNews
     } = useFetchData(`komnews/${slug}`, baseUrl);
 
-    // Fetch other news articles for the sidebar
     const {
         data: allNewsData,
         loading: loadingAllNews,
         error: errorAllNews
     } = useFetchData('komnews', baseUrl);
 
-    // Filter news list untuk menghilangkan berita yang sedang dibuka
     const filteredNews = React.useMemo(() => {
         if (!allNewsData?.komnews) return [];
         return allNewsData.komnews.filter(item => item.slug !== slug);
     }, [allNewsData, slug]);
 
-    // HTML sanitization to prevent XSS attacks
     const sanitizeHtml = (html) => {
         if (!html) return '';
         return DOMPurify.sanitize(html, {
@@ -77,7 +74,7 @@ const NewsDetail = () => {
             {/* Content Section */}
             <section className="mt-24 sm:mt-28 md:mt-32 mb-16 sm:mb-32 md:mb-64">
                 <div className="max-w-6xl mx-auto px-4 sm:px-6">
-                    {/* Back button - Mobile friendly */}
+                    {/* Back button */}
                     <MotionReveal animation="fade-up">
                         <Link
                             to="/komnews"
@@ -89,13 +86,10 @@ const NewsDetail = () => {
                     </MotionReveal>
 
                     <div className="flex flex-col lg:flex-row gap-8 lg:gap-16">
-                        {/* Left Column - News Detail */}
                         <div className="lg:w-2/3">
                             <MotionReveal animation="fade-up">
                                 <div className="bg-white shadow-card rounded-xl md:rounded-2xl overflow-hidden">
-                                    {/* News Header */}
                                     <div className="p-4 sm:p-5 md:p-6">
-                                        {/* Title - Better sizing for mobile */}
                                         <h1 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold mb-2 leading-tight">
                                             {news.title}
                                         </h1>
@@ -108,14 +102,10 @@ const NewsDetail = () => {
                                                 className="w-full"
                                             />
                                         </div>
-
-                                        {/* Date - Better styling */}
                                         <p className="text-xs sm:text-sm text-gray-500">
                                             {formatDate(news.created_at)}
                                         </p>
                                     </div>
-
-                                    {/* News Image - Better height for mobile */}
                                     <div className="relative w-full h-[220px] sm:h-[280px] md:h-[400px] overflow-hidden">
                                         <img
                                             src={`${baseUrl}/storage/${news.image}`}
@@ -126,11 +116,7 @@ const NewsDetail = () => {
                                                 e.target.src = '/images/placeholder-news.jpg';
                                             }}
                                         />
-
-                                        {/* Gradient Overlay - Better gradient */}
                                         <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent"></div>
-
-                                        {/* Categories - Positioned at bottom right of image */}
                                         {news.categories && news.categories.length > 0 && (
                                             <div className="absolute bottom-3 right-3 z-10">
                                                 {news.categories.map(category => (
@@ -202,7 +188,7 @@ const NewsDetail = () => {
                                             <div className="mt-6 text-center">
                                                 <Link
                                                     to="/komnews"
-                                                    className="inline-block px-4 py-2 bg-primary-light text-primary-dark hover:bg-primary-dark hover:text-white transition-colors rounded-full text-sm font-medium"
+                                                    className="inline-block px-4 py-2 bg-primary-light text-primary-dark hover:bg-primary transition-colors rounded-full text-sm font-medium"
                                                 >
                                                     Lihat semua berita
                                                 </Link>
