@@ -1,39 +1,39 @@
-import React, { useState, useMemo } from 'react';
-import { useFetchData } from '@/hooks/useAPI';
-import LoadingSpinner from '@/components/common/LoadingSpinner';
-import MotionReveal from '@/components/common/MotionReveal';
+import React, { useState, useMemo } from "react";
+import { useFetchData } from "@/hooks/useAPI";
+import LoadingSpinner from "@/components/common/LoadingSpinner";
+import MotionReveal from "@/components/common/MotionReveal";
 
 // Sections
-import HeroSection from './section/Hero';
-import HeadlineSection from './section/Headline';
-import NewsListSection from './section/NewsList';
+import HeroSection from "./section/Hero";
+import HeadlineSection from "./section/Headline";
+import NewsListSection from "./section/NewsList";
 
 /**
  * KomNews Page Component
- * 
+ *
  * Displays news articles from HIMALKOM with filtering by categories
  */
 const Komnews = () => {
   const baseUrl = import.meta.env.VITE_API_BASE_URL;
-  const [activeCategory, setActiveCategory] = useState('all');
-  
+  const [activeCategory, setActiveCategory] = useState("all");
+
   // Fetch news data
-  const { 
-    data: newsData, 
-    loading: loadingNews, 
-    error: errorNews 
-  } = useFetchData('komnews', baseUrl);
+  const {
+    data: newsData,
+    loading: loadingNews,
+    error: errorNews,
+  } = useFetchData("komnews", baseUrl);
 
   // Filter news by category
   const filteredNews = useMemo(() => {
     if (!newsData?.komnews) return [];
-    
-    if (activeCategory === 'all') {
+
+    if (activeCategory === "all") {
       return newsData.komnews;
     }
-    
-    return newsData.komnews.filter(news => 
-      news.categories.some(category => category.slug === activeCategory)
+
+    return newsData.komnews.filter((news) =>
+      news.categories.some((category) => category.slug === activeCategory)
     );
   }, [newsData, activeCategory]);
 
@@ -44,10 +44,14 @@ const Komnews = () => {
         <HeroSection />
       </section>
 
-      {/* Content Section */}
-      <section className="md:mt-64 mt-24 mb-64 max-w-6xl mx-auto px-4">
+      {/* Headline Section */}
+      <section className="md:mt-64 mt-24 mb-16 max-w-6xl mx-auto px-4">
         {loadingNews ? (
-          <LoadingSpinner variant="section" size="medium" message="Memuat berita..." />
+          <LoadingSpinner
+            variant="section"
+            size="medium"
+            message="Memuat berita..."
+          />
         ) : errorNews ? (
           <div className="text-red-500 text-center py-8 bg-red-50 rounded-lg">
             <p>Gagal memuat berita</p>
@@ -55,29 +59,29 @@ const Komnews = () => {
           </div>
         ) : newsData ? (
           <MotionReveal animation="fade-up">
-            <div className="flex flex-col lg:flex-row gap-8">
+            <div className="flex flex-col gap-8">
               {/* News Headlines */}
-              <div className="lg:w-2/3">
-                <HeadlineSection 
-                  headlines={newsData?.todayHeadlines || []}
-                  baseUrl={baseUrl}
-                  loading={loadingNews}
-                />
-              </div>
-              
-              {/* News List */}
-              <div className="lg:w-1/3 mt-3">
-                <NewsListSection 
-                  news={filteredNews}
-                  categories={newsData?.categories || []}
-                  activeCategory={activeCategory}
-                  setActiveCategory={setActiveCategory}
-                  baseUrl={baseUrl}
-                />
-              </div>
+              <HeadlineSection
+                headlines={newsData?.todayHeadlines || []}
+                baseUrl={baseUrl}
+                loading={loadingNews}
+              />
             </div>
           </MotionReveal>
         ) : null}
+      </section>
+
+      {/* News List Section - now below headline, as grid */}
+      <section className="mb-64 max-w-6xl mx-auto px-4">
+        {!loadingNews && !errorNews && newsData && (
+          <NewsListSection
+            news={filteredNews}
+            categories={newsData?.categories || []}
+            activeCategory={activeCategory}
+            setActiveCategory={setActiveCategory}
+            baseUrl={baseUrl}
+          />
+        )}
       </section>
     </div>
   );
