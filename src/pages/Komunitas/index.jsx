@@ -14,6 +14,7 @@ import NotFound from '../NotFound';
 
 // Import section
 import DokumKomun from './section/dokumKomun';
+import PortoKomun from './section/PortoKomun'
 
 const Komunitas = () => {
   const baseUrl = import.meta.env.VITE_API_BASE_URL;
@@ -100,6 +101,13 @@ const Komunitas = () => {
             ...img,      
             url: `${baseUrl}/storage/${img.url}`
             }))} />
+        </section>
+      </MotionReveal>
+      
+      <MotionReveal animation="fade-up" delay={0.2}>
+        <section className="px-4 flex flex-col mt-[200px] items-center">
+          <SectionHeader title="PORTOFOLIO KOMUNITAS" altText="Garis Dokumentasi" />
+          <PortoKomun slug={slug} baseUrl={baseUrl}/>
         </section>
       </MotionReveal>
 
