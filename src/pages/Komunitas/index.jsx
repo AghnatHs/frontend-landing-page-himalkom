@@ -13,7 +13,7 @@ import MotionReveal from '@/components/common/MotionReveal';
 import NotFound from '../NotFound';
 
 // Import section
-import DokumKomun from './section/dokumKomun';
+import DokumKomun from './section/DokumKomun';
 import PortoKomun from './section/PortoKomun'
 
 const Komunitas = () => {
