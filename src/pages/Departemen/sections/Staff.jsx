@@ -127,7 +127,7 @@ const StaffSection = ({ staff, baseUrl }) => {
           {/* Regular Staff (2 columns grid) */}
           <div className="grid grid-cols-2 gap-y-8 justify-items-center">
             {regularStaff.map((staffMember, index) => (
-              <div key={staffMember.id || `staff-mobile-${index}`}>
+              <div key={staffMember.id}>
                 <StaffCard staff={staffMember} baseUrl={baseUrl} />
               </div>
             ))}

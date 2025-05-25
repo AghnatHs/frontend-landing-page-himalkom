@@ -7,7 +7,7 @@ import axios from 'axios';
  * @param {string} baseUrl - Base URL API
  * @returns {Object} - Data, loading state, dan error state
  */
-export const useFetchData = (endpoint, baseUrl) => {
+export const useFetchData = (endpoint, baseUrl) => {  
   const [state, setState] = useState({
     data: null,
     loading: false,
