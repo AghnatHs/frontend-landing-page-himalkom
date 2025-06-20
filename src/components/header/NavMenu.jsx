@@ -1,6 +1,6 @@
-import { useState, useRef, useEffect } from 'react';
-import { NavLink } from 'react-router-dom';
-import { useFetchData } from '../../hooks/useAPI';
+import { useState, useRef, useEffect } from "react";
+import { NavLink } from "react-router-dom";
+import { useFetchData } from "../../hooks/useAPI";
 
 /**
  * Menu navigasi untuk desktop view
@@ -10,15 +10,15 @@ const NavMenu = () => {
   const [isProfileOpen, setIsProfileOpen] = useState(false);
   const [isDepartmentOpen, setIsDepartmentOpen] = useState(false);
   const [isCommunityOpen, setIsCommunityOpen] = useState(false);
-  
+
   // Fetch data dari API
   const baseUrl = import.meta.env.VITE_API_BASE_URL;
-  const { data: divisionsData } = useFetchData('divisions', baseUrl);
-  const { data: communitiesData } = useFetchData('communities', baseUrl);
-  
+  const { data: divisionsData } = useFetchData("divisions", baseUrl);
+  const { data: communitiesData } = useFetchData("communities", baseUrl);
+
   // Ekstrak data yang diperlukan
   const divisions = divisionsData?.divisions || [];
-  
+
   // Fallback untuk komunitas jika API gagal
   const defaultCommunities = [
     { name: "Agriux", slug: "agriux" },
@@ -29,87 +29,92 @@ const NavMenu = () => {
     { name: "Daming", slug: "daming" },
     { name: "Gary", slug: "gary" },
     { name: "MAD", slug: "mad" },
-
   ];
   const communities = communitiesData?.communities || defaultCommunities;
-  
+
   // Refs untuk deteksi klik di luar dropdown
   const profileRef = useRef(null);
   const departmentRef = useRef(null);
   const communityRef = useRef(null);
-  
+
   // Tutup dropdown
   const closeDropdowns = () => {
     setIsProfileOpen(false);
     setIsDepartmentOpen(false);
     setIsCommunityOpen(false);
   };
-  
+
   // Handle klik di luar dropdown
   useEffect(() => {
     const handleClickOutside = (event) => {
       if (profileRef.current && !profileRef.current.contains(event.target)) {
         setIsProfileOpen(false);
       }
-      if (departmentRef.current && !departmentRef.current.contains(event.target)) {
+      if (
+        departmentRef.current &&
+        !departmentRef.current.contains(event.target)
+      ) {
         setIsDepartmentOpen(false);
       }
-      if (communityRef.current && !communityRef.current.contains(event.target)) {
+      if (
+        communityRef.current &&
+        !communityRef.current.contains(event.target)
+      ) {
         setIsCommunityOpen(false);
       }
     };
-    
+
     if (isProfileOpen || isDepartmentOpen || isCommunityOpen) {
-      document.addEventListener('mousedown', handleClickOutside);
+      document.addEventListener("mousedown", handleClickOutside);
     } else {
-      document.removeEventListener('mousedown', handleClickOutside);
+      document.removeEventListener("mousedown", handleClickOutside);
     }
-    
+
     return () => {
-      document.removeEventListener('mousedown', handleClickOutside);
+      document.removeEventListener("mousedown", handleClickOutside);
     };
   }, [isProfileOpen, isDepartmentOpen, isCommunityOpen]);
 
   return (
     <nav className="flex items-center gap-14 font-athiti text-lg">
       {/* Item Menu: Home */}
-      <NavLink 
+      <NavLink
         to="/home"
-        className={({isActive}) => `
+        className={({ isActive }) => `
           text-primary-darker transition-all duration-200
           hover:text-primary-dark 
-          ${isActive ? 'font-bold' : 'font-medium'}
+          ${isActive ? "font-bold" : "font-medium"}
         `}
         onClick={closeDropdowns}
       >
         Home
       </NavLink>
-      
+
       {/* Item Menu: Profil (Dropdown) */}
       <div className="relative" ref={profileRef}>
-        <button 
+        <button
           className="text-primary-darker font-medium transition-all hover:text-primary-dark"
           onClick={() => setIsProfileOpen(!isProfileOpen)}
         >
           Profil
         </button>
-        
+
         {isProfileOpen && (
           <div className="absolute mt-2 w-64 bg-white border border-primary rounded-md shadow-card z-40 py-2">
-            <NavLink 
-              to="/himalkom" 
-              className={({isActive}) => `
+            <NavLink
+              to="/himalkom"
+              className={({ isActive }) => `
                 block px-4 py-2 text-primary-darker hover:bg-primary-light transition-all
-                ${isActive ? 'font-bold' : 'font-normal'}
+                ${isActive ? "font-bold" : "font-normal"}
               `}
               onClick={closeDropdowns}
             >
               Himalkom
             </NavLink>
-            
+
             {/* Departemen Button */}
             <div ref={departmentRef}>
-              <button 
+              <button
                 className="w-full text-left px-4 py-2 text-primary-darker hover:bg-primary-light transition-all flex items-center justify-between"
                 onClick={(e) => {
                   e.stopPropagation();
@@ -117,16 +122,23 @@ const NavMenu = () => {
                 }}
               >
                 <span>Departemen</span>
-                <svg 
-                  className={`w-4 h-4 transition-transform duration-300 ${isDepartmentOpen ? 'rotate-180' : ''}`} 
-                  fill="none" 
-                  stroke="currentColor" 
-                  viewBox="0 0 24 24" 
+                <svg
+                  className={`w-4 h-4 transition-transform duration-300 ${
+                    isDepartmentOpen ? "rotate-180" : ""
+                  }`}
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
                 >
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7"></path>
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth="2"
+                    d="M19 9l-7 7-7-7"
+                  ></path>
                 </svg>
               </button>
-              
+
               {/* Departemen Dropdown */}
               {isDepartmentOpen && (
                 <div className="absolute left-full top-12 w-64 bg-white border border-primary rounded-md shadow-card z-50 py-2">
@@ -135,9 +147,9 @@ const NavMenu = () => {
                       <NavLink
                         key={division.id || division.slug}
                         to={`/division/${division.slug}`}
-                        className={({isActive}) => `
+                        className={({ isActive }) => `
                           block px-4 py-2 text-primary-darker hover:bg-primary-light transition-all
-                          ${isActive ? 'font-bold' : 'font-normal'}
+                          ${isActive ? "font-bold" : "font-normal"}
                         `}
                         onClick={closeDropdowns}
                       >
@@ -153,16 +165,16 @@ const NavMenu = () => {
           </div>
         )}
       </div>
-      
+
       {/* Item Menu: Komunitas (Dropdown) */}
       <div className="relative" ref={communityRef}>
-        <button 
+        <button
           className="text-primary-darker font-medium transition-all hover:text-primary-dark"
           onClick={() => setIsCommunityOpen(!isCommunityOpen)}
         >
           Komunitas
         </button>
-        
+
         {isCommunityOpen && (
           <div className="absolute mt-2 w-64 bg-white border border-primary rounded-md shadow-card z-40 py-2">
             {communities.length > 0 ? (
@@ -170,9 +182,9 @@ const NavMenu = () => {
                 <NavLink
                   key={community.id || community.slug}
                   to={`/community/${community.slug}`}
-                  className={({isActive}) => `
+                  className={({ isActive }) => `
                     block px-4 py-2 text-primary-darker hover:bg-primary-light transition-all
-                    ${isActive ? 'font-bold' : 'font-normal'}
+                    ${isActive ? "font-bold" : "font-normal"}
                   `}
                   onClick={closeDropdowns}
                 >
@@ -185,53 +197,66 @@ const NavMenu = () => {
           </div>
         )}
       </div>
-      
+
       {/* Item Menu: Komnews */}
-      <NavLink 
+      <NavLink
         to="/komnews"
-        className={({isActive}) => `
+        className={({ isActive }) => `
           text-primary-darker transition-all duration-200
           hover:text-primary-dark 
-          ${isActive ? 'font-bold' : 'font-medium'}
+          ${isActive ? "font-bold" : "font-medium"}
         `}
         onClick={closeDropdowns}
       >
         Komnews
       </NavLink>
-      
+
       {/* Item Menu: Galeri */}
-      <NavLink 
+      <NavLink
         to="/galeri"
-        className={({isActive}) => `
+        className={({ isActive }) => `
           text-primary-darker transition-all duration-200
           hover:text-primary-dark 
-          ${isActive ? 'font-bold' : 'font-medium'}
+          ${isActive ? "font-bold" : "font-medium"}
         `}
         onClick={closeDropdowns}
       >
         Galeri
       </NavLink>
-      
-      {/* Item Menu: Megaproker */}
-      <NavLink 
-        to="/megaproker"
-        className={({isActive}) => `
+
+      {/* Item Menu: Jawara */}
+      {/* <NavLink
+        to="/jawara"
+        className={({ isActive }) => `
           text-primary-darker transition-all duration-200
           hover:text-primary-dark 
-          ${isActive ? 'font-bold' : 'font-medium'}
+          ${isActive ? "font-bold" : "font-medium"}
+        `}
+        onClick={closeDropdowns}
+      >
+        Jawara
+      </NavLink> */}
+
+      {/* Item Menu: Megaproker */}
+      <NavLink
+        to="/megaproker"
+        className={({ isActive }) => `
+          text-primary-darker transition-all duration-200
+          hover:text-primary-dark 
+          ${isActive ? "font-bold" : "font-medium"}
         `}
         onClick={closeDropdowns}
       >
         Megaproker
       </NavLink>
-      
+
       {/* Item Menu: Riset */}
-      <NavLink 
+      <NavLink
         to="/riset"
-        className={({isActive}) => `
+        className={({ isActive }) => `
           text-primary-darker transition-all duration-200
           hover:text-primary-dark 
-          ${isActive ? 'font-bold' : 'font-medium'}
+          ${isActive ? "font-bold" : "font-medium"}
         `}
         onClick={closeDropdowns}
       >
@@ -241,14 +266,14 @@ const NavMenu = () => {
       {/* Item Menu: Syntax */}
       <NavLink
         to="/syntax"
-        className={({isActive}) => `
+        className={({ isActive }) => `
           text-primary-darker transition-all duration-200
           hover:text-primary-dark 
-          ${isActive ? 'font-bold' : 'font-medium'}
+          ${isActive ? "font-bold" : "font-medium"}
         `}
         onClick={closeDropdowns}
-        >
-          Syntax
+      >
+        Syntax
       </NavLink>
     </nav>
   );
