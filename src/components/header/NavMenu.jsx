@@ -225,7 +225,7 @@ const NavMenu = () => {
       </NavLink>
 
       {/* Item Menu: Jawara */}
-      {/* <NavLink
+      <NavLink
         to="/jawara"
         className={({ isActive }) => `
           text-primary-darker transition-all duration-200
@@ -235,7 +235,7 @@ const NavMenu = () => {
         onClick={closeDropdowns}
       >
         Jawara
-      </NavLink> */}
+      </NavLink>
 
       {/* Item Menu: Megaproker */}
       <NavLink
