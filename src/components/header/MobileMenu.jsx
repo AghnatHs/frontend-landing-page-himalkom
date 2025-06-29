@@ -172,6 +172,14 @@ const MobileMenu = ({ onCloseMenu }) => {
           </NavLink>
           
           <NavLink 
+            to="/jawara" 
+            className={({isActive}) => menuItemClass(isActive)}
+            onClick={onCloseMenu}
+          >
+            Jawara
+          </NavLink>
+          
+          <NavLink 
             to="/megaproker" 
             className={({isActive}) => menuItemClass(isActive)}
             onClick={onCloseMenu}

@@ -54,8 +54,8 @@ const NewsDetail = () => {
         if (!html) return '';
         return DOMPurify.sanitize(html, {
             ALLOWED_TAGS: ['p', 'b', 'i', 'em', 'strong', 'a', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6',
-                'img', 'figure', 'figcaption'],
-            ALLOWED_ATTR: ['href', 'src', 'alt', 'class', 'style', 'width', 'height'],
+                'img', 'figure', 'figcaption', 'span'],
+            ALLOWED_ATTR: ['href', 'src', 'alt', 'class', 'style', 'width', 'height', 'title'],
         });
     };
 
