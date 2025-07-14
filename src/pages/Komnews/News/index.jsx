@@ -73,7 +73,7 @@ const NewsDetail = () => {
         <div className="w-full">
             {/* Content Section */}
             <section className="mt-24 sm:mt-28 md:mt-32 mb-16 sm:mb-32 md:mb-64">
-                <div className="max-w-6xl mx-auto px-4 sm:px-6">
+                <div className="max-w-5xl mx-auto px-2 sm:px-6 lg:px-0">
                     {/* Back button */}
                     <MotionReveal animation="fade-up">
                         <Link
@@ -85,8 +85,8 @@ const NewsDetail = () => {
                         </Link>
                     </MotionReveal>
 
-                    <div className="flex flex-col lg:flex-row gap-8 lg:gap-16">
-                        <div className="lg:w-2/3">
+                    <div className="flex flex-col gap-8 lg:gap-10">
+                        <div className="">
                             <MotionReveal animation="fade-up">
                                 <div className="bg-white shadow-card rounded-xl md:rounded-2xl overflow-hidden">
                                     <div className="p-4 sm:p-5 md:p-6">
@@ -144,10 +144,10 @@ const NewsDetail = () => {
                         </div>
 
                         {/* Right Column - News List Section */}
-                        <div className="lg:w-1/3 mt-8 lg:mt-0">
+                        <div className="mt-8 lg:mt-0">
                             <MotionReveal animation="fade-up" delay={0.3}>
                                 <div className="bg-white shadow-card rounded-xl overflow-hidden">
-                                    <h3 className="text-lg sm:text-xl font-semibold p-4 sm:p-5 border-b border-gray-100">
+                                    <h3 className="text-lg sm:text-xl lg:text-2xl font-semibold p-4 sm:p-5 border-b border-gray-100">
                                         Berita Lainnya
                                     </h3>
 
@@ -169,12 +169,25 @@ const NewsDetail = () => {
                                                                 to={`/komnews/${item.slug}`}
                                                                 className="group block"
                                                             >
-                                                                <h4 className="font-medium text-sm sm:text-base line-clamp-2 group-hover:text-primary-dark transition-colors">
-                                                                    {item.title}
-                                                                </h4>
-                                                                <p className="text-xs text-gray-500 mt-1">
-                                                                    {timeAgo(item.created_at)}
-                                                                </p>
+                                                                <div className='flex flex-row gap-3 items-start'>
+                                                                    <img
+                                                                        src={`${baseUrl}/storage/${item.image}`}
+                                                                        alt={item.title} 
+                                                                        className="w-16 h-12 sm:w-20 sm:h-14 lg:w-45 lg:h-25 object-cover rounded-lg flex-shrink-0"
+                                                                        onError={(e) => {
+                                                                            e.target.onerror = null;
+                                                                            e.target.src = '/images/placeholder-news.jpg';
+                                                                        }}
+                                                                    />
+                                                                    <div className="flex-1 min-w-0">
+                                                                        <h4 className="font-medium text-md sm:text-base lg:text-lg line-clamp-2 group-hover:text-primary-dark transition-colors">
+                                                                            {item.title}
+                                                                        </h4>
+                                                                        <p className="text-xs text-gray-500 mt-1">
+                                                                            {timeAgo(item.created_at)}
+                                                                        </p>
+                                                                    </div>
+                                                                </div>
                                                             </Link>
                                                         </div>
                                                     ))}
