@@ -7,7 +7,7 @@ const HeroSection = () => (
     <MotionReveal animation="fade-up">
       <SectionHeader title="Jawara Ilkomerz" altText="Garis Jawara" />
       <p className="text-center max-w-2xl mx-auto text-lg text-primary-darker mb-4">
-        Kumpulan prestasi dan lomba yang diikuti serta diraih oleh mahasiswa Ilmu Komputer IPB. Temukan inspirasi dan motivasi dari para jawara Ilkomerz!
+        Pusat Informasi Lomba Ilkomerz
       </p>
     </MotionReveal>
   </section>
