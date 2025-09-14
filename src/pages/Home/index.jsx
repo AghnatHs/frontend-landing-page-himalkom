@@ -46,11 +46,7 @@ const Home = () => {
     data: newsData,
     loading: loadingNews,
     error: errorNews
-  } = useFetchData('komnews', baseUrl);
-
-  // State for community details
-  const [communityDetails, setCommunityDetails] = useState({});
-  const [loadingDetails, setLoadingDetails] = useState(false);
+  } = useFetchData('komnews/home', baseUrl);
 
   // Initialize carousels with custom hook
   const {
@@ -63,42 +59,6 @@ const Home = () => {
     goToSlide: goToCommunitySlide,
     setPause: setCommunityCarouselPause
   } = useCarousel(communitiesData?.communities);
-
-  // Fetch detailed information for each community
-  useEffect(() => {
-    if (!communitiesData?.communities?.length) return;
-
-    setLoadingDetails(true);
-
-    const detailPromises = communitiesData.communities.map(community =>
-      axios.get(`${baseUrl}/communities/${community.slug}`)
-        .then(response => ({
-          slug: community.slug,
-          data: response.data.community
-        }))
-        .catch(error => {
-          console.error(`Error fetching details for ${community.slug}:`, error);
-          return { slug: community.slug, data: null };
-        })
-    );
-
-    Promise.all(detailPromises)
-      .then(results => {
-        const details = {};
-        results.forEach(result => {
-          if (result.data) {
-            details[result.slug] = result.data;
-          }
-        });
-        setCommunityDetails(details);
-      })
-      .catch(error => {
-        console.error('Error processing community details:', error);
-      })
-      .finally(() => {
-        setLoadingDetails(false);
-      });
-  }, [communitiesData, baseUrl]);
 
   return (
     <div className="w-full">
@@ -120,8 +80,6 @@ const Home = () => {
             communitiesData={communitiesData}
             loadingCommunities={loadingCommunities}
             errorCommunities={errorCommunities}
-            communityDetails={communityDetails}
-            loadingDetails={loadingDetails}
             currentCommunityIndex={currentCommunityIndex}
             goToCommunitySlide={goToCommunitySlide}
             setCommunityCarouselPause={setCommunityCarouselPause}

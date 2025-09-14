@@ -30,9 +30,6 @@ const Komnews = ({
     });
   };
 
-  // Create a limited news array
-  const limitedNews = newsData?.komnews ? newsData.komnews.slice(0, 5) : [];
-
   // Handle states
   if (loadingNews) {
     return <div className="text-center py-8">Memuat berita...</div>;
@@ -42,7 +39,7 @@ const Komnews = ({
     return <div className="text-center py-8 text-red-500">Gagal memuat berita</div>;
   }
 
-  if (!limitedNews.length) {
+  if (!newsData?.komnews || newsData.komnews.length === 0) {
     return <div className="text-center py-8">Tidak ada berita terkini</div>;
   }
 
@@ -63,7 +60,7 @@ const Komnews = ({
             swiperRef.current = swiper;
           }}
         >
-          {limitedNews.map((komnews, index) => (
+          {newsData.komnews.map((komnews, index) => (
             <SwiperSlide key={komnews.id || `news-${index}`}>
               <div className="px-8">
                 <div className="rounded-[15px] bg-white shadow-card h-[550px] md:h-[400px] flex flex-col md:flex-row p-6 mx-auto md:mx-0 my-3 max-w-[90%] md:max-w-full">
@@ -134,7 +131,7 @@ const Komnews = ({
           
           {/* Pagination dots */}
           <div className="flex justify-center items-center gap-3">
-            {limitedNews.map((_, index) => (
+            {newsData.komnews.map((_, index) => (
               <button
                 key={`dot-${index}`}
                 onClick={() => swiperRef.current?.slideTo(index)}

@@ -10,19 +10,18 @@ import MotionReveal from '@/components/common/MotionReveal';
  * 
  * @param {Object} props
  * @param {Object} props.community - Community data object
- * @param {Object} props.details - Additional community details
  * @param {boolean} props.loading - Loading state for details
  * @param {string} props.baseUrl - API base URL for assets
  * @returns {JSX.Element}
  */
-const CommunityCard = ({ community, details, loading, baseUrl }) => {
+const CommunityCard = ({ community, loading, baseUrl }) => {
   // Truncate description if too long
   const truncateDescription = (desc) => {
     if (!desc) return '';
     return desc.length > 100 ? desc.substring(0, 100) + '...' : desc;
   };
 
-  const description = details?.description || '';
+  const description = community.description || '';
   const truncatedDescription = truncateDescription(description);
 
   return (
@@ -68,7 +67,6 @@ const CommunityCard = ({ community, details, loading, baseUrl }) => {
  * @param {Object} props.communitiesData - Communities data from API
  * @param {boolean} props.loadingCommunities - Loading state for communities data
  * @param {Object} props.errorCommunities - Error object from API request
- * @param {Object} props.communityDetails - Detailed information about each community
  * @param {boolean} props.loadingDetails - Loading state for community details
  * @param {number} props.currentCommunityIndex - Current active slide index
  * @param {Function} props.goToCommunitySlide - Function to navigate to specific slide
@@ -80,7 +78,6 @@ const Ilkomunity = ({
   communitiesData,
   loadingCommunities,
   errorCommunities,
-  communityDetails,
   loadingDetails,
   baseUrl
 }) => {
@@ -104,14 +101,12 @@ const Ilkomunity = ({
         <CommunityCard
           key={community.id || `community-${community.slug}`}
           community={community}
-          details={communityDetails[community.slug]}
           loading={loadingDetails}
           baseUrl={baseUrl}
         />
       ))}
     </div>
-       
-     
+
   );
 };
 
