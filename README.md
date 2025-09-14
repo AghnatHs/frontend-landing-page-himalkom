@@ -1,81 +1,49 @@
-# Project Overview
+# Himalkom Landing Page
 
-This project is a landing page for Himalkom, built using React and Vite. It features a responsive design with a navigation header, dropdown menus, and various pages representing different sections of the Himalkom organization.
+Landing page for Himalkom built with React + Vite and Tailwind CSS. Fast dev, responsive UI, and clean component structure.
 
-## Project Structure
+## Tech Stack
 
-The project is organized as follows:
+- React 19 + React Router
+- Vite 6
+- Tailwind CSS v4
+- Framer Motion, Swiper, Lucide Icons
+- Axios for data fetching
 
-```
-landing-page-himalkom
-├── public
-│   └── Logo HIMALKOM.svg          # Logo image used in the application
-├── src
-│   ├── assets
-│   │   └── Logo HIMALKOM.svg      # Logo image used in the application
-│   ├── components
-│   │   ├── header.jsx              # Header component with logo and navigation
-│   │   ├── Logo.jsx                # Logo component rendering the logo image
-│   │   ├── Nav.jsx                 # Navigation component for mobile menu
-│   │   └── NavLinks.jsx            # Navigation links and dropdown functionality
-│   ├── index.css                   # Global styles for the application
-│   ├── main.jsx                    # Entry point of the React application
-│   └── pages
-│       ├── Home.jsx                # Home page component
-│       ├── Himalkom.jsx            # Himalkom page component
-│       ├── BP.jsx                  # BP page component
-│       ├── BPH.jsx                 # BPH page component
-│       ├── Academic.jsx            # Academic page component
-│       ├── Business.jsx            # Business page component
-│       ├── External.jsx            # External page component
-│       ├── Internal.jsx            # Internal page component
-│       ├── Creative.jsx            # Creative page component
-│       ├── Ristek.jsx              # Ristek page component
-│       ├── Komunitas.jsx           # Komunitas page component
-│       ├── Komnews.jsx             # Komnews page component
-│       ├── Galeri.jsx              # Galeri page component
-│       ├── Megaproker.jsx          # Megaproker page component
-│       └── Riset.jsx               # Riset page component
-├── .eslintrc.js                    # ESLint configuration
-├── index.html                      # Main HTML file for the React application
-├── package.json                    # npm configuration file
-├── pnpm-lock.yaml                  # pnpm lock file for consistent installs
-├── README.md                       # Documentation for the project
-└── vite.config.js                  # Vite configuration file
+## Prerequisites
+
+- Node.js 18+ (LTS recommended)
+- pnpm (repo uses `pnpm` and lockfile)
+
+## Quick Start
+
+```sh
+pnpm install
+pnpm dev
 ```
 
-## Getting Started
+Dev server runs on http://localhost:5173 by default.
 
-To get started with the project, follow these steps:
+## Available Scripts
 
-1. **Clone the repository**:
-   ```
-   git clone <repository-url>
-   cd landing-page-himalkom
-   ```
+- `pnpm dev` — start dev server
+- `pnpm build` — production build
+- `pnpm preview` — preview the production build locally
+- `pnpm lint` — run ESLint
 
-2. **Install dependencies**:
-   ```
-   pnpm install
-   ```
+## Build & Preview
 
-3. **Run the development server**:
-   ```
-   pnpm run dev
-   ```
+```sh
+pnpm build
+pnpm preview
+```
 
-4. **Open your browser** and navigate to `http://localhost:3000` to view the application.
+## Project Notes
 
-## Features
-
-- Responsive design with a mobile-friendly navigation menu.
-- Dropdown menus for profile and department links.
-- Multiple pages representing different sections of the Himalkom organization.
+- Path alias: use `@/` to import from `src` (configured in `vite.config.js`).
+- Assets live in `src/assets` and public static files in `public`.
+- Data fetching: a simple hook `useFetchData(endpoint, baseUrl)` is available in `src/hooks/useAPI.js`.
 
 ## Contributing
 
-Contributions are welcome! Please open an issue or submit a pull request for any improvements or bug fixes.
-
-## License
-
-This project is licensed under the MIT License. See the LICENSE file for details.
+Issues and PRs are welcome. Please keep changes focused and describe the context clearly.
