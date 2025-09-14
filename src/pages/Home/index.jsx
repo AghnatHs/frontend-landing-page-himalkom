@@ -46,7 +46,7 @@ const Home = () => {
     data: newsData,
     loading: loadingNews,
     error: errorNews
-  } = useFetchData('komnews', baseUrl);
+  } = useFetchData('komnews/home', baseUrl);
 
   // State for community details
   const [communityDetails, setCommunityDetails] = useState({});

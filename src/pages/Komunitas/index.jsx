@@ -18,13 +18,13 @@ import PortoKomun from './section/PortoKomun'
 
 const Komunitas = () => {
   const baseUrl = import.meta.env.VITE_API_BASE_URL;
-
   const { slug } = useParams();
 
+  // Fetch communities data
   const { data, loading, error} = useFetchData(`communities/${slug}`, baseUrl);
-
   const community = data?.community
 
+  // Handle loading and error states
   if (loading) return <LoadingSpinner variant="page" size="large" message="Memuat data komunitas..." />;
   if (error || !community) return <NotFound/>;
 

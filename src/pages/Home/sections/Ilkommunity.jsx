@@ -110,8 +110,7 @@ const Ilkomunity = ({
         />
       ))}
     </div>
-       
-     
+
   );
 };
 
