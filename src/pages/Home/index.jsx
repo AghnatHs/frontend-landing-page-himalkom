@@ -1,5 +1,3 @@
-import React, { useState, useEffect } from 'react';
-import axios from 'axios';
 import MotionReveal from '@/components/common/MotionReveal';
 
 // Custom hooks
@@ -12,8 +10,8 @@ import SectionHeader from '@/components/common/SectionHeader';
 // Page sections
 import HeroSection from './sections/HeroSection';
 import Ilkomunity from './sections/Ilkommunity';
-import Megaproker from './sections/Megaproker';
 import Komnews from './sections/KomNews';
+import Megaproker from './sections/Megaproker';
 
 /**
  * Home Page Component
@@ -73,7 +71,7 @@ const Home = () => {
       <section className="px-4 flex flex-col items-center text-center my-[230px] md:mt-80">
         <MotionReveal animation="fade-up">
           <SectionHeader
-            title="ILKOMUNITY"
+            title="ILKOMUNITYZ"
             altText="Komunitas Ilmu Komputer"
           />
           <Ilkomunity
