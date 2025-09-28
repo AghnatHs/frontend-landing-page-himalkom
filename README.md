@@ -2,6 +2,9 @@
 
 Landing page for Himalkom built with React + Vite and Tailwind CSS. Fast dev, responsive UI, and clean component structure.
 
+## Deployment
+see ```.github/workflows/main.yml```
+
 ## Tech Stack
 
 - React 19 + React Router
