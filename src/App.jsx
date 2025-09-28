@@ -1,22 +1,21 @@
-import React from 'react';
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import MainLayout from './layout/MainLayout';
-import Home from './pages/Home';
-import Komunitas from './pages/Komunitas';
-import Header from './components/header';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import ScrollToTop from './components/common/ScrollToTop';
 import Footer from './components/footer';
+import Header from './components/header';
+import MainLayout from './layout/MainLayout';
 import Departemen from './pages/Departemen';
+import Galeri from './pages/Galeri';
+import GalleryDetail from './pages/Galeri/Detail';
 import Himalkom from './pages/Himalkom';
+import Home from './pages/Home';
+import Jawara from './pages/Jawara';
 import Komnews from './pages/Komnews';
 import News from './pages/Komnews/News';
+import Komunitas from './pages/Komunitas';
+import Megaproker from './pages/Megaproker';
+import NotFound from './pages/NotFound';
 import Riset from './pages/Riset';
 import Syntax from './pages/Syntax';
-import Megaproker from './pages/Megaproker';
-import Galeri from './pages/Galeri'; 
-import GalleryDetail from './pages/Galeri/Detail';
-import Jawara from './pages/Jawara';
-import NotFound from './pages/NotFound'; 
-import ScrollToTop from './components/common/ScrollToTop';
 
 const App = () => {
   return (
@@ -47,3 +46,4 @@ const App = () => {
 };
 
 export default App;
+// TEST
