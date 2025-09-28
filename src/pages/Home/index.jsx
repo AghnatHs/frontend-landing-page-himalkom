@@ -71,7 +71,7 @@ const Home = () => {
       <section className="px-4 flex flex-col items-center text-center my-[230px] md:mt-80">
         <MotionReveal animation="fade-up">
           <SectionHeader
-            title="ILKOMUNITYZ"
+            title="ILKOMUNITY"
             altText="Komunitas Ilmu Komputer"
           />
           <Ilkomunity
